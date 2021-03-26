@@ -1,0 +1,9 @@
+html
+    head
+        title= config.lecture
+    body 
+        h1= config.lecture
+        - for(const a of assignments)
+            h2= a.name
+            - for(const e of a.exercises)
+                a(href=`${e.id}.html`)= e.name

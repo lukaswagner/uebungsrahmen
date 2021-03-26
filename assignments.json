@@ -1,0 +1,20 @@
+{
+    "lecture": "Übungen 3D-Computergrafik I",
+    "exercisePath": "./exercises",
+    "assignments": [
+        {
+            "name": "First Assignment",
+            "id": 1,
+            "exercises": [
+                "ex1"
+            ]
+        },
+        {
+            "name": "Second Assignment",
+            "id": 2,
+            "exercises": [
+                "ex2"
+            ]
+        }
+    ]
+}
