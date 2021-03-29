@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "noImplicitAny": true,
+    },
+    "include": [
+        "source/**/*.ts",
+        "exercises/**/*.ts"
+    ]
+}

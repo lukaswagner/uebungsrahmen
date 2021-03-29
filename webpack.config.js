@@ -59,7 +59,7 @@ module.exports = {
     plugins: [index, ...pages],
     mode: 'development',
     output: {
-        filename: 'js/[name].js',
+        filename: '[name]_[hash:4].js',
         path: path.resolve(__dirname, 'build'),
         clean: true
     },
@@ -71,6 +71,13 @@ module.exports = {
     },
     module: {
         rules: [
+            {
+                test: /\.ts$/,
+                use: {
+                    loader: 'ts-loader'
+                },
+                exclude: /node_modules/,
+            },
             {
                 test: /\.pug$/,
                 use: {
@@ -86,9 +93,7 @@ module.exports = {
                     loader: 'markdown-it-loader',
                     options: {
                         use: [
-                            [
-                                require('markdown-it-texmath'),
-                                { fleqn: true }]
+                            require('markdown-it-texmath')
                         ]
                     }
                 }],
@@ -100,7 +105,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             esModule: false,
-                            name: 'css/[name]_[hash:4].[ext]'
+                            name: '[name]_[hash:4].[ext]',
                         }
                     },
                     { loader: 'extract-loader' },
@@ -111,7 +116,7 @@ module.exports = {
                 test: /\.png$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'img/[name]_[hash:4][ext]'
+                    filename: '[name]_[hash:4][ext]'
                 }
             },
             {
@@ -120,7 +125,7 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         esModule: false,
-                        name: 'fnt/[name]_[hash:4].[ext]'
+                        name: '[name]_[hash:4].[ext]',
                     }
                 }
             },
