@@ -59,9 +59,8 @@ module.exports = {
     plugins: [index, ...pages],
     mode: 'development',
     output: {
-        filename: '[name]_[hash:4].js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'build'),
-        clean: true
     },
     resolve: {
         alias: {
@@ -105,7 +104,7 @@ module.exports = {
                         loader: 'file-loader',
                         options: {
                             esModule: false,
-                            name: '[name]_[hash:4].[ext]',
+                            name: '[name].[ext]',
                         }
                     },
                     { loader: 'extract-loader' },
@@ -116,7 +115,7 @@ module.exports = {
                 test: /\.png$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: '[name]_[hash:4][ext]'
+                    filename: 'img/[name]_[hash:4][ext]'
                 }
             },
             {
@@ -125,7 +124,8 @@ module.exports = {
                     loader: 'file-loader',
                     options: {
                         esModule: false,
-                        name: '[name]_[hash:4].[ext]',
+                        name: '[name].[ext]',
+                        outputPath: 'fnt'
                     }
                 }
             },
