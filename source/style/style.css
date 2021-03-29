@@ -1,0 +1,6 @@
+@import '~katex/dist/katex.min.css';
+@import '~highlight.js/styles/vs.css';
+
+body {
+    font-family: monospace;
+}

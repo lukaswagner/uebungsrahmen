@@ -59,8 +59,9 @@ module.exports = {
     plugins: [index, ...pages],
     mode: 'development',
     output: {
-        filename: '[name].js',
+        filename: 'js/[name].js',
         path: path.resolve(__dirname, 'build'),
+        clean: true
     },
     resolve: {
         alias: {
@@ -82,13 +83,47 @@ module.exports = {
                 use: [{
                     loader: 'html-loader'
                 }, {
-                    loader: 'markdown-loader'
+                    loader: 'markdown-it-loader',
+                    options: {
+                        use: [
+                            [
+                                require('markdown-it-texmath'),
+                                { fleqn: true }]
+                        ]
+                    }
                 }],
             },
             {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            esModule: false,
+                            name: 'css/[name]_[hash:4].[ext]'
+                        }
+                    },
+                    { loader: 'extract-loader' },
+                    { loader: 'css-loader' },
+                ]
+            },
+            {
                 test: /\.png$/,
-                type: 'asset/resource'
-            }
+                type: 'asset/resource',
+                generator: {
+                    filename: 'img/[name]_[hash:4][ext]'
+                }
+            },
+            {
+                test: /\.(eot|otf|ttf|woff|woff2)$/,
+                use: {
+                    loader: 'file-loader',
+                    options: {
+                        esModule: false,
+                        name: 'fnt/[name]_[hash:4].[ext]'
+                    }
+                }
+            },
         ]
     },
 }

@@ -1,6 +1,8 @@
 html
     head
-        title= exercise.name
+        block head
+            include head.pug
+            title= exercise.name
     body
         p
             =exercise.assignment.name 

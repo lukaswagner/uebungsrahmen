@@ -2,9 +2,18 @@ extends /exercise.pug
 
 //- this is an example exercise page.
 //- it could redefine the content block to replace the canvas
-//- here, only the assignment block is defined
-//- note regarding markdown: the content cant be directly inserted
+
+//- by appending the katexLeft header to the head block,
+//- centered katex blocks are aligned left
+//- this seems a better choice than always setting this
+//- also, this can be used to inject custom css
+
+block append head
+    link(rel="stylesheet", href=require('fw/style/katexLeft.css'))
+
+//- note regarding markdown: the content can't be directly inserted
 //- it must be handled by html-loader and then re-extracted here using .default
 //- also note the != instead of the normal = to avoid escaping
+
 block assignment
     !=require("./assignment.md").default
