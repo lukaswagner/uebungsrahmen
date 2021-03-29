@@ -3,9 +3,11 @@
 const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const mdTex = require('markdown-it-texmath');
 
 const config = require('./assignments.json');
 
+// collect assignments, resolve exercise dirs to exercise configs
 const assignments =
     config.assignments
         .map((assignment) => {
@@ -14,14 +16,12 @@ const assignments =
                 const exDir = path.join(config.exercisePath, exercise);
                 const exFile = path.join(exDir, 'exercise.json');
                 const ex = JSON.parse(fs.readFileSync(exFile));
-                return Object.assign({
-                    id: exercise,
-                    path: exDir
-                }, ex);
+                return Object.assign({ id: exercise, path: exDir }, ex);
             });
             return clone;
         });
 
+// collect exercise from assignments
 const exercises =
     assignments
         .map((a) => a.exercises.map((ex) => {
@@ -29,28 +29,25 @@ const exercises =
         }))
         .flat();
 
+// collect entry points from exercises
 let entries = {};
 exercises.forEach((e) => entries[e.id] = path.resolve(e.path, e.entry));
 
+// prepare exercise pages
 const pages = exercises.map((exercise) => {
     return new HtmlWebpackPlugin({
         filename: exercise.id + '.html',
         template: path.join(exercise.path, exercise.page),
-        templateParameters: {
-            config,
-            exercise
-        },
+        templateParameters: { config, exercise },
         chunks: [exercise.id, 'style']
     });
 });
 
+// prepare index page
 const index = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './source/pages/index.pug',
-    templateParameters: {
-        config,
-        assignments
-    },
+    templateParameters: { config, assignments },
     chunks: ['index', 'style']
 });
 
@@ -88,14 +85,13 @@ module.exports = {
             {
                 test: /\.md$/,
                 use: [
-                    { loader: 'html-loader' },
+                    {
+                        loader: 'html-loader',
+                        options: { esModule: false }
+                    },
                     {
                         loader: 'markdown-it-loader',
-                        options: {
-                            use: [
-                                require('markdown-it-texmath')
-                            ]
-                        }
+                        options: { use: [mdTex] }
                     }
                 ],
             },
