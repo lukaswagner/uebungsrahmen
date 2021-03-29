@@ -68,7 +68,7 @@ module.exports = {
     resolve: {
         alias: {
             fw: path.resolve(__dirname, 'source'),
-            ex: path.resolve(__dirname, 'assignment.exercisePath'),
+            ex: path.resolve(__dirname, config.exercisePath),
         },
     },
     module: {
