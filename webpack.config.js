@@ -40,7 +40,7 @@ const pages = exercises.map((exercise) => {
             config,
             exercise
         },
-        chunks: [exercise.id]
+        chunks: [exercise.id, 'style']
     });
 });
 
@@ -51,11 +51,14 @@ const index = new HtmlWebpackPlugin({
         config,
         assignments
     },
-    chunks: ['index']
+    chunks: ['index', 'style']
 });
 
 module.exports = {
-    entry: Object.assign({ index: './source/code/index.ts' }, entries),
+    entry: Object.assign({
+        index: './source/code/index.ts',
+        style: './source/code/style.ts'
+    }, entries),
     plugins: [index, ...pages],
     mode: 'development',
     output: {
@@ -72,9 +75,7 @@ module.exports = {
         rules: [
             {
                 test: /\.ts$/,
-                use: {
-                    loader: 'ts-loader'
-                },
+                use: { loader: 'ts-loader' },
                 exclude: /node_modules/,
             },
             {
@@ -86,48 +87,32 @@ module.exports = {
             },
             {
                 test: /\.md$/,
-                use: [{
-                    loader: 'html-loader'
-                }, {
-                    loader: 'markdown-it-loader',
-                    options: {
-                        use: [
-                            require('markdown-it-texmath')
-                        ]
+                use: [
+                    { loader: 'html-loader' },
+                    {
+                        loader: 'markdown-it-loader',
+                        options: {
+                            use: [
+                                require('markdown-it-texmath')
+                            ]
+                        }
                     }
-                }],
+                ],
             },
             {
                 test: /\.css$/,
                 use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            esModule: false,
-                            name: '[name].[ext]',
-                        }
-                    },
-                    { loader: 'extract-loader' },
-                    { loader: 'css-loader' },
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader' }
                 ]
             },
             {
                 test: /\.png$/,
-                type: 'asset/resource',
-                generator: {
-                    filename: 'img/[name]_[hash:4][ext]'
-                }
+                type: 'asset/resource'
             },
             {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        esModule: false,
-                        name: '[name].[ext]',
-                        outputPath: 'fnt'
-                    }
-                }
+                type: 'asset/resource'
             },
         ]
     },

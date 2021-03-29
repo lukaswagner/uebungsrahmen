@@ -1,3 +1,5 @@
+import 'fw/style/katexLeft.css';
+
 const canvas = document.getElementById('content') as HTMLCanvasElement;
 const ctx = canvas.getContext('2d');
 ctx.font = '50px monospace';
