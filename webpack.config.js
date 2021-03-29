@@ -108,11 +108,13 @@ module.exports = {
             },
             {
                 test: /\.png$/,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                generator: { filename: 'img/[name]_[hash:4][ext]' }
             },
             {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
-                type: 'asset/resource'
+                type: 'asset/resource',
+                generator: { filename: 'fnt/[name]_[hash:4][ext]' }
             },
         ]
     },
