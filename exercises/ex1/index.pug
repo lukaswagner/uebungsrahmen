@@ -1,1 +1,10 @@
-include /exercise.pug
+extends /exercise.pug
+
+//- this is an example exercise page.
+//- it could redefine the content block to replace the canvas
+//- here, only the assignment block is defined
+//- note regarding markdown: the content cant be directly inserted
+//- it must be handled by html-loader and then re-extracted here using .default
+//- also note the != instead of the normal = to avoid escaping
+block assignment
+    !=require("./assignment.md").default

@@ -6,4 +6,7 @@ html
         - for(const a of assignments)
             h2= a.name
             - for(const e of a.exercises)
-                a(href=`${e.id}.html`)= e.name
+                p 
+                    a(href=`${e.id}.html`)= e.name
+                    br
+                    =e.description

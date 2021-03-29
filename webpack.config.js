@@ -76,6 +76,18 @@ module.exports = {
                     loader: 'pug-loader',
                     options: { root: path.resolve(__dirname, 'source/pages') }
                 },
+            },
+            {
+                test: /\.md$/,
+                use: [{
+                    loader: 'html-loader'
+                }, {
+                    loader: 'markdown-loader'
+                }],
+            },
+            {
+                test: /\.png$/,
+                type: 'asset/resource'
             }
         ]
     },

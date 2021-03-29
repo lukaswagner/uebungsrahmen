@@ -1,5 +1,6 @@
 {
     "name": "Exercise 1",
+    "description": "This is the first exercise.",
     "page": "index.pug",
     "entry": "code/index.ts"
 }
