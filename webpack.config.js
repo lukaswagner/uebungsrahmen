@@ -34,14 +34,18 @@ let entries = {};
 exercises.forEach((e) => entries[e.id] = path.resolve(e.path, e.entry));
 
 // prepare exercise pages
-const pages = exercises.map((exercise) => {
-    return new HtmlWebpackPlugin({
-        filename: exercise.id + '.html',
-        template: path.join(exercise.path, exercise.page),
-        templateParameters: { config, exercise },
-        chunks: [exercise.id, 'style']
+const pages = exercises
+    .filter((exercise, index) => {
+        return exercises.findIndex((ex) => ex.id === exercise.id) === index;
+    })
+    .map((exercise) => {
+        return new HtmlWebpackPlugin({
+            filename: exercise.id + '.html',
+            template: path.join(exercise.path, exercise.page),
+            templateParameters: { config, exercise },
+            chunks: [exercise.id, 'style']
+        });
     });
-});
 
 // prepare index page
 const index = new HtmlWebpackPlugin({

@@ -15,6 +15,64 @@
             "exercises": [
                 "ex2"
             ]
+        },
+        {
+            "name": "Assignment",
+            "id": 3,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
+        },
+        {
+            "name": "Assignment",
+            "id": 4,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
+        },
+        {
+            "name": "Assignment",
+            "id": 5,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
+        },
+        {
+            "name": "Assignment",
+            "id": 6,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
+        },
+        {
+            "name": "Assignment",
+            "id": 7,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
+        },
+        {
+            "name": "Assignment",
+            "id": 8,
+            "exercises": [
+                "ex2",
+                "ex2",
+                "ex2"
+            ]
         }
     ]
 }
