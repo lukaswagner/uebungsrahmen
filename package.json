@@ -32,6 +32,6 @@
     },
     "scripts": {
         "build": "webpack build --output-clean",
-        "start": "webpack serve"
+        "start": "webpack serve --open"
     }
 }
