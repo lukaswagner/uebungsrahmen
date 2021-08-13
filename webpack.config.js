@@ -58,11 +58,13 @@ module.exports = {
     }, entries),
     plugins: [index, ...pages],
     mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         filename: '[name].js',
         path: path.resolve(__dirname, 'build'),
     },
     resolve: {
+        extensions: ['.ts', '...'],
         alias: {
             fw: path.resolve(__dirname, 'source'),
             ex: path.resolve(__dirname, config.exercisePath),
@@ -101,6 +103,10 @@ module.exports = {
                     { loader: 'style-loader' },
                     { loader: 'css-loader' }
                 ]
+            },
+            {
+                test: /\.(glsl|vert|frag)$/,
+                use: { loader: 'webpack-glsl-loader' },
             },
             {
                 test: /\.(png|jpe?g|gif|bmp|tiff?|webp)$/,

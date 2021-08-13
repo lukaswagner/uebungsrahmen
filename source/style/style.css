@@ -4,3 +4,8 @@
 body {
     font-family: monospace;
 }
+
+canvas {
+    width: 64vw;
+    height: 36vw;
+}

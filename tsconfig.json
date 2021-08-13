@@ -2,6 +2,12 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "noImplicitAny": true,
+        "module": "commonjs",
+        "target": "ES6",
+        "lib": [
+            "DOM",
+            "ES6"
+        ]
     },
     "include": [
         "source/**/*.ts",
