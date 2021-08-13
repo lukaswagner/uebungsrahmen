@@ -113,7 +113,7 @@ module.exports = {
                 generator: { filename: 'vid/[name]_[hash:4][ext]' }
             },
             {
-                test: /\.(json|obj|gltf|glb)$/,
+                test: /\.(json|obj|gltf|glb|stl)$/,
                 type: 'asset/resource',
                 generator: { filename: 'dat/[name]_[hash:4][ext]' }
             },
