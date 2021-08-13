@@ -42,8 +42,8 @@ const pages = exercises
         return new HtmlWebpackPlugin({
             filename: exercise.id + '.html',
             template: path.join(exercise.path, exercise.page),
-            templateParameters: { config, exercise },
-            chunks: [exercise.id, 'style']
+            templateParameters: { config, exercise, assignments },
+            chunks: [exercise.id, 'style', 'navbar']
         });
     });
 
@@ -58,7 +58,8 @@ const index = new HtmlWebpackPlugin({
 module.exports = {
     entry: Object.assign({
         index: './source/code/index.ts',
-        style: './source/code/style.ts'
+        style: './source/code/style.ts',
+        navbar: './source/code/navbar.ts'
     }, entries),
     plugins: [index, ...pages],
     mode: 'development',

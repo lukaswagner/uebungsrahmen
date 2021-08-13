@@ -1,0 +1,6 @@
+include assignment
+
+div.d-grid.d-none#navbar
+    - for(const a of assignments)
+        +assignment(a, false)
+div#navbar-toggle Aufgaben

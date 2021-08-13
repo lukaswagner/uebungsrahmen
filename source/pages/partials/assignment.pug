@@ -1,0 +1,9 @@
+mixin assignment(assignment, showDescription)
+    div
+        h2= assignment.name
+        - for(const e of assignment.exercises)
+            p 
+                a(href=`${e.id}.html`)= e.name
+                - if(showDescription)
+                    br
+                    =e.description
