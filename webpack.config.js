@@ -103,9 +103,19 @@ module.exports = {
                 ]
             },
             {
-                test: /\.png$/,
+                test: /\.(png|jpe?g|gif|bmp|tiff?|webp)$/,
                 type: 'asset/resource',
                 generator: { filename: 'img/[name]_[hash:4][ext]' }
+            },
+            {
+                test: /\.(webm|mkv|avi|mp4|m4v)$/,
+                type: 'asset/resource',
+                generator: { filename: 'vid/[name]_[hash:4][ext]' }
+            },
+            {
+                test: /\.(json|obj|gltf|glb)$/,
+                type: 'asset/resource',
+                generator: { filename: 'dat/[name]_[hash:4][ext]' }
             },
             {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
