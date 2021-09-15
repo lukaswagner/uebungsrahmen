@@ -1,0 +1,6 @@
+{
+    "name": "webgl-operate example",
+    "description": "Using webgl-operate to render to a canvas.",
+    "page": "index.pug",
+    "entry": "code/index.ts"
+}

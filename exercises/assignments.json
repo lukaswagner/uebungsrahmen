@@ -3,72 +3,75 @@
         "name": "First Assignment",
         "id": 1,
         "exercises": [
-            "ex1"
+            "baseExample",
+            "featureOverview",
+            "plainWebglExample",
+            "webglOperateExample"
         ]
     },
     {
         "name": "Second Assignment",
         "id": 2,
         "exercises": [
-            "ex2"
+            "baseExample"
         ]
     },
     {
         "name": "Third Assignment",
         "id": 3,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     },
     {
         "name": "Fourth Assignment",
         "id": 4,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     },
     {
         "name": "Fifth Assignment",
         "id": 5,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     },
     {
         "name": "Sixth Assignment",
         "id": 6,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     },
     {
         "name": "Seventh Assignment",
         "id": 7,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     },
     {
         "name": "Eight Assignment",
         "id": 8,
         "exercises": [
-            "ex2",
-            "ex2",
-            "ex2"
+            "baseExample",
+            "baseExample",
+            "baseExample"
         ]
     }
 ]

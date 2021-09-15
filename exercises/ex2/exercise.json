@@ -1,6 +1,0 @@
-{
-    "name": "Exercise 2",
-    "description": "This is the second exercise.",
-    "page": "index.pug",
-    "entry": "code/index.ts"
-}

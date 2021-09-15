@@ -1,0 +1,6 @@
+{
+    "name": "Feature overview",
+    "description": "Overview of available embedding options.",
+    "page": "index.pug",
+    "entry": "code/index.ts"
+}

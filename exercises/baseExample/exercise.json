@@ -1,0 +1,6 @@
+{
+    "name": "Base example",
+    "description": "Exercise containing the bare minimum.",
+    "page": "index.pug",
+    "entry": "code/index.ts"
+}
