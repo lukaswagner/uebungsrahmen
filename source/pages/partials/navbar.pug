@@ -1,6 +1,9 @@
 include assignment
 
-div.d-grid.d-none#navbar
-    - for(const a of assignments)
-        +assignment(a, false)
-div#navbar-toggle Aufgaben
+div#navbar
+    div= config.lecture
+    div#navbar-toggle Aufgaben
+div#navbar-navigation.d-none
+    div.d-grid
+        - for(const a of assignments)
+            +assignment(a, false)

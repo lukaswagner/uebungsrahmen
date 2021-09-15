@@ -1,0 +1,21 @@
+.dark-theme {
+    --background-color: #222;
+    --text-color: #eee;
+    --link-color: #6ae;
+    --visited-link-color: #c8c;
+    --navbar-background-color: #666;
+    --navbar-text-color: #eee;
+    --navbar-nav-background-color: #444;
+    --navbar-nav-text-color: #eee;
+}
+
+.light-theme {
+    --background-color: #eee;
+    --text-color: #111;
+    --link-color: #37b;
+    --visited-link-color: #a4a;
+    --navbar-background-color: #aaa;
+    --navbar-text-color: #111;
+    --navbar-nav-background-color: #ccc;
+    --navbar-nav-text-color: #111;
+}

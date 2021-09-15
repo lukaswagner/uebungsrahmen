@@ -1,8 +1,25 @@
 @import '~katex/dist/katex.min.css';
 @import '~highlight.js/styles/vs.css';
+@import './themes.css';
+@import './navbar.css';
+@import './link.css';
+
+:root {
+    --navbar-height: 2em;
+    --content-width: 70em;
+}
 
 body {
-    font-family: monospace;
+    font-family: sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+#main-container {
+    margin: auto;
+    padding-top: var(--navbar-height);
+    max-width: var(--content-width);
 }
 
 canvas {
@@ -18,22 +35,4 @@ canvas {
 
 .d-none {
     display: none;
-}
-
-#navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    width: 100%;
-    background-color: lightgrey;
-}
-
-#navbar-toggle {
-    outline: 1px solid black;
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    padding: 5px;
-    cursor: pointer;
 }

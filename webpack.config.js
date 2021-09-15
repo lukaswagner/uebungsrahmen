@@ -52,7 +52,7 @@ const index = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './source/pages/index.pug',
     templateParameters: { config, assignments },
-    chunks: ['index', 'style']
+    chunks: ['index', 'style', 'navbar']
 });
 
 module.exports = {

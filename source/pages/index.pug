@@ -3,8 +3,11 @@ include partials/assignment
 html
     head
         title= config.lecture
-    body 
-        h1= config.lecture
-        div.d-grid
-            - for(const a of assignments)
-                +assignment(a, true)
+    body.dark-theme
+        div#navbar-container
+            include partials/navbar
+        div#main-container
+            h1= config.lecture
+            div.d-grid
+                - for(const a of assignments)
+                    +assignment(a, true)

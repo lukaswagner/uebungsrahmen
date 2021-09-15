@@ -1,0 +1,7 @@
+a {
+    color: var(--link-color);
+}
+
+a:visited {
+    color: var(--visited-link-color);
+}

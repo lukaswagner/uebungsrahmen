@@ -1,12 +1,14 @@
 html
     head
         title= exercise.name
-    body
-        include partials/navbar
-        p
-            =exercise.assignment.name 
-            |  &ndash; 
-            =exercise.name
-        block content
-            canvas#content
-        block assignment
+    body.dark-theme
+        div#navbar-container
+            include partials/navbar
+        div#main-container
+            p
+                =exercise.assignment.name 
+                |  &ndash; 
+                =exercise.name
+            block content
+                canvas#content
+            block assignment
