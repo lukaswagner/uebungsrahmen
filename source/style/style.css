@@ -1,5 +1,5 @@
 @import '~katex/dist/katex.min.css';
-@import '~highlight.js/styles/atom-one-dark.css';
+@import 'theme_css';
 @import './themes.css';
 @import './navbar.css';
 @import './link.css';
@@ -22,9 +22,9 @@ body {
     max-width: var(--content-width);
 }
 
-canvas {
-    width: 64vw;
-    height: 36vw;
+#content {
+    width: 100%;
+    aspect-ratio: 16 / 9;
 }
 
 .d-grid {

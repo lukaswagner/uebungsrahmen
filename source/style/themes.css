@@ -1,4 +1,4 @@
-.dark-theme {
+.dark {
     --background-color: #222;
     --text-color: #eee;
     --link-color: #6ae;
@@ -9,7 +9,7 @@
     --navbar-nav-text-color: #eee;
 }
 
-.light-theme {
+.light {
     --background-color: #eee;
     --text-color: #111;
     --link-color: #37b;

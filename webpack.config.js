@@ -6,21 +6,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
 
-const config = require('./assignments.json');
+const config = require('./config.json');
 
 // collect assignments, resolve exercise dirs to exercise configs
-const assignments =
-    config.assignments
-        .map((assignment) => {
-            const clone = Object.assign({}, assignment);
-            clone.exercises = assignment.exercises.map((exercise) => {
-                const exDir = path.join(config.exercisePath, exercise);
-                const exFile = path.join(exDir, 'exercise.json');
-                const ex = JSON.parse(fs.readFileSync(exFile));
-                return Object.assign({ id: exercise, path: exDir }, ex);
-            });
-            return clone;
+const assignmentPath = path.join(__dirname, config.exercisePath, 'assignments.json');
+const assignments = require(assignmentPath)
+    .map((assignment) => {
+        const clone = Object.assign({}, assignment);
+        clone.exercises = assignment.exercises.map((exercise) => {
+            const exDir = path.join(config.exercisePath, exercise);
+            const exFile = path.join(exDir, 'exercise.json');
+            const ex = JSON.parse(fs.readFileSync(exFile));
+            return Object.assign({ id: exercise, path: exDir }, ex);
         });
+        return clone;
+    });
 
 // collect exercise from assignments
 const exercises =
@@ -90,6 +90,9 @@ module.exports = {
         alias: {
             fw: path.resolve(__dirname, 'source'),
             ex: path.resolve(__dirname, config.exercisePath),
+            theme_css: path.resolve(
+                __dirname,
+                `node_modules/highlight.js/styles/atom-one-${config.theme}.css`)
         },
     },
     module: {
