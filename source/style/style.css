@@ -1,5 +1,5 @@
 @import '~katex/dist/katex.min.css';
-@import '~highlight.js/styles/vs.css';
+@import '~highlight.js/styles/atom-one-dark.css';
 @import './themes.css';
 @import './navbar.css';
 @import './link.css';
@@ -35,4 +35,9 @@ canvas {
 
 .d-none {
     display: none;
+}
+
+.hljs {
+    padding: 1em;
+    width: min-content;
 }

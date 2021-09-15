@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
+const hljs = require('highlight.js');
 
 const config = require('./assignments.json');
 
@@ -55,6 +56,22 @@ const index = new HtmlWebpackPlugin({
     chunks: ['index', 'style', 'navbar']
 });
 
+const highlight = (string, language) => {
+    const prefix = '<pre class="hljs"><code>';
+    const suffix = '</code></pre>';
+    if (language && hljs.getLanguage(language)) {
+        try {
+            const content = hljs.highlight(
+                string,
+                { language, ignoreIllegals: true }
+            ).value;
+            return prefix + content + suffix;
+        } catch (error) { }
+    }
+
+    return '';
+}
+
 module.exports = {
     entry: Object.assign({
         index: './source/code/index.ts',
@@ -98,7 +115,7 @@ module.exports = {
                     },
                     {
                         loader: 'markdown-it-loader',
-                        options: { use: [mdTex] }
+                        options: { use: [mdTex], highlight }
                     }
                 ],
             },
