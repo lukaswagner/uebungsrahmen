@@ -22,8 +22,10 @@
 #navbar-toggle {
     margin-left: auto;
     cursor: pointer;
-    outline: 1px solid var(--navbar-text-color);
-    padding: 2px 5px;
+    user-select: none;
+    background-color: var(--navbar-nav-background-color);
+    padding: 0.5em;
+    border-radius: 2px;
 }
 
 #navbar-navigation {

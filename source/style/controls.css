@@ -1,0 +1,61 @@
+#controls-container {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#controls-toggle, #controls {
+    background-color: #fffb;
+    padding: 0.5em;
+    margin: 0.2em;
+    color: #000;
+    border-radius: 2px;
+}
+
+#controls-toggle {
+    cursor: pointer;
+    user-select: none;
+}
+
+#controls {
+    width: 20ch;
+}
+
+#controls div {
+    display: flex;
+    align-items: center;
+}
+
+#controls div:not(:first-child) {
+    padding-top: 5px;
+}
+
+#controls label {
+    margin-right: auto;
+}
+
+#controls progress {
+    margin: 2px;
+}
+
+#controls input, #controls button, #controls select, #controls progress {
+    box-sizing: border-box;
+    width: 20%;
+    margin-left: 5px;
+}
+
+#controls input[type=checkbox] {
+    width: unset;
+}
+
+#controls table {
+    border-collapse: collapse;
+}
+
+#controls td, #controls th {
+    padding: 3px;
+    border: 1px solid black;
+}

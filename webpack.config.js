@@ -44,7 +44,7 @@ const pages = exercises
             filename: exercise.id + '.html',
             template: path.join(exercise.path, exercise.page),
             templateParameters: { config, exercise, assignments },
-            chunks: [exercise.id, 'style', 'navbar']
+            chunks: [exercise.id, 'style', 'toggle']
         });
     });
 
@@ -53,7 +53,7 @@ const index = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './source/pages/index.pug',
     templateParameters: { config, assignments },
-    chunks: ['index', 'style', 'navbar']
+    chunks: ['index', 'style', 'toggle']
 });
 
 const highlight = (string, language) => {
@@ -76,7 +76,7 @@ module.exports = {
     entry: Object.assign({
         index: './source/code/index.ts',
         style: './source/code/style.ts',
-        navbar: './source/code/navbar.ts'
+        toggle: './source/code/toggle.ts'
     }, entries),
     plugins: [index, ...pages],
     mode: 'development',

@@ -9,6 +9,7 @@
     "license": "MIT",
     "homepage": "https://github.com/lukaswagner/uebungsrahmen#readme",
     "devDependencies": {
+        "@lukaswagner/web-ui": "^1.0.0",
         "css-loader": "^6.2.0",
         "file-loader": "^6.2.0",
         "highlight.js": "^11.2.0",
