@@ -9,18 +9,10 @@ import { DemoRenderer } from './renderer';
 
 import { UI } from '@lukaswagner/web-ui';
 import { addFullscreenCheckbox, setupFullscreen } from 'helper/fullscreen';
+import { expose } from 'helper/expose';
 
-// for exposing canvas, controller, context, and renderer
-declare global {
-    interface Window {
-        canvas: Canvas
-        context: Context
-        controller: Controller
-        renderer: Renderer
-    }
-}
-
-const container = document.getElementById('content-container') as HTMLDivElement;
+const container =
+    document.getElementById('content-container') as HTMLDivElement;
 
 setupFullscreen(container);
 
@@ -30,10 +22,7 @@ const canvas = new Canvas(htmlCanvas, options);
 const renderer = new DemoRenderer();
 canvas.renderer = renderer;
 
-window.canvas = canvas;
-window.context = canvas.context;
-window.controller = canvas.controller;
-window.renderer = renderer;
+expose(canvas);
 
 const controls = document.getElementById('controls') as HTMLDivElement;
 const ui = new UI(controls);
@@ -54,4 +43,3 @@ const color1 = ui.input.text({
     handler: setColor.bind(undefined, 1)
 });
 setColor(1, color1.value);
-color0.value = '#000000';
