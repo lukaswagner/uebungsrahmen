@@ -4,6 +4,7 @@
 @import './navbar.css';
 @import './link.css';
 @import './controls.css';
+@import './content.css';
 
 :root {
     --navbar-height: 3em;
@@ -23,19 +24,6 @@ body {
     max-width: var(--content-width);
 }
 
-#content-container {
-    /* ensure navbar is placed over canvas */
-    z-index: 0;
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-}
-
-#content {
-    width: 100%;
-    height: 100%;
-}
-
 .d-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(10ch, 40ch));
@@ -44,9 +32,4 @@ body {
 
 .d-none {
     display: none;
-}
-
-.hljs {
-    padding: 1em;
-    width: min-content;
 }
