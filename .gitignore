@@ -2,3 +2,5 @@ node_modules
 /build
 /assignments
 /submissions
+/temp
+config.json
