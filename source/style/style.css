@@ -24,6 +24,8 @@ body {
 }
 
 #content-container {
+    /* ensure navbar is placed over canvas */
+    z-index: 0;
     position: relative;
     width: 100%;
     aspect-ratio: 16 / 9;

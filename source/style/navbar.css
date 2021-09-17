@@ -4,6 +4,8 @@
 }
 
 #navbar-container {
+    /* ensure navbar is placed over canvas */
+    z-index: 1;
     top: 0;
     height: var(--navbar-height);
     background-color: var(--navbar-background-color);
