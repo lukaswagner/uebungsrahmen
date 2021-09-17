@@ -8,7 +8,7 @@ import {
 import { DemoRenderer } from './renderer';
 
 import { UI } from '@lukaswagner/web-ui';
-import { addFullscreenCheckbox, setupFullscreen } from 'fw/code/fullscreen';
+import { addFullscreenCheckbox, setupFullscreen } from 'helper/fullscreen';
 
 // for exposing canvas, controller, context, and renderer
 declare global {

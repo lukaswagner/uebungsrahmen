@@ -53,7 +53,7 @@ const index = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './source/pages/index.pug',
     templateParameters: { config, assignments },
-    chunks: ['index', 'style', 'toggle']
+    chunks: ['style', 'toggle']
 });
 
 const highlight = (string, language) => {
@@ -74,7 +74,6 @@ const highlight = (string, language) => {
 
 module.exports = {
     entry: Object.assign({
-        index: './source/code/index.ts',
         style: './source/code/style.ts',
         toggle: './source/code/toggle.ts'
     }, entries),
@@ -89,6 +88,7 @@ module.exports = {
         extensions: ['.ts', '...'],
         alias: {
             fw: path.resolve(__dirname, 'source'),
+            helper: path.resolve(__dirname, 'source/code/helper'),
             ex: path.resolve(__dirname, config.exercisePath),
             theme_css: path.resolve(
                 __dirname,

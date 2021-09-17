@@ -10,8 +10,11 @@
         ],
         "baseUrl": ".",
         "paths": {
-            "fw/code/*": [
-                "./source/code/*"
+            "fw/*": [
+                "./source/*"
+            ],
+            "helper/*": [
+                "./source/code/helper/*"
             ]
         }
     },
