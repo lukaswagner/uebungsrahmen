@@ -13,11 +13,11 @@
     margin: 0.2em;
     color: #000;
     border-radius: 2px;
+    user-select: none;
 }
 
 #controls-toggle {
     cursor: pointer;
-    user-select: none;
 }
 
 #controls {
@@ -27,6 +27,7 @@
 #controls div {
     display: flex;
     align-items: center;
+    height: 1.5em;
 }
 
 #controls div:not(:first-child) {
