@@ -19,6 +19,16 @@
     align-items: center;
 }
 
+#navbar a {
+    color: var(--navbar-text-color);
+    text-decoration: none;
+}
+
+#navbar a:visited {
+    color: var(--navbar-text-color);
+}
+
+
 #navbar-toggle {
     margin-left: auto;
     cursor: pointer;
