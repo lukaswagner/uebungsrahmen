@@ -3,7 +3,7 @@ import { UI } from "@lukaswagner/web-ui";
 export function setFullscreen(elem: HTMLElement, full: boolean = true) {
     if (full) {
         elem.requestFullscreen();
-    } else {
+    } else if (document.fullscreenElement) {
         document.exitFullscreen();
     }
 }

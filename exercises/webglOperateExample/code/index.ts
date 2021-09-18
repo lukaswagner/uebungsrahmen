@@ -25,21 +25,16 @@ canvas.renderer = renderer;
 expose(canvas);
 
 const controls = document.getElementById('controls') as HTMLDivElement;
-const ui = new UI(controls);
+const ui = new UI(controls, true);
 
 addFullscreenCheckbox(container, ui);
 
-const setColor = (index: number, color: string) =>
-    renderer.setColor(index, Color.hex2rgba(color).slice(0, 3));
-
-const color0 = ui.input.text({
+ui.input.text({
     label: 'First color', type: 'color', value: '#aa0000',
-    handler: setColor.bind(undefined, 0)
+    handler: (v) => renderer.setColor(0, Color.hex2rgba(v).slice(0, 3))
 });
-setColor(0, color0.value);
 
-const color1 = ui.input.text({
+ui.input.text({
     label: 'Second color', type: 'color', value: '#0000aa',
-    handler: setColor.bind(undefined, 1)
+    handler: (v) => renderer.setColor(1, Color.hex2rgba(v).slice(0, 3))
 });
-setColor(1, color1.value);
