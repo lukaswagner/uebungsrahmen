@@ -27,3 +27,4 @@ npm install
 - controls visible when in fullscreen view
 - less dependencies
 - dark theme
+- add links to local files in assignment text

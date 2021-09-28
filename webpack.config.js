@@ -99,6 +99,9 @@ module.exports = {
                 `node_modules/highlight.js/styles/atom-one-${config.theme}.css`)
         },
     },
+    resolveLoader: {
+        modules: ['node_modules', path.resolve(__dirname, 'loaders')]
+    },
     module: {
         rules: [
             {
@@ -122,7 +125,12 @@ module.exports = {
                     },
                     {
                         loader: 'markdown-it-loader',
-                        options: { use: [mdTex], highlight }
+                        options: {
+                            use: [mdTex], highlight, html: true
+                        }
+                    },
+                    {
+                        loader: 'vscode-loader'
                     }
                 ],
             },
