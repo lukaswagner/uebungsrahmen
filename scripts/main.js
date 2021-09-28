@@ -25,7 +25,7 @@ yargs
     })
     .commandDir('./commands')
     .demandCommand(1, 'You need specify a command.')
-    .scriptName('cg')
+    .scriptName('fw')
     .locale('en')
     .help()
     .wrap(null)

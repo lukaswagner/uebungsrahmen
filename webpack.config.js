@@ -6,9 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
 
-const config = require(
-    fs.existsSync('./config.json') ? './config.json' : './demoConfig.json'
-);
+let configFile = process.env.fw_config;
+if (!fs.existsSync(configFile)) configFile = './demoConfig.json';
+console.log('Using config file:', configFile);
+const config = require(configFile);
 
 // collect assignments, resolve exercise dirs to exercise configs
 const assignmentPath = path.join(__dirname, config.exerciseDir, 'assignments.json');
