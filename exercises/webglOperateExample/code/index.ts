@@ -1,14 +1,15 @@
 import {
     Canvas,
-    Context,
-    Controller,
-    Renderer,
     Color
 } from 'webgl-operate';
-import { DemoRenderer } from './renderer';
 
+import {
+    addFullscreenCheckbox,
+    setupFullscreen
+} from 'helper/fullscreen';
+
+import { DemoRenderer } from './renderer';
 import { UI } from '@lukaswagner/web-ui';
-import { addFullscreenCheckbox, setupFullscreen } from 'helper/fullscreen';
 import { expose } from 'helper/expose';
 
 const container =

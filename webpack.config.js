@@ -12,7 +12,8 @@ console.log('Using config file:', configFile);
 const config = require(configFile);
 
 // collect assignments, resolve exercise dirs to exercise configs
-const assignmentPath = path.join(__dirname, config.exerciseDir, 'assignments.json');
+const assignmentPath =
+    path.join(__dirname, config.exerciseDir, 'assignments.json');
 const assignments = require(assignmentPath)
     .map((assignment) => {
         const clone = Object.assign({}, assignment);
@@ -34,7 +35,7 @@ const exercises =
         .flat();
 
 // collect entry points from exercises
-let entries = {};
+const entries = {};
 exercises.forEach((e) => entries[e.id] = path.resolve(e.path, e.entry));
 
 // prepare exercise pages
@@ -73,7 +74,7 @@ const highlight = (string, language) => {
     }
 
     return '';
-}
+};
 
 module.exports = {
     entry: Object.assign({
@@ -158,4 +159,4 @@ module.exports = {
             },
         ]
     },
-}
+};

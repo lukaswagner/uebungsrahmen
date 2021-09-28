@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const ensureEmptyDir = require("../helpers/ensureEmptyDir");
+const ensureEmptyDir = require('../helpers/ensureEmptyDir');
 const ensureNonExistent = require('../helpers/ensureNonExistent');
 
 function createConfig(argv) {
@@ -10,7 +10,7 @@ function createConfig(argv) {
         lecture: argv.lecture,
         exerciseDir: argv.directory,
         theme: argv['color-theme'],
-    }
+    };
     if (!ensureNonExistent(argv, argv.config)) process.exit(1);
     fs.writeFileSync(argv.config, JSON.stringify(config, undefined, 4));
 }

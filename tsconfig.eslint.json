@@ -1,0 +1,9 @@
+{
+    "extends": "./tsconfig.json",
+    "include": [
+        "source/**/*.ts",
+        "exercises/**/*.ts",
+        "scripts/**/*.js",
+        "webpack.config.js"
+    ]
+}

@@ -10,7 +10,10 @@
     "homepage": "https://github.com/lukaswagner/uebungsrahmen#readme",
     "devDependencies": {
         "@lukaswagner/web-ui": "^1.1.0",
+        "@typescript-eslint/eslint-plugin": "^4.32.0",
+        "@typescript-eslint/parser": "^4.32.0",
         "css-loader": "^6.2.0",
+        "eslint": "^7.32.0",
         "file-loader": "^6.2.0",
         "highlight.js": "^11.2.0",
         "html-loader": "^2.1.2",
@@ -36,6 +39,8 @@
     "scripts": {
         "build": "webpack build --output-clean",
         "start": "webpack serve --open",
-        "main": "node scripts/main.js"
+        "main": "node scripts/main.js",
+        "lint": "eslint .",
+        "lint-fix": "eslint . --fix"
     }
 }

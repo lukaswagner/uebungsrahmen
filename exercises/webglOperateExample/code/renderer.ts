@@ -6,7 +6,7 @@ import {
     Renderer,
     Shader,
     vec3
-} from "webgl-operate";
+} from 'webgl-operate';
 
 export class DemoRenderer extends Renderer {
     protected _altered = Object.assign(new ChangeLookup(), {
@@ -74,7 +74,7 @@ export class DemoRenderer extends Renderer {
         this._fbo.unbind();
     }
 
-    public setColor(index: number, color: vec3) {
+    public setColor(index: number, color: vec3): void {
         this._colors[index] = color;
         this._altered.alter('colors');
         this.invalidate();

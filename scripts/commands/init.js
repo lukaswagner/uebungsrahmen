@@ -23,5 +23,5 @@ exports.builder = (yargs) => {
             type: 'string',
             choices: ['dark', 'light'],
             default: 'dark'
-        })
-}
+        });
+};

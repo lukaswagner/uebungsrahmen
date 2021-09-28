@@ -9,6 +9,6 @@ exports.builder = (yargs) => {
             description: 'Script found in scripts section of package.json.',
             demandOption: true,
             type: 'string'
-        })
-}
+        });
+};
 

@@ -2,8 +2,8 @@
     "compilerOptions": {
         "experimentalDecorators": true,
         "noImplicitAny": true,
-        "module": "commonjs",
-        "target": "ES6",
+        "moduleResolution": "node",
+        "target": "ES2021",
         "lib": [
             "DOM",
             "ES2021"
