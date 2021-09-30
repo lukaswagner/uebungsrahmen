@@ -1,6 +1,6 @@
 node_modules
 /build
-/assignments
-/submissions
+/import
+/export
 /temp
-config.json
+/config.json

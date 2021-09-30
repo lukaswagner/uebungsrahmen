@@ -3,9 +3,9 @@
 const fs = require('fs');
 
 /**
- *
- * @param {string} dir
- * @returns {fs.Dirent[]}
+ * Lists directory entries, ignoring system files.
+ * @param {string} dir Directory whose content should be read.
+ * @returns {fs.Dirent[]} Contained entries.
  */
 function readDirWithoutSystemFiles(dir) {
     const contents = fs.readdirSync(dir, { withFileTypes: true });
