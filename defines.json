@@ -1,0 +1,16 @@
+{
+    "config": {
+        "assignments": "assignments.json",
+        "assignment": "assignment.json",
+        "exercise": "exercise.json"
+    },
+    "directory": {
+        "import": "./import",
+        "export": "./export"
+    },
+    "filename": {
+        "separator": "_",
+        "assignment": "assignment{sep}{id}.tgz",
+        "solution": "solution{sep}{id}{sep}{students}.tgz"
+    }
+}

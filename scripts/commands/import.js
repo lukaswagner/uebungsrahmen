@@ -9,7 +9,7 @@ exports.builder = (yargs) => {
             alias: ['i'],
             description:
                 'Archive file to import. If none is given, ' +
-                'this defaults to the newest file in the ./assignment dir. ' +
+                'this defaults to the newest file in the ./import dir. ' +
                 'Passing a directory chooses the newest file in it.',
             type: 'array',
         })
