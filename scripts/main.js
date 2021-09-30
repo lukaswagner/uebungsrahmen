@@ -28,5 +28,7 @@ yargs
     .scriptName('fw')
     .locale('en')
     .help()
+    .alias('help', ['h', 'info'])
+    .alias('version', 'v')
     .wrap(null)
     .argv;
