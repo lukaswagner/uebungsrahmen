@@ -5,10 +5,10 @@ const path = require('path');
 const readlineSync = require('readline-sync');
 const defines = require('../../defines.json');
 const checkFileInArchive = require('./checkFileInArchive');
-const checkYesNo = require('./checkYesNo');
+const askYesNo = require('./askYesNo');
 const readFileFromArchive = require('./readFileFromArchive');
 
-async function checkAssignmentArchive(argv, archive, targetDir) {
+async function checkAssignmentArchive(argv, archive, assignments) {
     const confFile = defines.assignmentConfig;
     const assignmentConfigFound = checkFileInArchive(archive, confFile);
 
@@ -20,18 +20,12 @@ async function checkAssignmentArchive(argv, archive, targetDir) {
 
     const newAssignment = await readFileFromArchive(archive, confFile);
 
-    const assignmentsPath = path.join(
-        process.cwd(), targetDir, defines.assignmentsConfig);
-    const assignments =
-        fs.existsSync(assignmentsPath) ? require(assignmentsPath) : [];
-
     const existingIndex =
         assignments.findIndex((a) => a.id === newAssignment.id);
 
-    const shouldImport = existingIndex === -1 || (argv.assumeYes ?? checkYesNo(
-        readlineSync.question(
-            'Assignment with this ID already exists! Overwrite? (y/n)')
-    ));
+    const shouldImport = existingIndex === -1 || askYesNo(
+        argv, 'Assignment with this ID already exists! Overwrite?'
+    );
 
     return {
         shouldImport,

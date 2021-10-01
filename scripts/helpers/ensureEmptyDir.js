@@ -3,7 +3,7 @@
 const readlineSync = require('readline-sync');
 const ensureDirExists = require('./ensureDirExists');
 const readDirWithoutSystemFiles = require('./readDirWithoutSystemFiles');
-const checkYesNo = require('./checkYesNo');
+const askYesNo = require('./askYesNo');
 
 /**
  * @param {{directory?: string, assumeYes: boolean}} argv
@@ -15,9 +15,7 @@ function ensureEmptyDir(argv, directory) {
     ensureDirExists(argv, directory);
 
     let result = readDirWithoutSystemFiles(dir).length === 0;
-    result = result || (argv.assumeYes ?? checkYesNo(
-        readlineSync.question(dir + ' is not empty! Continue? (y/n)')
-    ));
+    result = result || askYesNo(argv, dir + ' is not empty! Continue?');
 
     return result;
 }
