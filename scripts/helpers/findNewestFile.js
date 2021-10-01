@@ -4,9 +4,9 @@ const fs = require('fs');
 const path = require('path');
 const readDirWithoutSystemFiles = require('./readDirWithoutSystemFiles');
 
-function findNewestFile(dir) {
+function findNewestFile(dir, filter) {
     return readDirWithoutSystemFiles(dir)
-        .filter((e) => e.isFile())
+        .filter((e) => e.isFile() && (!filter || filter(e)))
         .map((e) => {
             const p = path.join(dir, e.name);
             return { p, t: fs.statSync(p).mtime };
