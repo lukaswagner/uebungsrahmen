@@ -5,6 +5,14 @@ const path = require('path');
 const defines = require('../../defines.json');
 const askYesNo = require('./askYesNo');
 
+/**
+ * Removes an assignment, removing both the exercises and the reference in the
+ * assignments.json file.
+ * @param {import('../types').ArgY} argv Command line args.
+ * @param {import('../types').Assignment} assignment Assignment to remove.
+ * @param {string} dir Working dir.
+ * @returns {boolean} Whether the assignment was successfully removed.
+ */
 function removeAssignment(argv, assignment, dir) {
     const dirs = assignment.exercises.map((e) => path.join(dir, e));
     console.log(

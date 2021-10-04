@@ -19,6 +19,15 @@ function containsAssignementJson(dir) {
         .some((e) => isAssignementJson(e.name));
 }
 
+/**
+ * Chooses a tgz file, either by checking a given file or searching a directory.
+ * If the given path is a file, it's checked if it seems to be a tgz archive.
+ * If the given path is a dir, the newest file inside it is chosen.
+ * @param {string} target Path to either a tgz archive or a folder containing
+ * at least one tgz archive.
+ * @returns {string?} The path to the chosen archive, or undefined if no valid
+ * archive was found.
+ */
 function chooseArchive(target) {
     const exists = !!target && fs.existsSync(target);
     if (!exists) return undefined;

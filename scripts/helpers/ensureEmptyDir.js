@@ -1,18 +1,19 @@
 'use strict';
 
-const readlineSync = require('readline-sync');
 const ensureDirExists = require('./ensureDirExists');
 const readDirWithoutSystemFiles = require('./readDirWithoutSystemFiles');
 const askYesNo = require('./askYesNo');
 
 /**
- * @param {{directory?: string, assumeYes: boolean}} argv
- * @param {string} directory
+ * Checks if a given dir exists and is empty.
+ * @param {import('../types').ArgDY} argv Command line args.
+ * @param {string} directory Path to directory.
+ * @returns {boolean} Whether the dir is empty (or --assumeYes was specified)
  */
 function ensureEmptyDir(argv, directory) {
     const dir = directory ?? argv.directory;
 
-    ensureDirExists(argv, directory);
+    ensureDirExists(directory);
 
     let result = readDirWithoutSystemFiles(dir).length === 0;
     result = result || askYesNo(argv, dir + ' is not empty! Continue?');

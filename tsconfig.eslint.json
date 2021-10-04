@@ -4,6 +4,7 @@
         "source/**/*.ts",
         "exercises/**/*.ts",
         "scripts/**/*.js",
+        "scripts/**/*.ts",
         "loaders/**/*.js",
         "webpack.config.js",
     ]

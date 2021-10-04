@@ -1,8 +1,9 @@
 'use strict';
 
 /**
- * @param {string} answer
- * @returns {boolean}
+ * Checks if a given string represents a positive or negative answer.
+ * @param {string} answer The string to check.
+ * @returns {boolean} Whether the string contains a positive answer.
  */
 function checkYesNo(answer) {
     switch (answer.toLowerCase()) {

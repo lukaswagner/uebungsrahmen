@@ -5,6 +5,15 @@ const checkFileInArchive = require('./checkFileInArchive');
 const askYesNo = require('./askYesNo');
 const readFileFromArchive = require('./readFileFromArchive');
 
+/**
+ * Checks if the given archive fulfills the requirements to be imported.
+ * This includes containing a config file (based on the import mode) and
+ * whether the archive conflicts with the existing assignments.
+ * @param {import('../types').ArgMY} argv Command line args.
+ * @param {string} archive Archive file to check.
+ * @param {import('../types').Assignments} assignments The existing assignments.
+ * @returns {import('../types').ImportCheckResult}
+ */
 async function checkArchive(argv, archive, assignments) {
     const confFile = argv.mode.toLowerCase() === 'assignment' ?
         defines.assignmentConfig : defines.submissionConfig;

@@ -3,10 +3,10 @@
 const fs = require('fs');
 
 /**
- * @param {{directory?: string}} argv
- * @param {string} directory
+ * Checks if the directory exists and creates it otherwise.
+ * @param {string} directory The directory to check/create.
  */
-function ensureDirExists(argv, directory) {
+function ensureDirExists(directory, argv) {
     const dir = directory ?? argv.directory;
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir, { recursive: true });

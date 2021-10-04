@@ -3,6 +3,12 @@
 const fs = require('fs');
 const tar = require('tar');
 
+/**
+ * Reads a text file from the archive.
+ * @param {string} archive Archive to retrieve the file from.
+ * @param {string} file The file's path inside the archive.
+ * @returns {string} The file contents.
+ */
 async function readFileFromArchive(archive, file) {
     return new Promise((resolve) => {
         const parse = new tar.Parse({
