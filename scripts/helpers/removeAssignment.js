@@ -6,8 +6,8 @@ const defines = require('../../defines.json');
 const askYesNo = require('./askYesNo');
 
 /**
- * Removes an assignment, removing both the exercises and the reference in the
- * assignments.json file.
+ * Removes all exercises belonging to an exercises.
+ * Note: Does not remove the entry in assignments.json.
  * @param {import('../types').ArgY} argv Command line args.
  * @param {import('../types').Assignment} assignment Assignment to remove.
  * @param {string} dir Working dir.

@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const defines = require('../../defines.json');
+const json = require('./json');
 
 /**
  * Loads the assignments file.
@@ -16,7 +17,7 @@ function loadAssignments(targetDir) {
     return {
         assignmentsPath: assignmentsPath,
         assignments:
-            fs.existsSync(assignmentsPath) ? require(assignmentsPath) : []
+            fs.existsSync(assignmentsPath) ? json.read(assignmentsPath) : []
     };
 }
 

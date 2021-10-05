@@ -1,5 +1,7 @@
 'use strict';
 
+const defines = require('../../defines.json');
+
 module.exports = {
     alias: ['o'],
     description:

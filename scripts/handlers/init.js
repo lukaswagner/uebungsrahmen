@@ -1,7 +1,7 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
+const json = require('../helpers/json');
 const ensureEmptyDir = require('../helpers/ensureEmptyDir');
 const ensureNonExistent = require('../helpers/ensureNonExistent');
 
@@ -12,14 +12,14 @@ function createConfig(argv) {
         theme: argv['color-theme'],
     };
     if (!ensureNonExistent(argv, argv.config)) process.exit(1);
-    fs.writeFileSync(argv.config, JSON.stringify(config, undefined, 4));
+    json.write(argv.config, config);
 }
 
 function createAssignments(argv) {
     const file = path.join(argv.directory, 'assignments.json');
     const assignments = [];
     if (!ensureNonExistent(argv, file)) process.exit(1);
-    fs.writeFileSync(file, JSON.stringify(assignments, undefined, 4));
+    json.write(file, assignments);
 }
 
 function init(argv) {

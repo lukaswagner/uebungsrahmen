@@ -6,6 +6,7 @@ const tar = require('tar');
 const defines = require('../../defines.json');
 const createAssignmentEntry = require('./createAssignmentEntry');
 const ensureDirExists = require('./ensureDirExists');
+const json = require('./json');
 const log = require('./log');
 const removeAssignment = require('./removeAssignment');
 
@@ -50,9 +51,7 @@ function importAssignment(
         sync: true
     });
 
-    fs.writeFileSync(
-        assignmentsPath,
-        JSON.stringify(assignments, undefined, 4));
+    json.write(assignmentsPath, assignments);
 
     log.success('Done!');
 };

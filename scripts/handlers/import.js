@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const json = require('../helpers/json');
 const checkArchive = require('../helpers/checkArchive');
 const chooseArchive = require('../helpers/chooseArchive');
 const importAssignment = require('../helpers/importAssignment');
@@ -10,11 +10,11 @@ const log = require('../helpers/log');
 
 async function importArchive(argv) {
     if (!['assignment', 'submission'].includes(argv.mode.toLowerCase())) {
-        console.log(`Invalid import mode: ${argv.mode}. Aborting.`);
+        log.error(`Invalid import mode: ${argv.mode}. Aborting.`);
         return;
     }
 
-    const config = require(path.join(process.cwd(), argv.config));
+    const config = json.read(argv.config);
     const archive = chooseArchive(argv.input);
 
     console.log(`Importing archive ${archive}...`);
