@@ -6,6 +6,7 @@ const tar = require('tar');
 const defines = require('../../defines.json');
 const createAssignmentEntry = require('./createAssignmentEntry');
 const ensureDirExists = require('./ensureDirExists');
+const log = require('./log');
 const removeAssignment = require('./removeAssignment');
 
 /**
@@ -30,7 +31,7 @@ function importAssignment(
         const removed = removeAssignment(
             argv, assignments[index], config.exerciseDir);
         if (!removed) {
-            console.log('Aborting.');
+            log.error('Aborting.');
             return;
         }
         assignments[index] = entry;
@@ -53,7 +54,7 @@ function importAssignment(
         assignmentsPath,
         JSON.stringify(assignments, undefined, 4));
 
-    console.log('Done!');
+    log.success('Done!');
 };
 
 module.exports = importAssignment;

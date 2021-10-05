@@ -6,6 +6,7 @@ const chooseArchive = require('../helpers/chooseArchive');
 const importAssignment = require('../helpers/importAssignment');
 const importSubmission = require('../helpers/importSubmission');
 const loadAssignments = require('../helpers/loadAssignments');
+const log = require('../helpers/log');
 
 async function importArchive(argv) {
     if (!['assignment', 'submission'].includes(argv.mode.toLowerCase())) {
@@ -23,7 +24,7 @@ async function importArchive(argv) {
     const { shouldImport, index, newConfig } =
         await checkArchive(argv, archive, assignments);
     if (!shouldImport) {
-        console.log('Aborting.');
+        log.error('Aborting.');
         return;
     }
 

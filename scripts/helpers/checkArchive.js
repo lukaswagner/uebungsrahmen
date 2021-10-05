@@ -4,6 +4,7 @@ const defines = require('../../defines.json');
 const checkFileInArchive = require('./checkFileInArchive');
 const askYesNo = require('./askYesNo');
 const readFileFromArchive = require('./readFileFromArchive');
+const log = require('./log');
 
 /**
  * Checks if the given archive fulfills the requirements to be imported.
@@ -20,8 +21,7 @@ async function checkArchive(argv, archive, assignments) {
     const configFound = checkFileInArchive(archive, confFile);
 
     if (!configFound) {
-        console.error(
-            `Archive ${archive} does not contain ${confFile}.`);
+        log.error(`Archive ${archive} does not contain ${confFile}.`);
         return { shouldImport: false };
     }
 

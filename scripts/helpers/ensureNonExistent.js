@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const log = require('./log');
 
 /**
  * Checks is a given target exists.
@@ -12,7 +13,7 @@ const fs = require('fs');
 function ensureNonExistent(argv, file) {
     let result = !fs.existsSync(file);
     result |= argv.force;
-    if (!result) console.error(file, 'already exists!');
+    if (!result) log.error(file, 'already exists!');
     return result;
 }
 

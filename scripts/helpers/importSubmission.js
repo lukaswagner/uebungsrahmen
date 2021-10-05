@@ -2,6 +2,7 @@
 
 const tar = require('tar');
 const defines = require('../../defines.json');
+const log = require('./log');
 
 /**
  * Imports a submission archive.
@@ -21,7 +22,7 @@ function importSubmission(config, archive, assignments, index) {
         sync: true
     });
 
-    console.log('Done!');
+    log.success('Done!');
 };
 
 module.exports = importSubmission;
