@@ -8,7 +8,7 @@ const defines = require('../../defines.json');
  * @param {import('../types').Assignment} assignment
  * @returns
  */
-function filename(argv, assignment) {
+function archiveName(argv, assignment) {
     let str = argv.mode === 'assignment' ?
         defines.assignmentFile :
         defines.submissionFile;
@@ -20,4 +20,4 @@ function filename(argv, assignment) {
     return str;
 }
 
-module.exports = filename;
+module.exports = archiveName;

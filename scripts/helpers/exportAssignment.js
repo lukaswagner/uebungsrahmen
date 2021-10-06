@@ -12,7 +12,6 @@ const ensureDirExists = require('./ensureDirExists');
 const log = require('./log');
 const Progress = require('./progress');
 const readDirRecursive = require('./readDirRecursive');
-const filename = require('./filename');
 const json = require('./json');
 
 /**
@@ -20,14 +19,8 @@ const json = require('./json');
  * @param {import('../types').ArgY} argv Config.
  * @param {import('../types').Assignment} assignment
  */
-function exportAssignment(argv, assignment) {
+function exportAssignment(argv, assignment, file) {
     console.log(`Exporting assignment ${assignment.id}...`);
-
-    const file = path.join(defines.exportDir, filename(argv, assignment));
-    if (fs.existsSync(file) &&
-        !askYesNo(argv, `${file} already exists. Overwrite?`)
-    ) return;
-
     const patterns = cleanupPatterns();
 
     const files = assignment.exercises.map((e) =>
