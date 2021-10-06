@@ -8,6 +8,7 @@ exports.handler = (argv) =>
     exportArchive(Object.assign({ mode: 'assignment' }, argv));
 exports.builder = (yargs) => {
     yargs
+        .option('assumeYes', require('../options/assumeYes'))
         .option('output', require('../options/output'))
         .option('assignment', require('../options/assignment'));
 };

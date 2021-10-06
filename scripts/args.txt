@@ -10,3 +10,4 @@ t - theme
 i - input
 o - output
 m - mode
+a - authors

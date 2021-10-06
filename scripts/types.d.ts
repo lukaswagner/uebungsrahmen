@@ -32,6 +32,10 @@ export type LoadAssignmentsResult = {
     assignmentsPath: string
 }
 
+export type ArgA = {
+    authors: string[]
+}
+
 export type ArgC = {
     config: string
 }
@@ -71,6 +75,6 @@ export type ArgY = {
 export type ArgDY = ArgD & ArgY
 export type ArgMY = ArgM & ArgY
 
-export type InitOptions = ArgC & ArgD & ArgF & ArgL & ArgT & ArgY
+export type InitOptions = ArgA & ArgC & ArgD & ArgF & ArgL & ArgT & ArgY
 export type ImportOptions = ArgC & ArgI & ArgM
 export type ImportAssignmentOptions = ImportOptions & ArgY
