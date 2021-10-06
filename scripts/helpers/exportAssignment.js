@@ -13,19 +13,25 @@ const log = require('./log');
 const Progress = require('./progress');
 const readDirRecursive = require('./readDirRecursive');
 const filename = require('./filename');
+const json = require('./json');
 
 /**
  *
- * @param {import('../types').ArgY} argv
+ * @param {import('../types').ArgY} argv Config.
  * @param {import('../types').Assignment} assignment
  */
-function exportAssignment(argv, config, assignment) {
+function exportAssignment(argv, assignment) {
     console.log(`Exporting assignment ${assignment.id}...`);
+
+    const file = path.join(defines.exportDir, filename(argv, assignment));
+    if (fs.existsSync(file) &&
+        !askYesNo(argv, `${file} already exists. Overwrite?`)
+    ) return;
 
     const patterns = cleanupPatterns();
 
     const files = assignment.exercises.map((e) =>
-        readDirRecursive(path.join(config.exerciseDir, e)))
+        readDirRecursive(path.join(argv.directory, e)))
         .flat();
 
     let prog = new Progress('Parsing files', files.length);
@@ -55,24 +61,28 @@ function exportAssignment(argv, config, assignment) {
     const paths = cleaned.map((f) => {
         prog.increase();
         const buf = f.count > 0 ? Buffer.from(f.cleaned, 'utf8') : f.content;
-        const p = path.relative(config.exerciseDir, f.file);
+        const p = path.relative(argv.directory, f.file);
         const t = path.join(temp, p);
         ensureDirExists(path.dirname(t));
         fs.writeFileSync(t, buf);
-        return t;
+        return p;
     });
     prog.done();
 
-    const file = filename(argv, config, assignment);
+    json.write(path.join(temp, defines.assignmentConfig), {
+        name: assignment.name,
+        id: assignment.id,
+        exercises: assignment.exercises
+    });
 
     tar.create(
         {
-            file: path.join(defines.exportDir, file),
+            file,
             gzip: true,
             sync: true,
             cwd: temp
         },
-        paths
+        [...paths, defines.assignmentConfig]
     );
 
     fs.rmSync(temp, { recursive: true, force: true });

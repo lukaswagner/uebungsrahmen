@@ -6,5 +6,6 @@ exports.handler = require('../handlers/import');
 exports.builder = (yargs) => {
     yargs
         .option('input', require('../options/input'))
-        .option('mode', require('../options/importMode'));
+        .option('mode', require('../options/importMode'))
+        .config('config');
 };

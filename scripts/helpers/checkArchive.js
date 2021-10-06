@@ -10,7 +10,7 @@ const log = require('./log');
  * Checks if the given archive fulfills the requirements to be imported.
  * This includes containing a config file (based on the import mode) and
  * whether the archive conflicts with the existing assignments.
- * @param {import('../types').ArgMY} argv Command line args.
+ * @param {import('../types').ArgMY} argv Config.
  * @param {string} archive Archive file to check.
  * @param {import('../types').Assignments} assignments The existing assignments.
  * @returns {import('../types').ImportCheckResult}

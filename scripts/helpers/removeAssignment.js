@@ -8,7 +8,7 @@ const askYesNo = require('./askYesNo');
 /**
  * Removes all exercises belonging to an exercises.
  * Note: Does not remove the entry in assignments.json.
- * @param {import('../types').ArgY} argv Command line args.
+ * @param {import('../types').ArgY} argv Config.
  * @param {import('../types').Assignment} assignment Assignment to remove.
  * @param {string} dir Working dir.
  * @returns {boolean} Whether the assignment was successfully removed.

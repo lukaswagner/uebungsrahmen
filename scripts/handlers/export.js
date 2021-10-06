@@ -2,7 +2,6 @@
 
 const chooseAssignment = require('../helpers/chooseAssignment');
 const exportAssignment = require('../helpers/exportAssignment');
-const json = require('../helpers/json');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 
@@ -11,9 +10,7 @@ const exportArchive = (argv) => {
         log.error(`Invalid export mode: ${argv.mode}. Aborting.`);
         return;
     }
-
-    const config = json.read(argv.config);
-    const { assignments } = loadAssignments(config.exerciseDir);
+    const { assignments } = loadAssignments(argv.directory);
     const assignment = chooseAssignment(argv.assignment, assignments);
     if (!assignment) {
         log.error('No assignment to export! Aborting.');
@@ -21,7 +18,7 @@ const exportArchive = (argv) => {
     }
 
     if (argv.mode.toLowerCase() === 'assignment')
-        exportAssignment(argv, config, assignment);
+        exportAssignment(argv, assignment);
     else { }
 };
 

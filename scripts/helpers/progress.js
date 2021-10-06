@@ -1,7 +1,5 @@
 'use strict';
 
-const readline = require('readline');
-
 class Progress {
     constructor(label, max, width = 10) {
         this.label = label;

@@ -2,14 +2,20 @@
 
 const defines = require('../../defines.json');
 
-function filename(argv, config, assignment) {
+/**
+ *
+ * @param {import('../types').ExportOptions} argv Config.
+ * @param {import('../types').Assignment} assignment
+ * @returns
+ */
+function filename(argv, assignment) {
     let str = argv.mode === 'assignment' ?
         defines.assignmentFile :
         defines.submissionFile;
 
     str = str.replace(/{sep}/g, defines.filenameSeparator);
     str = str.replace(/{id}/g, assignment.id);
-    str = str.replace(/{authors}/g, config.authors.join('_'));
+    str = str.replace(/{authors}/g, argv.authors.join('_'));
 
     return str;
 }

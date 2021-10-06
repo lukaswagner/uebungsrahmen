@@ -10,8 +10,8 @@ const ensureDirExists = require('../helpers/ensureDirExists');
 function createConfig(argv) {
     const config = {
         lecture: argv.lecture,
-        exerciseDir: argv.directory,
-        theme: argv['color-theme'],
+        directory: argv.directory,
+        theme: argv.theme,
         authors: argv.authors
     };
     if (!ensureNonExistent(argv, argv.config)) process.exit(1);

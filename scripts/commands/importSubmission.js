@@ -8,5 +8,6 @@ exports.handler = (argv) =>
     importArchive(Object.assign({ mode: 'submission' }, argv));
 exports.builder = (yargs) => {
     yargs
-        .option('input', require('../options/input'));
+        .option('input', require('../options/input'))
+        .config('config');
 };

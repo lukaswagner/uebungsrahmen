@@ -6,18 +6,18 @@ const log = require('./log');
 
 /**
  * Imports a submission archive.
- * @param {import('../types').Config} config Framework config.
+ * @param {import('../types').Config} argv Config.
  * @param {string} archive Archive to import.
  * @param {import('../types').Assignments} assignments The existing assignments.
  * @param {number} index Index of existing assignment with same id.
  */
-function importSubmission(config, archive, assignments, index) {
+function importSubmission(argv, archive, assignments, index) {
     console.log(
         `Importing submission for assignment ${assignments[index].name}...`);
 
     tar.extract({
         file: archive,
-        cwd: config.exerciseDir,
+        cwd: argv.directory,
         filter: (path) => path !== defines.assignmentConfig,
         sync: true
     });

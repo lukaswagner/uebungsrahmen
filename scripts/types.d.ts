@@ -2,8 +2,9 @@ export type Theme = 'light' | 'dark';
 
 export type Config = {
     lecture: string,
-    exerciseDir: string,
-    theme: Theme
+    directory: string,
+    theme: Theme,
+    authors: string[]
 }
 
 export type Assignment = {
@@ -65,7 +66,7 @@ export type ArgO = {
 }
 
 export type ArgT = {
-    'color-theme': Theme
+    theme: Theme
 }
 
 export type ArgY = {
@@ -76,5 +77,6 @@ export type ArgDY = ArgD & ArgY
 export type ArgMY = ArgM & ArgY
 
 export type InitOptions = ArgA & ArgC & ArgD & ArgF & ArgL & ArgT & ArgY
-export type ImportOptions = ArgC & ArgI & ArgM
+export type ImportOptions = Config & ArgI & ArgM
 export type ImportAssignmentOptions = ImportOptions & ArgY
+export type ExportOptions = Config & ArgI & ArgM & ArgY

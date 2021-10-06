@@ -1,5 +1,5 @@
 {
     "lecture": "Übungen 3D-Computergrafik I",
-    "exerciseDir": "./exercises",
+    "directory": "./exercises",
     "theme": "dark"
 }

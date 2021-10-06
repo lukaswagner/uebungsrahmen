@@ -5,7 +5,7 @@ const log = require('./log');
 
 /**
  * Checks is a given target exists.
- * @param {import('../types').ArgF} argv Command line args.
+ * @param {import('../types').ArgF} argv Config.
  * @param {string} file The target to check.
  * @returns {boolean} True if the target does not exist
  * (or --force was specified).

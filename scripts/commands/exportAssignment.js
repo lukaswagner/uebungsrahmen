@@ -10,5 +10,6 @@ exports.builder = (yargs) => {
     yargs
         .option('assumeYes', require('../options/assumeYes'))
         .option('output', require('../options/output'))
-        .option('assignment', require('../options/assignment'));
+        .option('assignment', require('../options/assignment'))
+        .config('config');
 };

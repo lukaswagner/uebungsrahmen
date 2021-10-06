@@ -12,8 +12,7 @@ const removeAssignment = require('./removeAssignment');
 
 /**
  * Imports an assignment archive.
- * @param {import('../types').ArgY} argv Command line args.
- * @param {import('../types').Config} config Framework config.
+ * @param {import('../types').ImportAssignmentOptions} argv Config.
  * @param {string} archive Archive to import.
  * @param {import('../types').Assignments} assignments The existing assignments.
  * @param {string} assignmentsPath Path to assignments.json.
@@ -21,7 +20,7 @@ const removeAssignment = require('./removeAssignment');
  * @param {import('../types').Assignment} assignment The new assignment config.
  */
 function importAssignment(
-    argv, config, archive, assignments, assignmentsPath, index, assignment
+    argv, archive, assignments, assignmentsPath, index, assignment
 ) {
     console.log(`Importing assignment ${assignment.name}...`);
 
@@ -30,7 +29,7 @@ function importAssignment(
         assignments.push(entry);
     } else {
         const removed = removeAssignment(
-            argv, assignments[index], config.exerciseDir);
+            argv, assignments[index], argv.directory);
         if (!removed) {
             log.error('Aborting.');
             return;
@@ -39,14 +38,14 @@ function importAssignment(
     }
 
     const archiveStoreDir =
-        path.join(process.cwd(), config.exerciseDir, defines.archiveStoreDir);
+        path.join(process.cwd(), argv.directory, defines.archiveStoreDir);
     ensureDirExists(archiveStoreDir);
 
     fs.copyFileSync(archive, path.join(archiveStoreDir, entry.archive));
 
     tar.extract({
         file: archive,
-        cwd: config.exerciseDir,
+        cwd: argv.directory,
         filter: (path) => path !== defines.assignmentConfig,
         sync: true
     });
