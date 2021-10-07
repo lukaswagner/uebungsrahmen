@@ -15,6 +15,15 @@ export type Assignment = {
     importTime?: number
 }
 
+export type Exercise = {
+    name: string,
+    description: string,
+    page: string,
+    entry: string,
+    include?: string[],
+    exclude?: string[]
+}
+
 export type Submission = {
     id: string,
     students: string[]

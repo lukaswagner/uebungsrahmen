@@ -15,7 +15,8 @@ function archiveName(argv, assignment) {
 
     str = str.replace(/{sep}/g, defines.filenameSeparator);
     str = str.replace(/{id}/g, assignment.id);
-    str = str.replace(/{authors}/g, argv.authors.join('_'));
+    if (argv.authors)
+        str = str.replace(/{authors}/g, argv.authors.join('_'));
 
     return str;
 }

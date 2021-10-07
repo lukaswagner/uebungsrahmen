@@ -2,9 +2,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const defines = require('../../defines.json');
 const archiveName = require('../helpers/archiveName');
+const askYesNo = require('../helpers/askYesNo');
 const chooseAssignment = require('../helpers/chooseAssignment');
 const exportAssignment = require('../helpers/exportAssignment');
+const exportSubmission = require('../helpers/exportSubmission');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 
@@ -32,7 +35,8 @@ const exportArchive = (argv) => {
 
     if (argv.mode.toLowerCase() === 'assignment')
         exportAssignment(argv, assignment, file);
-    else { }
+    else
+        exportSubmission(argv, assignment, file);
 };
 
 module.exports = exportArchive;
