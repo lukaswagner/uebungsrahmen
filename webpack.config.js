@@ -7,7 +7,7 @@ const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
 
 let configFile = process.env.fw_config;
-if (!fs.existsSync(configFile)) configFile = './demoConfig.json';
+if (!fs.existsSync(configFile)) configFile = './example.json';
 console.log('Using config file:', configFile);
 const config = require(configFile);
 

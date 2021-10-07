@@ -2,7 +2,7 @@
     "extends": "./tsconfig.json",
     "include": [
         "source/**/*.ts",
-        "exercises/**/*.ts",
+        "examples/**/*.ts",
         "scripts/**/*.js",
         "scripts/**/*.ts",
         "loaders/**/*.js",

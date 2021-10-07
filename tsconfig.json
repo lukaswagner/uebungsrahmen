@@ -20,6 +20,6 @@
     },
     "include": [
         "source/**/*.ts",
-        "exercises/**/*.ts"
+        "examples/**/*.ts"
     ]
 }
