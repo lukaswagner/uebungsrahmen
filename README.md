@@ -29,9 +29,9 @@ Note: `fw.sh` and `fw.bat` are wrappers for `npm run --silent main --`, making c
 # install dependencies
 npm install
 # initialize exercise dir
-./fw.sh init -l 'My Lecture' -d '../exercises'
+./fw.sh init -l 'My Lecture' -d '../exercises' -a 111111 222222
 # import assignment
-./fw.sh import -a './archives/assignment01.tgz'
+./fw.sh import -i './archives/assignment01.tgz'
 # work on assignment
 ./fw.sh start
 # export solution
