@@ -85,8 +85,6 @@ function exportSubmission(argv, assignment, file) {
     );
 
     fs.rmSync(temp, { recursive: true, force: true });
-
-    log.success('Done!');
 }
 
 module.exports = exportSubmission;

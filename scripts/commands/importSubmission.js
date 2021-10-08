@@ -2,7 +2,7 @@
 
 const importArchive = require('../handlers/import.js');
 
-exports.command = ['import-submission', 'is'];
+exports.command = ['importSubmission', 'is'];
 exports.description = 'Alias for "import --mode submission"';
 exports.handler = (argv) =>
     importArchive(Object.assign({ mode: 'submission' }, argv));

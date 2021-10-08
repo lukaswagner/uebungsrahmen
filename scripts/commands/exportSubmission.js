@@ -2,7 +2,7 @@
 
 const exportArchive = require('../handlers/export.js');
 
-exports.command = ['export-submission', 'es'];
+exports.command = ['exportSubmission', 'es'];
 exports.description = 'Alias for "export --mode submission"';
 exports.handler = (argv) =>
     exportArchive(Object.assign({ mode: 'submission' }, argv));

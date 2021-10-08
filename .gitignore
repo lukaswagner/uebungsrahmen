@@ -3,4 +3,5 @@ node_modules
 /import
 /export
 /temp
+/temp.json
 /config.json

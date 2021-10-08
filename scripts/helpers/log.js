@@ -6,6 +6,7 @@ const reset = '\x1b[0m';
 const r = '\x1b[31m';
 const g = '\x1b[32m';
 const y = '\x1b[33m';
+const b = '\x1b[34m';
 
 function colored(color, ...args) {
     return color + util.format(...args) + reset;
@@ -21,6 +22,10 @@ function yellow(...args) {
 
 function green(...args) {
     return colored(g, ...args);
+}
+
+function blue(...args) {
+    return colored(b, ...args);
 }
 
 function error(...args) {
@@ -39,6 +44,7 @@ const log = {
     red,
     yellow,
     green,
+    blue,
     error,
     warn,
     success

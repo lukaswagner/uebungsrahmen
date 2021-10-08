@@ -37,6 +37,9 @@ const exportArchive = (argv) => {
         exportAssignment(argv, assignment, file);
     else
         exportSubmission(argv, assignment, file);
+
+    console.log('Created file:', file);
+    log.success('Done!');
 };
 
 module.exports = exportArchive;
