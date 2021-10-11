@@ -1,7 +1,7 @@
 [
     {
         "name": "First Assignment",
-        "id": 1,
+        "id": "1",
         "exercises": [
             "baseExample",
             "featureOverview",
@@ -11,14 +11,14 @@
     },
     {
         "name": "Second Assignment",
-        "id": 2,
+        "id": "2",
         "exercises": [
             "baseExample"
         ]
     },
     {
         "name": "Third Assignment",
-        "id": 3,
+        "id": "3",
         "exercises": [
             "baseExample",
             "baseExample",
@@ -28,7 +28,7 @@
     },
     {
         "name": "Fourth Assignment",
-        "id": 4,
+        "id": "4",
         "exercises": [
             "baseExample",
             "baseExample",
@@ -37,7 +37,7 @@
     },
     {
         "name": "Fifth Assignment",
-        "id": 5,
+        "id": "5",
         "exercises": [
             "baseExample",
             "baseExample",
@@ -46,7 +46,7 @@
     },
     {
         "name": "Sixth Assignment",
-        "id": 6,
+        "id": "6",
         "exercises": [
             "baseExample",
             "baseExample",
@@ -56,7 +56,7 @@
     },
     {
         "name": "Seventh Assignment",
-        "id": 7,
+        "id": "7",
         "exercises": [
             "baseExample",
             "baseExample",
@@ -67,7 +67,7 @@
     },
     {
         "name": "Eight Assignment",
-        "id": 8,
+        "id": "8",
         "exercises": [
             "baseExample",
             "baseExample",

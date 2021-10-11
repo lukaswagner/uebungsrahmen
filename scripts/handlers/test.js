@@ -5,10 +5,12 @@ const path = require('path');
 const os = require('os');
 const child = require('child_process');
 const stream = require('stream');
+const defines = require('../../defines.json');
 const log = require('../helpers/log');
 const json = require('../helpers/json');
 const { stdout } = require('process');
 const kill = require('../helpers/kill');
+const readDirRecursive = require('../helpers/readDirRecursive');
 
 function heading(...text) {
     const mark = '=====';
@@ -109,6 +111,9 @@ async function test(argv) {
         yesArg
     ], options);
 
+    console.log(log.blue('Assignment list:'));
+    console.log(json.read(path.join(dir, defines.assignmentsConfig)));
+
     // start the server
     heading('Starting server');
     const server = run(command, [
@@ -164,8 +169,31 @@ async function test(argv) {
         yesArg
     ], options);
 
+    // remove a single assignment
+    heading('Removing single assignment');
+    runSync(command, [
+        'remove',
+        '--assignment', '1',
+        ...configArgs,
+        yesArg
+    ], options);
+
+    console.log(log.blue('Assignment list:'));
+    console.log(json.read(path.join(dir, defines.assignmentsConfig)));
+
+    console.log(log.blue('Files in assignment dir:'));
+    console.log(readDirRecursive(dir, false, true));
+
+    // remove whole setup
+    heading('Removing everything');
+    runSync(command, [
+        'remove',
+        ...configArgs,
+        '--complete',
+    ], options);
+
     // clean up
-    heading('All done. Cleaning up.');
+    heading('All done. Cleaning up temp dir.');
     fs.rmSync(tempDir, { recursive: true, force: true });
 };
 

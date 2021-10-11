@@ -1,0 +1,13 @@
+# overview of short codes to avoid collisions
+b - build
+ex - export
+ea - exportAssignment
+es - exportSubmission
+i - init
+im - import
+ia - importAssignment
+is - importSubmission
+r - run
+rm - remove
+s - start
+t - test

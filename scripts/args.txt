@@ -1,13 +1,13 @@
 # overview of single-letter options to avoid collisions
-y - assumeYes
-f - force
-c - config
-h - help
-v - version
-l - lecture
-d - directory
-t - theme
-i - input
-o - output
-m - mode
 a - authors
+c - config
+d - directory
+f - force
+h - help
+i - input
+l - lecture
+m - mode
+o - output
+t - theme
+v - version
+y - assumeYes
