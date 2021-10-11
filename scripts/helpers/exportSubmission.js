@@ -37,7 +37,9 @@ function collectFiles(argv, assignment, func) {
 function exportSubmission(argv, assignment, file) {
     console.log(`Exporting solution assignment ${assignment.id}...`);
 
-    const changedFiles = checkChangedFiles(argv, assignment);
+    // exclude exercise.json by default (can be manually added)
+    const changedFiles = checkChangedFiles(argv, assignment)
+        .filter((f) => path.basename(f) !== defines.exerciseConfig);
     const manualFiles = collectFiles(argv, assignment, (e) => e.include);
     const excludedFiles = collectFiles(argv, assignment, (e) => e.exclude);
 
