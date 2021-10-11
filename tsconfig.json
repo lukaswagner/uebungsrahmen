@@ -19,7 +19,6 @@
         }
     },
     "include": [
-        "source/**/*.ts",
-        "examples/**/*.ts"
+        "source/**/*.ts"
     ]
 }
