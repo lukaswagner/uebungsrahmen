@@ -13,8 +13,8 @@ const checkYesNo = require('./checkYesNo');
  */
 function askYesNo(argv, question, requiresForce = false) {
     const defaultAnswer = requiresForce ?
-        argv?.assumeYes ?? false :
-        argv?.force ?? false;
+        argv?.force ?? false :
+        argv?.assumeYes ?? false;
     return defaultAnswer ||
         checkYesNo(readlineSync.question(question + ' (y/n) '));
 }

@@ -5,11 +5,11 @@ const path = require('path');
 const os = require('os');
 const child = require('child_process');
 const stream = require('stream');
+const kill = require('tree-kill');
 const defines = require('../../defines.json');
 const log = require('../helpers/log');
 const json = require('../helpers/json');
 const { stdout } = require('process');
-const kill = require('../helpers/kill');
 const readDirRecursive = require('../helpers/readDirRecursive');
 
 function heading(...text) {
@@ -97,6 +97,7 @@ async function test(argv) {
         'exportAssignment',
         '--output', tempDir,
         '--config', 'example.json',
+        '--assignment', '1',
         yesArg
     ], options);
 
@@ -142,11 +143,15 @@ async function test(argv) {
         setTimeout(() => {
             console.log(log.blue(
                 `Started server ${status}. Killing the process...`));
-            kill(server);
+            kill(server.pid);
         }, 100);
     });
 
-    await new Promise((res) => server.on('close', res));
+    await new Promise((res) => {
+        server.on('close', res);
+        server.on('exit', res);
+        server.on('disconnect', res);
+    });
     console.log(log.blue('Server stopped.'));
 
     // export submission - manipulate first to check change detection
