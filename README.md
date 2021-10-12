@@ -19,7 +19,7 @@ npm i
 # initialize working dir
 fw init --lecture 'My Lecture' --directory '../exercises' --authors 'authorId1' 'authorId2'
 # short version
-fw im -l 'My Lecture' -d '../exercises' -a 'authorId1' 
+fw i -l 'My Lecture' -d '../exercises' -a 'authorId1' 
 
 # import assignment
 fw import -i './import/assignment01.tgz'
