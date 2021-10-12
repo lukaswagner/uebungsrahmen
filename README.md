@@ -4,39 +4,58 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 ## dependencies
 
-You'll need to have Node.js (and npm) and git available from the command line. Try running `node --version`, `npm --version` and `git --version` to check. See below for notes about Node.js/npm versions.
+See [here](docs/dependencies.md) (summary: you'll need Node.js and git).
 
-### node.js
+## quick start (for students)
 
-Binaries/install instructions can be found [here](https://nodejs.org/).
-
-For Ubuntu (or similar) users: Do **not** install Node using apt, the version is out of date. See [here](https://github.com/nodesource/distributions/blob/master/README.md) for installation instruction.
-
-Version notes:
-- v12 or earlier: Not working, some interfaces are too outdated.
-- v14 (comes with npm v6): **Recommended.**
-- v16 (comes with npm v7): Should work, not thoroughly tested though. If an error occurs during `npm install`, try running `npm install --legacy-peer-deps`.
-
-### git
-
-Binaries/install instructions can be found [here](https://git-scm.com/).
-
-## quick start
-
-Note: `fw.sh` and `fw.bat` are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
+Note: `fw.sh` and `fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
 
 ```sh
 # install dependencies
 npm install
-# initialize exercise dir
-./fw.sh init -l 'My Lecture' -d '../exercises' -a 111111 222222
+# short version
+npm i
+
+# initialize working dir
+fw init --lecture 'My Lecture' --directory '../exercises' --authors 'authorId1' 'authorId2'
+# short version
+fw im -l 'My Lecture' -d '../exercises' -a 'authorId1' 
+
 # import assignment
-./fw.sh import -i './archives/assignment01.tgz'
+fw import -i './import/assignment01.tgz'
+# short version (will select most recent archive inside ./import)
+fw ia
+
 # work on assignment
-./fw.sh start
-# export solution
-./fw.sh export
+fw start
+# short version
+fw s
+
+# export solution - see full command doc for note about included files
+fw export --assignment 'id'
+# short version (will select most recently imported assignment)
+fw ex
 ```
+
+## quick start (for lecturers)
+
+```sh
+# export assignment - see full command doc for note about stripping solutions
+fw exportAssignment --assignment 'id'
+# short version (will select assignment with lexicographically highest id)
+fw ea
+
+# import a submission, resetting the assignment before import
+# note: only works if the assignment was imported,
+# so probably not in your main code base.
+fw importSolution --input './import/submission.tgz' --reset
+# short version (will select most recent archive inside ./import)
+fw is -r
+```
+
+## full command documentation
+
+See [here](docs/commands.md).
 
 ## improvements over v1:
 

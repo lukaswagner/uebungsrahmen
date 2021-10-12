@@ -1,5 +1,6 @@
 # overview of single-letter options to avoid collisions
-a - authors
+a - authors (during init)
+a - assignment (everywhere else)
 c - config
 d - directory
 f - force

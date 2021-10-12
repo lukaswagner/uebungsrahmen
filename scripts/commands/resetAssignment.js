@@ -2,7 +2,7 @@
 
 const exportArchive = require('../handlers/export.js');
 
-exports.command = ['reset', 're'];
+exports.command = ['resetAssignment', 'reset', 're'];
 exports.description = 'Resets an assignment.';
 exports.handler = require('../handlers/reset');
 exports.builder = (yargs) => {

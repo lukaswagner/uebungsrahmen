@@ -2,12 +2,13 @@
 
 const tar = require('tar');
 const defines = require('../../defines.json');
+const importAssignment = require('./importAssignment');
 const log = require('./log');
 const resetAssignment = require('./resetAssignment');
 
 /**
  * Imports a submission archive.
- * @param {import('../types').ImportOptions} argv Config.
+ * @param {import('../types').ImportSubmissionOptions} argv Config.
  * @param {string} archive Archive to import.
  * @param {import('../types').Assignments} assignments The existing assignments.
  * @param {number} index Index of existing assignment with same id.

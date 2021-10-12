@@ -10,7 +10,7 @@ function chooseAssignment(assignmentId, assignments) {
     if (!!assignmentId && !!assignment) return assignment;
 
     return assignments
-        .sort((a, b) => a.id - b.id)
+        .sort((a, b) => b.id - a.id)
         .sort((a, b) => b.importTime - a.importTime)[0];
 }
 
