@@ -8,6 +8,7 @@ i - input
 l - lecture
 m - mode
 o - output
+r - reset
 t - theme
 v - version
 y - assumeYes

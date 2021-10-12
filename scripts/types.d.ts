@@ -74,6 +74,10 @@ export type ArgO = {
     output: string,
 }
 
+export type ArgR = {
+    reset: boolean
+}
+
 export type ArgT = {
     theme: Theme
 }
@@ -86,6 +90,6 @@ export type ArgDY = ArgD & ArgY
 export type ArgMY = ArgM & ArgY
 
 export type InitOptions = ArgA & ArgC & ArgD & ArgF & ArgL & ArgT & ArgY
-export type ImportOptions = Config & ArgI & ArgM
+export type ImportOptions = Config & ArgI & ArgM & ArgR
 export type ImportAssignmentOptions = ImportOptions & ArgY
 export type ExportOptions = Config & ArgI & ArgM & ArgY

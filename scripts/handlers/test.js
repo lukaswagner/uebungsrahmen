@@ -149,7 +149,7 @@ async function test(argv) {
     await new Promise((res) => server.on('close', res));
     console.log(log.blue('Server stopped.'));
 
-    // export assignment - manipulate first to check change detection
+    // export submission - manipulate first to check change detection
     heading('Export submission from ./temp');
     editFile(
         './temp/baseExample/code/index.ts',
@@ -165,6 +165,16 @@ async function test(argv) {
     runSync(command, [
         'exportSubmission',
         '--output', tempDir,
+        ...configArgs,
+        yesArg
+    ], options);
+
+    // import submission, resetting assignment
+    heading('Importing submission');
+    runSync(command, [
+        'importSubmission',
+        '--input', tempDir,
+        '--resetAssignment',
         ...configArgs,
         yesArg
     ], options);
