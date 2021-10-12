@@ -13,7 +13,7 @@ const askYesNo = require('./askYesNo');
  * @param {string} dir Working dir.
  * @returns {boolean} Whether the assignment was successfully removed.
  */
-function removeAssignment(argv, assignment, dir) {
+function removeAssignment(argv, assignment, dir, removeArchive = true) {
     const dirs = assignment.exercises.map((e) => path.join(dir, e));
     console.log(
         'Removing the following directories:',
@@ -22,7 +22,7 @@ function removeAssignment(argv, assignment, dir) {
     const yes = askYesNo(argv, 'Continue?');
     if (yes) {
         dirs.forEach((d) => fs.rmSync(d, { recursive: true, force: true }));
-        fs.rmSync(
+        if (removeArchive) fs.rmSync(
             path.join(dir, defines.archiveStoreDir, assignment.archive),
             { force: true }
         );

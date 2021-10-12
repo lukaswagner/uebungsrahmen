@@ -169,6 +169,15 @@ async function test(argv) {
         yesArg
     ], options);
 
+    // reset changes by re-importing assignment
+    heading('Resetting assignment');
+    runSync(command, [
+        'reset',
+        '--assignment', '1',
+        ...configArgs,
+        yesArg
+    ], options);
+
     // remove a single assignment
     heading('Removing single assignment');
     runSync(command, [

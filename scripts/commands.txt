@@ -8,6 +8,7 @@ im - import
 ia - importAssignment
 is - importSubmission
 r - run
+re - reset
 rm - remove
 s - start
 t - test
