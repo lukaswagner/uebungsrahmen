@@ -10,5 +10,6 @@ exports.builder = (yargs) => {
     yargs
         .option('input', require('../options/input'))
         .option('assumeYes', require('../options/assumeYes'))
+        .option('force', require('../options/force'))
         .config('config');
 };

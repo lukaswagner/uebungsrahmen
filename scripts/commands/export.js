@@ -8,5 +8,6 @@ exports.builder = (yargs) => {
         .option('output', require('../options/output'))
         .option('assignment', require('../options/assignment'))
         .option('mode', require('../options/exportMode'))
+        .option('force', require('../options/force'))
         .config('config');
 };

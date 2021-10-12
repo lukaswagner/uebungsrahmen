@@ -32,7 +32,7 @@ async function checkArchive(argv, archive, assignments) {
 
     const shouldImport = argv.mode.toLowerCase() === 'assignment' ?
         index === -1 || askYesNo(
-            argv, 'Assignment with this ID already exists! Overwrite?') :
+            argv, 'Assignment with this ID already exists! Overwrite?', true) :
         index > -1;
 
     return {

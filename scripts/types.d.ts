@@ -87,6 +87,7 @@ export type ArgY = {
 }
 
 export type ArgDY = ArgD & ArgY
+export type ArgFY = ArgF & ArgY
 export type ArgMY = ArgM & ArgY
 
 export type InitOptions = ArgA & ArgC & ArgD & ArgF & ArgL & ArgT & ArgY

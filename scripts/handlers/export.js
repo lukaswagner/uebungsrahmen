@@ -30,7 +30,7 @@ const exportArchive = (argv) => {
         path.join(defines.exportDir, archiveName(argv, assignment));
 
     if (fs.existsSync(file) &&
-        !askYesNo(argv, `${file} already exists. Overwrite?`)
+        !askYesNo(argv, `${file} already exists. Overwrite?`, true)
     ) return;
 
     if (argv.mode.toLowerCase() === 'assignment')

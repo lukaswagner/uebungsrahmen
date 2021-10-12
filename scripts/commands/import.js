@@ -8,6 +8,7 @@ exports.builder = (yargs) => {
         .option('input', require('../options/input'))
         .option('mode', require('../options/importMode'))
         .option('assumeYes', require('../options/assumeYes'))
+        .option('force', require('../options/force'))
         .option('resetAssignment', require('../options/resetAssignment'))
         .config('config');
 };
