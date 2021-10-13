@@ -1,7 +1,7 @@
 #controls-container {
     position: absolute;
-    top: 0.5em;
-    right: 0.5em;
+    top: var(--small-spacing);
+    right: var(--small-spacing);
     display: flex;
     flex-direction: column;
     align-items: flex-end;
@@ -9,10 +9,10 @@
 
 #controls-toggle, #controls {
     background-color: #fffb;
-    padding: 0.5em;
-    margin: 0.2em;
+    padding: var(--small-spacing);
+    margin: var(--tiny-spacing);
     color: #000;
-    border-radius: 2px;
+    border-radius: var(--border-radius);
     user-select: none;
 }
 
@@ -21,17 +21,17 @@
 }
 
 #controls {
-    width: 20ch;
+    width: 30ch;
 }
 
 #controls div {
     display: flex;
     align-items: center;
-    height: 1.5em;
+    height: 2em;
 }
 
 #controls div:not(:first-child) {
-    padding-top: 5px;
+    padding-top: var(--tiny-spacing);
 }
 
 #controls label {
@@ -39,13 +39,13 @@
 }
 
 #controls progress {
-    margin: 2px;
+    margin: var(--tiny-spacing);
 }
 
 #controls input, #controls button, #controls select, #controls progress {
     box-sizing: border-box;
     width: 20%;
-    margin-left: 5px;
+    margin-left: var(--small-spacing);
 }
 
 #controls input[type=checkbox] {
@@ -57,6 +57,6 @@
 }
 
 #controls td, #controls th {
-    padding: 3px;
-    border: 1px solid black;
+    padding: var(--tiny-spacing);
+    border: var(--outline-thickness) solid black;
 }

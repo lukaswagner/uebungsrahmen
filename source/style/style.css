@@ -1,21 +1,34 @@
 @import '~katex/dist/katex.min.css';
 @import 'theme_css';
-@import './themes.css';
-@import './navbar.css';
-@import './link.css';
+@import './assignment.css';
 @import './controls.css';
 @import './content.css';
+@import './katexLeft.css';
+@import './link.css';
+@import './navbar.css';
+@import './themes.css';
 
 :root {
     --navbar-height: 3em;
     --content-width: 70em;
+    --border-radius: 2px;
+    --large-spacing: 1.5em;
+    --spacing: 1em;
+    --small-spacing: 0.5em;
+    --tiny-spacing: 0.2em;
+    --outline-thickness: 1px;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 300;
     margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
+}
+
+code {
+    font-family: 'Fira Mono', monospace;
 }
 
 #main-container {
@@ -26,8 +39,9 @@ body {
 
 .d-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(10ch, 40ch));
-    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
+    gap: var(--spacing);
+    margin: var(--spacing) 0;
 }
 
 .d-none {

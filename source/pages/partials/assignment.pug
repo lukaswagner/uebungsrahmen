@@ -1,9 +1,9 @@
 mixin assignment(assignment, showDescription)
-    div
+    div.assignment
         h2= assignment.name
-        - for(const e of assignment.exercises)
-            p 
-                a(href=`${e.id}.html`)= e.name
+        each e, index in assignment.exercises
+            p
+                a(href=`${e.id}.html`)= `${index+1}. ${e.name}`
                 - if(showDescription)
                     br
                     =e.description

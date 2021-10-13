@@ -1,0 +1,17 @@
+.assignment {
+    padding: var(--spacing);
+    outline: var(--outline-thickness) solid var(--navbar-background-color);
+    border-radius: var(--border-radius);
+}
+
+.assignment h2 {
+    margin-top: 0;
+}
+
+.assignment :last-child {
+    margin-bottom: 0!important
+}
+
+.assignment a {
+    font-weight: bold;
+}

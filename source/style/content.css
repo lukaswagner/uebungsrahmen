@@ -12,6 +12,6 @@
 }
 
 .hljs {
-    padding: 1em;
+    padding: var(--spacing);
     width: min-content;
 }

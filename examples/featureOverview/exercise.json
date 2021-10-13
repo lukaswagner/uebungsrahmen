@@ -1,6 +1,6 @@
 {
     "name": "Feature overview",
-    "description": "Overview of available embedding options.",
+    "description": "Overview of available embedding options. This exercise has a very long description. By writing such a long description, I'm testing the layout on the overview page.",
     "page": "index.pug",
     "entry": "code/index.ts"
 }

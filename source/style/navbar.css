@@ -36,8 +36,8 @@
     cursor: pointer;
     user-select: none;
     background-color: var(--navbar-nav-background-color);
-    padding: 0.5em;
-    border-radius: 2px;
+    padding: var(--small-spacing);
+    border-radius: var(--border-radius);
 }
 
 #navbar-navigation {
@@ -47,16 +47,15 @@
 }
 
 #navbar-navigation>div {
-    margin: 1em auto;
+    margin: var(--spacing) auto;
     max-width: var(--content-width);
-    margin-bottom: 1em;
 }
 
 #navbar-navigation h2 {
     margin-top: 0;
-    margin-bottom: 0.5em;
+    margin-bottom: var(--small-spacing);
 }
 
 #navbar-navigation p {
-    margin: 0.5em 0;
+    margin: var(--small-spacing) 0;
 }
