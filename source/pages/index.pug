@@ -5,10 +5,10 @@ html
         title= config.lecture
         link(rel="stylesheet", href="https://code.cdn.mozilla.net/fonts/fira.css")
     body(class=config.theme)
-        div#navbar-container
-            include partials/navbar
+        include partials/navbar
         div#main-container
             h1= config.lecture
             div.d-grid
                 each a in assignments
                     +assignment(a, true)
+        include partials/footer

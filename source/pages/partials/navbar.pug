@@ -1,9 +1,10 @@
 include assignment
 
-div#navbar
-    a(href='/')= config.lecture
-    div#navbar-toggle Assignments
-div#navbar-navigation.d-none
-    div.d-grid
-        - for(const a of assignments)
-            +assignment(a, false)
+div#navbar-container
+    div#navbar
+        a(href='/')= config.lecture
+        div#navbar-toggle Navigation
+    div#navbar-navigation.d-none
+        div.d-grid
+            - for(const a of assignments)
+                +assignment(a, false)

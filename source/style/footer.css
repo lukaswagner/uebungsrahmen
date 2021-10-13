@@ -1,0 +1,19 @@
+#footer {
+    width: 100%;
+    max-width: var(--content-width);
+    margin: 0 auto var(--small-spacing);
+    border-top: 1px solid var(--outline-color);
+    padding-top: var(--small-spacing);
+}
+
+#footer :not(:last-child) {
+    margin-right: var(--large-spacing)
+}
+
+#footer a {
+    white-space: nowrap;
+}
+
+#footer a::after {
+    content: '\200b';
+}

@@ -1,6 +1,6 @@
 .assignment {
     padding: var(--spacing);
-    outline: var(--outline-thickness) solid var(--navbar-background-color);
+    outline: var(--outline-thickness) solid var(--outline-color);
     border-radius: var(--border-radius);
 }
 

@@ -3,8 +3,7 @@ html
         title= exercise.name
         link(rel="stylesheet", href="https://code.cdn.mozilla.net/fonts/fira.css")
     body(class=config.theme)
-        div#navbar-container
-            include partials/navbar
+        include partials/navbar
         div#main-container
             h2
                 =exercise.assignment.name 
@@ -15,3 +14,4 @@ html
                     canvas#content
                     include partials/controls.pug
             block assignment
+        include partials/footer

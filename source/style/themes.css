@@ -7,6 +7,7 @@
     --navbar-text-color: #eee;
     --navbar-nav-background-color: #444;
     --navbar-nav-text-color: #eee;
+    --outline-color: #666;
 }
 
 .light {
@@ -18,4 +19,5 @@
     --navbar-text-color: #111;
     --navbar-nav-background-color: #ccc;
     --navbar-nav-text-color: #111;
+    --outline-color: #aaa;
 }
