@@ -34,7 +34,7 @@ code {
 
 #main-container {
     margin: auto;
-    padding-top: var(--navbar-height);
+    padding: var(--navbar-height) var(--spacing) 0;
     max-width: var(--content-width);
 }
 

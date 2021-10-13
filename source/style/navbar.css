@@ -16,6 +16,7 @@
     height: 100%;
     margin: auto;
     max-width: var(--content-width);
+    padding: 0 var(--spacing);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -29,7 +30,6 @@
 #navbar a:visited {
     color: var(--navbar-text-color);
 }
-
 
 #navbar-toggle {
     margin-left: auto;

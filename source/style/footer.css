@@ -1,13 +1,15 @@
-#footer {
-    width: 100%;
+#footer-container {
     max-width: var(--content-width);
-    margin: 0 auto var(--small-spacing);
+    margin: 0 auto;
+    padding: 0 var(--spacing);
+}
+#footer {
     border-top: 1px solid var(--outline-color);
-    padding-top: var(--small-spacing);
+    padding: var(--small-spacing) 0;
 }
 
 #footer :not(:last-child) {
-    margin-right: var(--large-spacing)
+    margin-right: var(--large-spacing);
 }
 
 #footer a {
