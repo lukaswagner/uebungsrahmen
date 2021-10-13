@@ -57,6 +57,7 @@ async function test(argv) {
     const config = './temp.json';
     const configArgs = ['--config', config];
     const yesArg = '--assumeYes';
+    const forceArg = '--force';
     const command = os.platform() === 'win32' ? '.\\fw.bat' : './fw.sh';
     const options = { stdio: 'inherit', shell: true, encoding: 'utf8' };
 
@@ -114,6 +115,16 @@ async function test(argv) {
 
     console.log(log.blue('Assignment list:'));
     console.log(json.read(path.join(dir, defines.assignmentsConfig)));
+
+    // import multiple assignments
+    heading('Import multiple assignments');
+    runSync(command, [
+        'importAssignment',
+        '--input', tempDir, tempDir, tempDir,
+        ...configArgs,
+        yesArg,
+        forceArg
+    ], options);
 
     // start the server
     heading('Starting server');

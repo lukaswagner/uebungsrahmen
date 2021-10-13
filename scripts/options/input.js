@@ -6,7 +6,8 @@ module.exports = {
     alias: ['i'],
     description:
         'Archive file to import.' +
-        'Passing a directory chooses the newest file in it.',
-    type: 'string',
-    default: defines.importDir
+        'Passing a directory chooses the newest file in it. ' +
+        'When importing assignments, you can specify multiple archives.',
+    type: 'array',
+    default: [defines.importDir]
 };

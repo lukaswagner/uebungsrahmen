@@ -6,6 +6,7 @@ const importAssignment = require('../helpers/importAssignment');
 const importSubmission = require('../helpers/importSubmission');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
+const logList = require('../helpers/logList');
 
 async function importArchive(argv) {
     if (!['assignment', 'submission'].includes(argv.mode.toLowerCase())) {
@@ -13,24 +14,46 @@ async function importArchive(argv) {
         return;
     }
 
-    const archive = chooseArchive(argv.input);
+    const modeA = argv.mode.toLowerCase() === 'assignment';
+    const archives = [...new Set(argv.input.map((i) => chooseArchive(i)))];
 
-    console.log(`Importing archive ${archive}...`);
+    if (archives.length > 1) {
+        if (!modeA) {
+            log.error(
+                'Import of multiple archives only works ' +
+                'when importing assignments! Aborting.');
+            return;
+        }
+        logList('Importing archives:', archives);
+    }
+    else {
+        console.log(`Importing archive ${archives[0]}...`);
+    }
 
     const { assignments, assignmentsPath } =
         loadAssignments(argv.directory);
-    const { shouldImport, index, newConfig } =
-        await checkArchive(argv, archive, assignments);
-    if (!shouldImport) {
+
+    const archiveInfo = [];
+    const shouldImport = await Promise.all(archives.map(async (archive) => {
+        const { shouldImport, index, newConfig } =
+            await checkArchive(argv, archive, assignments);
+        archiveInfo.push({ archive, index, newConfig });
+        return shouldImport;
+    }));
+    if (!shouldImport.every((v) => v)) {
         log.error('Aborting.');
         return;
     }
 
-    if (argv.mode.toLowerCase() === 'assignment')
-        importAssignment(
-            argv, archive, assignments, assignmentsPath, index, newConfig);
-    else
-        importSubmission(argv, archive, assignments, index);
+    if (argv.mode.toLowerCase() === 'assignment') {
+        archiveInfo.forEach((a) => importAssignment(
+            argv, a.archive, assignments, assignmentsPath, a.index, a.newConfig
+        ));
+    }
+    else {
+        const a = archiveInfo[0];
+        importSubmission(argv, a.archive, assignments, a.index);
+    }
 };
 
 module.exports = importArchive;

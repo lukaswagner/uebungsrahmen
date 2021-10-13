@@ -10,12 +10,7 @@ const ensureDirExists = require('./ensureDirExists');
 const log = require('./log');
 const json = require('./json');
 const checkChangedFiles = require('./checkChangedFiles');
-
-function logFiles(label, files) {
-    console.log(label);
-    if (files.length > 0) files.forEach((f) => console.log('-', f));
-    else console.log('- None');
-}
+const logList = require('./logList');
 
 function collectFiles(argv, assignment, func) {
     return assignment.exercises
@@ -47,11 +42,11 @@ function exportSubmission(argv, assignment, file) {
         .filter((f) => !excludedFiles.includes(f));
 
     if (manualFiles.length > 0 || excludedFiles.length > 0) {
-        logFiles('Changed files:', changedFiles);
-        logFiles('Manually included files:', manualFiles);
-        logFiles('Excluded files:', excludedFiles);
+        logList('Changed files:', changedFiles);
+        logList('Manually included files:', manualFiles);
+        logList('Excluded files:', excludedFiles);
     }
-    logFiles('Exporting:', files);
+    logList('Exporting:', files);
 
     if (!askYesNo(argv, 'Continue?')) {
         log.error('Aborting.');

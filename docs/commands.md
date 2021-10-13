@@ -61,7 +61,7 @@ Builds the exercises once.
 
 Exports an assignment archive.
 
-By default, the assignment with the highest ID ([see here](../scripts/helpers/chooseAssignment.js:13)) is chosen. You can select a different assignment by specifying the ID using `--assignment`/`-a`.
+By default, the assignment with the highest ID ([see here](../scripts/helpers/chooseAssignment.js)) is chosen. You can select a different assignment by specifying the ID using `--assignment`/`-a`.
 
 During export, all sections marked for removal ([see here](../scripts/helpers/cleanupPatterns.js)) will be stripped.
 
@@ -82,6 +82,8 @@ The archive will be named based on the assignment ID and the authors IDs. You ca
 Imports an assignment archive.
 
 By default, the newest archive inside the `./import` directory is chosen. You can specify a different directory or a specific file using `--input`/`-i`.
+
+You can specify multiple assignment archives to import.
 
 ## importSubmission / is
 
