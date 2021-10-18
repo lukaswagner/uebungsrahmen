@@ -5,3 +5,4 @@ node_modules
 /temp
 /temp.json
 /config.json
+/*/package-lock.json
