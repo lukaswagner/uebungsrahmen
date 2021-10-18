@@ -27,7 +27,7 @@ function cleanupPatterns(customPatterns = [], includeDefault = true) {
         ...(customPatterns ?? [])
     ]
         .map((p) => new RegExp(
-            optionalLineStart.source + p.start.source + '.*' + p.end.source,
+            optionalLineStart.source + p.start.source + '.*?' + p.end.source,
             'gms'));
 }
 
