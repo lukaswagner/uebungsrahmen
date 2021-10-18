@@ -19,7 +19,7 @@ export function setupFullscreen(elem: HTMLElement, event = 'dblclick'): void {
 export function addFullscreenCheckbox(elem: HTMLElement, ui: UI): void {
     const checkbox = ui.input.checkbox({
         label: 'Fullscreen',
-        handler: (v) => setFullscreen(elem, v)
+        handler: (v: boolean) => setFullscreen(elem, v)
     });
     document.addEventListener(
         'fullscreenchange',

@@ -5,6 +5,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
+const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 let configFile = process.env.fw_config;
 if (!fs.existsSync(configFile)) configFile = './example.json';
@@ -81,7 +82,11 @@ module.exports = {
         style: './source/code/style.ts',
         toggle: './source/code/toggle.ts'
     }, entries),
-    plugins: [index, ...pages],
+    plugins: [
+        index,
+        ...pages,
+        new NodePolyfillPlugin()
+    ],
     mode: 'development',
     devtool: 'inline-source-map',
     output: {
@@ -98,6 +103,9 @@ module.exports = {
                 __dirname,
                 `node_modules/highlight.js/styles/atom-one-${config.theme}.css`)
         },
+        fallback: {
+            'fs': false
+        }
     },
     resolveLoader: {
         modules: ['node_modules', path.resolve(__dirname, 'loaders')]

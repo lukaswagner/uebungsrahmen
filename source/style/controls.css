@@ -46,6 +46,7 @@
     box-sizing: border-box;
     width: 20%;
     margin-left: var(--small-spacing);
+    height: 75%;
 }
 
 #controls input[type=checkbox] {

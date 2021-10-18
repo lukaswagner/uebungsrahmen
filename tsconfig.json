@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
         "experimentalDecorators": true,
+        "esModuleInterop": true,
         "noImplicitAny": true,
         "moduleResolution": "node",
         "target": "ES2021",
