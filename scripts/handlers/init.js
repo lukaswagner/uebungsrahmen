@@ -1,6 +1,5 @@
 'use strict';
 
-const fs = require('fs');
 const path = require('path');
 const json = require('../helpers/json');
 const defines = require('../../defines.json');
@@ -8,6 +7,7 @@ const ensureEmptyDir = require('../helpers/ensureEmptyDir');
 const ensureNonExistent = require('../helpers/ensureNonExistent');
 const ensureDirExists = require('../helpers/ensureDirExists');
 const copyRecursive = require('../helpers/copyRecursive');
+const runNpm = require('../helpers/runNpm');
 
 function createConfig(argv) {
     const config = {
@@ -24,6 +24,7 @@ function init(argv) {
     createConfig(argv);
     ensureEmptyDir(argv);
     copyRecursive(path.normalize('./template'), path.normalize(argv.directory));
+    runNpm(['i', '--silent'], { cwd: path.normalize(argv.directory) });
     ensureDirExists(defines.importDir);
     ensureDirExists(defines.exportDir);
 }

@@ -10,6 +10,12 @@
             "DOM",
             "ES2021"
         ],
+        "baseUrl": ".",
+        "paths": {
+            "helper/*": [
+                "./types/*"
+            ]
+        }
     },
     "include": [
         "**/*.ts",
