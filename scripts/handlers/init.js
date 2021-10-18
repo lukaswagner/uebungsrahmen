@@ -85,7 +85,7 @@ async function init(argv) {
     createConfig(argv);
     ensureEmptyDir(argv);
     if (!await setupTemplate(argv)) return;
-    runNpm(['i', '--silent'], { cwd: path.normalize(argv.directory) });
+    runNpm(['i'], { cwd: path.normalize(argv.directory) });
     ensureDirExists(defines.importDir);
     ensureDirExists(defines.exportDir);
 }
