@@ -26,6 +26,7 @@
         "pug": "^3.0.2",
         "pug-loader": "^2.4.0",
         "readline-sync": "^1.4.10",
+        "rxjs": "^7.4.0",
         "style-loader": "^3.3.0",
         "tar": "^6.1.11",
         "tree-kill": "^1.2.2",
