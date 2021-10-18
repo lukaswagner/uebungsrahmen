@@ -9,6 +9,7 @@ const ensureDirExists = require('./ensureDirExists');
 const json = require('./json');
 const log = require('./log');
 const removeAssignment = require('./removeAssignment');
+const runNpm = require('./runNpm');
 
 /**
  * Imports an assignment archive.
@@ -51,6 +52,12 @@ function importAssignment(
     });
 
     json.write(assignmentsPath, assignments);
+
+    if (assignment.dependencies) {
+        runNpm(
+            ['i', '-D', ...assignment.dependencies],
+            { cwd: path.normalize(argv.directory) });
+    }
 
     log.success('Done!');
 };

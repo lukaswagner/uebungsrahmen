@@ -12,7 +12,8 @@ export type Assignment = {
     id: string,
     exercises: string[],
     archive?: string,
-    importTime?: number
+    importTime?: number,
+    packages?: dependencies[]
 }
 
 export type Exercise = {
