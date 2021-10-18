@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-    alias: ['theme', 't'],
+    alias: ['theme'],
     description: 'Color theme.',
     type: 'string',
     choices: ['dark', 'light'],

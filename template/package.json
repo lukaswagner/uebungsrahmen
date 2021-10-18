@@ -1,9 +1,5 @@
 {
     "name": "assignments",
     "version": "1.0.0",
-    "devDependencies": {
-        "@lukaswagner/web-ui": "^1.8.1",
-        "jimp": "^0.16.1",
-        "webgl-operate": "^0.7.5"
-    }
+    "devDependencies": {}
 }

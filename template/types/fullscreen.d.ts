@@ -1,4 +1,4 @@
-import { UI } from "@lukaswagner/web-ui";
+import { UI } from '@lukaswagner/web-ui';
 
 export declare function setFullscreen(elem: HTMLElement, full: boolean): void;
 export declare function toggleFullscreen(elem: HTMLElement): void;

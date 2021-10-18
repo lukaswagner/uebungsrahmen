@@ -10,5 +10,6 @@ exports.builder = (yargs) => {
         .option('lecture', require('../options/lecture'))
         .option('directory', require('../options/directory'))
         .option('theme', require('../options/theme'))
+        .option('template', require('../options/template'))
         .option('authors', require('../options/authors'));
 };

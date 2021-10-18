@@ -10,6 +10,6 @@ l - lecture
 m - mode
 o - output
 r - reset
-t - theme
+t - template
 v - version
 y - assumeYes
