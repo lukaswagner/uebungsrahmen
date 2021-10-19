@@ -9,7 +9,6 @@ const ensureDirExists = require('./ensureDirExists');
 const json = require('./json');
 const log = require('./log');
 const removeAssignment = require('./removeAssignment');
-const runNpm = require('./runNpm');
 
 /**
  * Imports an assignment archive.
