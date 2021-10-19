@@ -74,7 +74,9 @@ async function setupTemplate(argv) {
             });
         console.log(`Received ${data.length} bytes`);
         const stream = Readable.from(data);
-        stream.pipe(tar.extract({ sync: true, cwd: target }));
+        await new Promise((resolve) =>
+            stream.pipe(
+                tar.extract({ cwd: target }), {}).on('finish', resolve));
         return true;
     }
     log.error('Unable to handle given template! Aborting.');
@@ -86,12 +88,8 @@ async function init(argv) {
     ensureEmptyDir(argv);
     if (!await setupTemplate(argv)) return;
     child.spawnSync(
-        'npm i',
-        {
-            shell: true,
-            stdio: 'inherit',
-            cwd: path.normalize(argv.directory)
-        });
+        'npm', ['i'],
+        { shell: true, stdio: 'inherit', cwd: path.normalize(argv.directory) });
     ensureDirExists(defines.importDir);
     ensureDirExists(defines.exportDir);
 }
