@@ -54,7 +54,12 @@ function importAssignment(
 
     if (assignment.dependencies) {
         child.spawnSync(
-            'npm', ['i', '-D', assignment.dependencies],
+            'npm',
+            [
+                'install',
+                ...npmInstallParams,
+                '-D', assignment.dependencies
+            ],
             {
                 shell: true,
                 stdio: 'inherit',
