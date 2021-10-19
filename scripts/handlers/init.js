@@ -12,8 +12,8 @@ const ensureEmptyDir = require('../helpers/ensureEmptyDir');
 const ensureNonExistent = require('../helpers/ensureNonExistent');
 const ensureDirExists = require('../helpers/ensureDirExists');
 const copyRecursive = require('../helpers/copyRecursive');
-const runNpm = require('../helpers/runNpm');
 const log = require('../helpers/log');
+const child = require('child_process');
 
 function createConfig(argv) {
     const config = {
@@ -85,9 +85,13 @@ async function init(argv) {
     createConfig(argv);
     ensureEmptyDir(argv);
     if (!await setupTemplate(argv)) return;
-    runNpm(
-        ['i', '--production=false'],
-        { cwd: path.normalize(argv.directory) });
+    child.spawnSync(
+        'npm i',
+        {
+            shell: true,
+            stdio: 'inherit',
+            cwd: path.normalize(argv.directory)
+        });
     ensureDirExists(defines.importDir);
     ensureDirExists(defines.exportDir);
 }

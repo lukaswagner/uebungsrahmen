@@ -54,9 +54,13 @@ function importAssignment(
     json.write(assignmentsPath, assignments);
 
     if (assignment.dependencies) {
-        runNpm(
-            ['i', '-D', ...assignment.dependencies],
-            { cwd: path.normalize(argv.directory) });
+        child.spawnSync(
+            'npm i -D' + assignment.dependencies.join(' '),
+            {
+                shell: true,
+                stdio: 'inherit',
+                cwd: path.normalize(argv.directory)
+            });
     }
 
     log.success('Done!');
