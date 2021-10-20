@@ -30,12 +30,17 @@ body {
 
 code {
     font-family: 'Fira Mono', monospace;
+    color: var(--inline-code-color);
 }
 
 #main-container {
     margin: auto;
     padding: var(--navbar-height) var(--spacing) 0;
     max-width: var(--content-width);
+}
+
+#main-container * {
+    max-width: 100%;
 }
 
 .d-grid {

@@ -49,7 +49,7 @@ const pages = exercises
             filename: exercise.id + '.html',
             template: path.join(exercise.path, exercise.page),
             templateParameters: { config, exercise, assignments },
-            chunks: [exercise.id, 'style', 'toggle']
+            chunks: [exercise.id, 'tools']
         });
     });
 
@@ -58,7 +58,7 @@ const index = new HtmlWebpackPlugin({
     filename: 'index.html',
     template: './source/pages/index.pug',
     templateParameters: { config, assignments },
-    chunks: ['style', 'toggle']
+    chunks: ['tools']
 });
 
 const highlight = (string, language) => {
@@ -79,8 +79,7 @@ const highlight = (string, language) => {
 
 module.exports = {
     entry: Object.assign({
-        style: './source/code/style.ts',
-        toggle: './source/code/toggle.ts'
+        tools: './source/code/tools.ts'
     }, entries),
     plugins: [
         index,
@@ -130,6 +129,9 @@ module.exports = {
                     {
                         loader: 'html-loader',
                         options: { esModule: false }
+                    },
+                    {
+                        loader: 'table-loader'
                     },
                     {
                         loader: 'markdown-it-loader',

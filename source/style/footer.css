@@ -1,6 +1,6 @@
 #footer-container {
     max-width: var(--content-width);
-    margin: 0 auto;
+    margin: var(--spacing) auto 0;
     padding: 0 var(--spacing);
 }
 #footer {

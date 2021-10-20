@@ -1,6 +1,7 @@
 .dark {
     --background-color: #222;
     --text-color: #eee;
+    --inline-code-color: #feb;
     --link-color: #6ae;
     --visited-link-color: #6ae;
     --navbar-background-color: #666;
@@ -13,6 +14,7 @@
 .light {
     --background-color: #eee;
     --text-color: #111;
+    --inline-code-color: #932;
     --link-color: #37b;
     --visited-link-color: #37b;
     --navbar-background-color: #aaa;
