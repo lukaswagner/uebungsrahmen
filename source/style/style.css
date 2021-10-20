@@ -43,6 +43,11 @@ code {
     max-width: 100%;
 }
 
+#main-container td {
+    vertical-align: top;
+    padding-bottom: var(--small-spacing);
+}
+
 .d-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
