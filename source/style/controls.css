@@ -21,7 +21,7 @@
 }
 
 #controls {
-    width: 30ch;
+    width: fit-content;
 }
 
 #controls div {
@@ -35,6 +35,7 @@
 }
 
 #controls label {
+    padding-right: var(--large-spacing);
     margin-right: auto;
 }
 
@@ -44,9 +45,16 @@
 
 #controls input, #controls button, #controls select, #controls progress {
     box-sizing: border-box;
-    width: 20%;
     margin-left: var(--small-spacing);
     height: 75%;
+}
+
+#controls input, #controls button, #controls progress {
+    width: 10ch;
+}
+
+#controls select {
+    width: 20ch;
 }
 
 #controls input[type=checkbox] {
