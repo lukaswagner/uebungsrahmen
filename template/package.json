@@ -1,5 +1,14 @@
 {
     "name": "assignments",
     "version": "1.0.0",
-    "devDependencies": {}
+    "devDependencies": {
+        "@lukaswagner/web-ui": "^1.8.1",
+        "@typescript-eslint/eslint-plugin": "^5.0.0",
+        "@typescript-eslint/parser": "^5.0.0",
+        "eslint": "^8.0.1",
+        "jimp": "^0.16.1",
+        "rxjs": "^7.4.0",
+        "typescript": "^4.4.4",
+        "webgl-operate": "^0.7.5"
+    }
 }
