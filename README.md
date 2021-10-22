@@ -4,7 +4,7 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 ## dependencies
 
-See [here](docs/dependencies.md) (summary: you'll need Node.js and git).
+See [here](docs/dependencies.md) (summary: you"ll need Node.js and git).
 
 ## quick start (for students)
 
@@ -17,12 +17,12 @@ npm install
 npm i
 
 # initialize working dir
-fw init --lecture 'My Lecture' --directory '../exercises' --authors 'authorId1' 'authorId2'
+fw init --lecture "My Lecture" --directory "../exercises" --authors "authorId1" "authorId2"
 # short version
-fw i -l 'My Lecture' -d '../exercises' -a 'authorId1' 
+fw i -l "My Lecture" -d "../exercises" -a "authorId1" 
 
 # import assignment
-fw import -i './import/assignment01.tgz'
+fw import -i "./import/assignment01.tgz"
 # short version (will select most recent archive inside ./import)
 fw ia
 
@@ -32,23 +32,48 @@ fw start
 fw s
 
 # export solution - see full command doc for note about included files
-fw export --assignment 'id'
+fw export --assignment "id"
 # short version (will select most recently imported assignment)
 fw ex
 ```
 
-## quick start (for lecturers)
+## quick start (for creating exercises)
 
 ```sh
-# export assignment - see full command doc for note about stripping solutions
-fw exportAssignment --assignment 'id'
-# short version (will select assignment with lexicographically highest id)
-fw ea
+# install dependencies
+npm install
+# short version
+npm i
 
+# initialize working dir
+fw init --lecture "My Lecture" --directory "../exercises"
+# short version
+fw i -l "My Lecture" -d "../exercises"
+
+# you can use one of the examples to initialize an exercise
+cp "./examples/webglOperateExample" "../exercises/myAssignment"
+
+# edit the assignment.json file to include the exercise
+# see examples/assignment.json for an example
+
+# work on assignment
+fw start
+# short version
+fw s
+
+# export assignment
+fw exportAssignment --assignment "id"
+# short version (will select most recently imported assignment)
+fw ex
+```
+
+## grading
+
+```sh
 # import a submission, resetting the assignment before import
 # note: only works if the assignment was imported,
 # so probably not in your main code base.
-fw importSolution --input './import/submission.tgz' --reset
+fw importSolution --input "./import/submission.tgz" --reset
 # short version (will select most recent archive inside ./import)
 fw is -r
 ```
