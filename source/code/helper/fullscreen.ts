@@ -3,11 +3,8 @@ import { UI } from '@lukaswagner/web-ui';
 interface VendorPrefixedDocument extends Document {
     mozCancelFullScreen?: () => Promise<void>;
     msExitFullscreen?: () => Promise<void>;
-    webkitExitFullscreen?: () => Promise<void>;
     webkitCancelFullScreen?: () => Promise<void>;
-    mozFullScreenElement?: Element;
     msFullscreenElement?: Element;
-    webkitFullscreenElement?: Element;
     webkitIsFullScreen?: boolean;
     mozfullscreenchange?: Event;
 }
