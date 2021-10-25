@@ -6,7 +6,7 @@ interface VendorPrefixedDocument extends Document {
     webkitCancelFullScreen?: () => Promise<void>;
     msFullscreenElement?: Element;
     webkitIsFullScreen?: boolean;
-    mozfullscreenchange?: Event;
+    mozFullScreenElement?: Element;
 }
 
 interface VendorPrefixedHTMLElement extends HTMLElement {
@@ -17,6 +17,14 @@ interface VendorPrefixedHTMLElement extends HTMLElement {
 
 // The vendor prefixing is based on:
 // https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+
+function isFull(): boolean {
+    const documentPrefixed = document as VendorPrefixedDocument;
+    return !!documentPrefixed.fullscreenElement ||
+        !! documentPrefixed.mozFullScreenElement ||
+        documentPrefixed.webkitIsFullScreen ||
+        !!documentPrefixed.msFullscreenElement;
+}
 
 export function setFullscreen(
     elem: VendorPrefixedHTMLElement,
@@ -33,12 +41,7 @@ export function setFullscreen(
         } else if (elem.msRequestFullscreen) {
             elem.msRequestFullscreen();
         }
-    } else if (
-        documentPrefixed.fullscreenElement ||
-        documentPrefixed.mozfullscreenchange ||
-        documentPrefixed.webkitIsFullScreen ||
-        documentPrefixed.msFullscreenElement
-    ) {
+    } else if (isFull()) {
         if (documentPrefixed.exitFullscreen) {
             documentPrefixed.exitFullscreen();
         } else if (documentPrefixed.mozCancelFullScreen) {
@@ -52,7 +55,7 @@ export function setFullscreen(
 }
 
 export function toggleFullscreen(elem: HTMLElement): void {
-    setFullscreen(elem, !document.fullscreenElement);
+    setFullscreen(elem, !isFull());
 }
 
 export function setupFullscreen(elem: HTMLElement, event = 'dblclick'): void {
@@ -71,7 +74,7 @@ export function addFullscreenCheckbox(elem: HTMLElement, ui: UI): void {
     );
     documentPrefixed.addEventListener(
         'mozfullscreenchange',
-        () => (checkbox.value = !!documentPrefixed.mozfullscreenchange)
+        () => (checkbox.value = !!documentPrefixed.mozFullScreenElement)
     );
     documentPrefixed.addEventListener(
         'webkitfullscreenchange',
