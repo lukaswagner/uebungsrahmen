@@ -15,6 +15,9 @@ interface VendorPrefixedHTMLElement extends HTMLElement {
     webkitRequestFullScreen?: () => Promise<void>;
 }
 
+// The vendor prefixing is based on:
+// https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+
 export function setFullscreen(
     elem: VendorPrefixedHTMLElement,
     full = true
