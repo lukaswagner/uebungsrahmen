@@ -4,14 +4,14 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 ## dependencies
 
-See [here](docs/dependencies.md) (summary: you"ll need Node.js version 14 and git).
+See [here](docs/dependencies.md) (summary: you'll need Node.js version 14 or 16 and git).
 
 ## quick start (for students)
 
-Note: `./fw.sh` and `fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
+Note: `./fw.sh` and `.\fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
 
 ```sh
-# install dependencies
+# install dependencies - for Node.js 16: add --legacy-peer-deps
 npm install
 # short version
 npm i
@@ -24,7 +24,7 @@ fw i -l "My Lecture" -d "../exercises" -a "authorId1"
 # import assignment
 fw import -i "./import/assignment01.tgz"
 # short version (will select most recent archive inside ./import)
-fw ia
+fw im
 
 # work on assignment
 fw start
@@ -55,6 +55,7 @@ cp -R "./examples/webglOperateExample" "../exercises/myAssignment"
 
 # edit the assignments.json file to include the exercise
 # see examples/assignments.json for an example
+cp "./examples/assignments.json" "../exercises/assignments.json"
 
 # work on assignment
 fw start
