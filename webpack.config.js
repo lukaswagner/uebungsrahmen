@@ -166,7 +166,7 @@ module.exports = {
                 generator: { filename: 'vid/[name]_[hash:4][ext]' }
             },
             {
-                test: /\.(json|obj|gltf|glb|stl)$/,
+                test: /\.(obj|gltf|glb|stl)$/,
                 type: 'asset/resource',
                 generator: { filename: 'dat/[name]_[hash:4][ext]' }
             },
@@ -174,6 +174,11 @@ module.exports = {
                 test: /\.(eot|otf|ttf|woff|woff2)$/,
                 type: 'asset/resource',
                 generator: { filename: 'fnt/[name]_[hash:4][ext]' }
+            },
+            {
+                test: /\.(json)$/,
+                type: 'asset/source',
+                generator: { filename: 'dat/[name]_[hash:4][ext]' }
             },
         ]
     },
