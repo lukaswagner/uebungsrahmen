@@ -1,10 +1,53 @@
 import { UI } from '@lukaswagner/web-ui';
 
-export function setFullscreen(elem: HTMLElement, full = true): void {
+interface VendorPrefixedDocument extends Document {
+    mozCancelFullScreen?: () => Promise<void>;
+    msExitFullscreen?: () => Promise<void>;
+    webkitCancelFullScreen?: () => Promise<void>;
+    msFullscreenElement?: Element;
+    webkitIsFullScreen?: boolean;
+    mozfullscreenchange?: Event;
+}
+
+interface VendorPrefixedHTMLElement extends HTMLElement {
+    msRequestFullscreen?: () => Promise<void>;
+    mozRequestFullScreen?: () => Promise<void>;
+    webkitRequestFullScreen?: () => Promise<void>;
+}
+
+// The vendor prefixing is based on:
+// https://hacks.mozilla.org/2012/01/using-the-fullscreen-api-in-web-browsers/
+
+export function setFullscreen(
+    elem: VendorPrefixedHTMLElement,
+    full = true
+): void {
+    const documentPrefixed = document as VendorPrefixedDocument;
     if (full) {
-        elem.requestFullscreen();
-    } else if (document.fullscreenElement) {
-        document.exitFullscreen();
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) {
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullScreen) {
+            elem.webkitRequestFullScreen();
+        } else if (elem.msRequestFullscreen) {
+            elem.msRequestFullscreen();
+        }
+    } else if (
+        documentPrefixed.fullscreenElement ||
+        documentPrefixed.mozfullscreenchange ||
+        documentPrefixed.webkitIsFullScreen ||
+        documentPrefixed.msFullscreenElement
+    ) {
+        if (documentPrefixed.exitFullscreen) {
+            documentPrefixed.exitFullscreen();
+        } else if (documentPrefixed.mozCancelFullScreen) {
+            documentPrefixed.mozCancelFullScreen();
+        } else if (documentPrefixed.webkitCancelFullScreen) {
+            documentPrefixed.webkitCancelFullScreen();
+        } else if (documentPrefixed.msExitFullscreen) {
+            documentPrefixed.msExitFullscreen();
+        }
     }
 }
 
@@ -19,10 +62,23 @@ export function setupFullscreen(elem: HTMLElement, event = 'dblclick'): void {
 export function addFullscreenCheckbox(elem: HTMLElement, ui: UI): void {
     const checkbox = ui.input.checkbox({
         label: 'Fullscreen',
-        handler: (v: boolean) => setFullscreen(elem, v)
+        handler: (v: boolean) => setFullscreen(elem, v),
     });
-    document.addEventListener(
+    const documentPrefixed = document as VendorPrefixedDocument;
+    documentPrefixed.addEventListener(
         'fullscreenchange',
-        () => checkbox.value = !!document.fullscreenElement
+        () => (checkbox.value = !!documentPrefixed.fullscreenElement)
+    );
+    documentPrefixed.addEventListener(
+        'mozfullscreenchange',
+        () => (checkbox.value = !!documentPrefixed.mozfullscreenchange)
+    );
+    documentPrefixed.addEventListener(
+        'webkitfullscreenchange',
+        () => (checkbox.value = !!documentPrefixed.webkitIsFullScreen)
+    );
+    documentPrefixed.addEventListener(
+        'msfullscreenchange',
+        () => (checkbox.value = !!documentPrefixed.msFullscreenElement)
     );
 }
