@@ -53,8 +53,8 @@ fw i -l "My Lecture" -d "../exercises"
 # you can use one of the examples to initialize an exercise
 cp -R "./examples/webglOperateExample" "../exercises/myAssignment"
 
-# edit the assignment.json file to include the exercise
-# see examples/assignment.json for an example
+# edit the assignments.json file to include the exercise
+# see examples/assignments.json for an example
 
 # work on assignment
 fw start
