@@ -4,11 +4,11 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 ## dependencies
 
-See [here](docs/dependencies.md) (summary: you"ll need Node.js and git).
+See [here](docs/dependencies.md) (summary: you"ll need Node.js version 14 and git).
 
 ## quick start (for students)
 
-Note: `fw.sh` and `fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
+Note: `./fw.sh` and `fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
 
 ```sh
 # install dependencies
@@ -51,10 +51,10 @@ fw init --lecture "My Lecture" --directory "../exercises"
 fw i -l "My Lecture" -d "../exercises"
 
 # you can use one of the examples to initialize an exercise
-cp "./examples/webglOperateExample" "../exercises/myAssignment"
+cp -R "./examples/webglOperateExample" "../exercises/myAssignment"
 
-# edit the assignment.json file to include the exercise
-# see examples/assignment.json for an example
+# edit the assignments.json file to include the exercise
+# see examples/assignments.json for an example
 
 # work on assignment
 fw start
