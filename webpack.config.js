@@ -6,10 +6,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const configurations = require('./scripts/helpers/configurations');
 
 let configFile = process.env.fw_config;
 if (!fs.existsSync(configFile)) configFile = './example.json';
 console.log('Using config file:', configFile);
+configurations.setMostRecent(configFile);
 const config = require(configFile);
 
 // collect assignments, resolve exercise dirs to exercise configs
