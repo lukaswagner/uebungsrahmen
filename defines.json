@@ -3,6 +3,7 @@
     "assignmentConfig": "assignment.json",
     "submissionConfig": "submission.json",
     "exerciseConfig": "exercise.json",
+    "configDir": "./config",
     "importDir": "./import",
     "exportDir": "./export",
     "archiveStoreDir": "./.archives",

@@ -3,9 +3,13 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         link(rel="stylesheet", href="../style/ui.css")
-        link(rel="preload" href="../code/index.js" as="script")
+        script(src="../code/index.js") 
         title uebungsrahmen
     body
         div
             label(for="config") Configuration:
             select#config
+        hr
+        div
+            button#start Start
+            button#stop Stop

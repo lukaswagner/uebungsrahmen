@@ -8,15 +8,7 @@ const confsPath = './configurations.json';
 
 const confs = fs.existsSync(confsPath) ?
     json.read(confsPath) :
-    ['./example.json'];
-
-function getIndex(conf) {
-    const normConf = path.normalize(path.join(process.cwd(), conf));
-    confs.findIndex((c) => {
-        const normC = path.normalize(path.join(process.cwd(), c));
-        return normC === normConf;
-    });
-}
+    ['example'];
 
 function getAll() {
     return confs.slice();
@@ -27,8 +19,9 @@ function getMostRecent() {
 }
 
 function setMostRecent(conf) {
-    const index = getIndex(conf);
-    let elem = conf;
+    const name = path.basename(conf, '.json');
+    const index = confs.findIndex((c) => c === name);
+    let elem = name;
     if (index > -1) elem = confs.splice(index, 1)[0];
     confs.unshift(elem);
     json.write(confsPath, confs);

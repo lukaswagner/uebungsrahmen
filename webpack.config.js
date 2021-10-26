@@ -9,8 +9,8 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 const configurations = require('./scripts/helpers/configurations');
 
 let configFile = process.env.fw_config;
-if (!fs.existsSync(configFile)) configFile = './example.json';
-console.log('Using config file:', configFile);
+if (!fs.existsSync(configFile)) configFile = './config/example.json';
+console.log('Using config:', configFile);
 configurations.setMostRecent(configFile);
 const config = require(configFile);
 
