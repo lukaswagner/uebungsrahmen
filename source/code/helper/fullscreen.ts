@@ -58,8 +58,11 @@ export function toggleFullscreen(elem: HTMLElement): void {
     setFullscreen(elem, !isFull());
 }
 
-export function setupFullscreen(elem: HTMLElement, event = 'dblclick'): void {
-    elem.addEventListener(event, () => toggleFullscreen(elem));
+export function setupFullscreen(
+    elem: HTMLElement, listener?: HTMLElement, event = 'dblclick'
+): void {
+    const eventElem = listener ?? elem;
+    eventElem.addEventListener(event, () => toggleFullscreen(elem));
 }
 
 export function addFullscreenCheckbox(elem: HTMLElement, ui: UI): void {
