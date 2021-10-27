@@ -1,31 +1,50 @@
 import '../style/ui.css';
 
-const { ipcRenderer: ipc } = window.require( 'electron');
+import { Button, SelectInput, UI } from '@lukaswagner/web-ui';
 
 import Convert  from 'ansi-to-html';
 import { IpcRendererEvent } from 'electron';
 
+const { ipcRenderer: ipc } = window.require( 'electron');
+
 type Elements = {
-    config?: HTMLSelectElement,
-    command?: HTMLSpanElement,
-    console?: HTMLTextAreaElement
+    config?: SelectInput,
+    commandStop?: Button,
+    consoleContainer?: HTMLDivElement,
+    console?: HTMLDivElement
 }
 const elements: Elements = {};
 
 window.onload = () => {
-    elements.config =
-        document.getElementById('config') as HTMLSelectElement;
+    const config = new UI(document.getElementById('config'));
+    elements.config = config.input.select({
+        label: 'Configuration'
+    });
 
-    document.getElementById('start')
-        .onclick = () => ipc.send('start', elements.config.value);
+    const start = new UI(document.getElementById('start'));
+    const open = start.input.checkbox({
+        label: 'Open page in browser',
+        value: true
+    });
+    start.input.button({
+        text: 'Start',
+        handler: () => ipc.send('start', {
+            config: elements.config.value,
+            open: open.value
+        })
+    });
 
-    document.getElementById('stop')
-        .onclick = () => ipc.send('stop', elements.config.value);
+    const command = new UI(document.getElementById('command'));
+    elements.commandStop = command.input.button({
+        label: 'None',
+        text: 'Stop',
+        handler: () => ipc.send('stop', elements.config.value)
+    });
 
-    elements.command =
-        document.getElementById('command') as HTMLSpanElement;
+    elements.consoleContainer =
+        document.getElementById('console-container') as HTMLDivElement;
     elements.console =
-        document.getElementById('console') as HTMLTextAreaElement;
+        document.getElementById('console') as HTMLDivElement;
 
     ipc.send('ready');
 };
@@ -33,21 +52,18 @@ window.onload = () => {
 ipc.on('configurations', (
     event: IpcRendererEvent, arg: {configs: string[], config: string}
 ) => {
-    for (const conf of arg.configs) {
-        const elem = document.createElement('option');
-        elem.value = conf;
-        elem.text = conf;
-        elements.config.appendChild(elem);
-    }
-
+    elements.config.values = arg.configs;
     elements.config.value = arg.config;
 });
 
 ipc.on('command', (event: IpcRendererEvent, args: string) => {
-    elements.command.textContent = args;
+    elements.commandStop.label.textContent = args;
+    if (args !== 'None') elements.console.innerHTML = '';
 });
 
 const convert = new Convert({ newline: true, stream: true });
 ipc.on('console', (event: IpcRendererEvent, args: string) => {
     elements.console.innerHTML += convert.toHtml(args);
+    elements.consoleContainer.scrollTop =
+        elements.consoleContainer.scrollHeight;
 });

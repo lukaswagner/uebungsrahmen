@@ -1,0 +1,8 @@
+:root {
+    --border-radius: 2px;
+    --large-spacing: 1.5em;
+    --spacing: 1em;
+    --small-spacing: 0.5em;
+    --tiny-spacing: 0.2em;
+    --outline-thickness: 1px;
+}

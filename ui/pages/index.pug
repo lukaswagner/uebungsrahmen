@@ -5,17 +5,13 @@ html(lang="en")
         title uebungsrahmen
     body
         #content
-            div
-                label(for="config") Configuration:
-                select#config
-            hr
-            div
-                button#start Start
-                button#stop Stop
-
-            hr
-            #output
-                label(for="command") Currently running:
-                span#command None
-                hr
+            #config-container
+                #config.controls
+            #start-container
+                .heading Run server
+                #start.controls
+            #command-container
+                .heading Currently running
+                #command.controls
+            #console-container
                 #console

@@ -1,21 +1,63 @@
+@import '../../source/style/sizes.css';
+
 body {
     font-family: sans-serif;
     background-color: #222;
-    color: #eee;
+    color: #ccc;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 #content {
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    height: 100vh;
 }
 
-#output {
-    margin-top: auto;
+#content>div {
+    outline: 1px solid #555;
+    margin: var(--tiny-spacing);
+    border-radius: var(--border-radius);
+}
+
+#console-container {
+    overflow-y: scroll;
+    flex-grow: 1;
 }
 
 #console {
+    height: 100%;
     font-family: monospace;
-    overflow: auto;
-    width: 100%;
-    max-height: 50vh;
+}
+
+.controls div {
+    display: flex;
+    align-items: center;
+    height: 1.25em;
+    padding: var(--small-spacing);
+}
+
+.controls div:not(:last-child) {
+    border-bottom: 1px solid #555;
+}
+
+.controls label {
+    padding-right: var(--large-spacing);
+    margin-right: auto;
+}
+
+.heading {
+    padding: var(--small-spacing);
+    color: #fff;
+    border-bottom: 1px solid #555;
+}
+
+#console>br+br {
+    display: none;
+}
+
+#console>span>br:first-child {
+    display: none;
 }

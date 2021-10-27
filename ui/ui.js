@@ -84,11 +84,10 @@ function run(cmd, args, options) {
 }
 
 ipc.on('start', (event, args) => {
-    console.log('start');
     run(command, [
         'start',
-        '--c', args,
-        '--', '--no-open'
+        '--c', args.config,
+        '--', args.open ? '--open' : '--no-open'
     ]);
 });
 

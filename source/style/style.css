@@ -7,17 +7,12 @@
 @import './katexLeft.css';
 @import './link.css';
 @import './navbar.css';
+@import './sizes.css';
 @import './themes.css';
 
 :root {
     --navbar-height: 3em;
     --content-width: 70em;
-    --border-radius: 2px;
-    --large-spacing: 1.5em;
-    --spacing: 1em;
-    --small-spacing: 0.5em;
-    --tiny-spacing: 0.2em;
-    --outline-thickness: 1px;
 }
 
 body {
