@@ -4,6 +4,7 @@ import { Button, SelectInput, UI } from '@lukaswagner/web-ui';
 
 import Convert  from 'ansi-to-html';
 import { IpcRendererEvent } from 'electron';
+import { toggle } from './toggle';
 
 const { ipcRenderer: ipc } = window.require( 'electron');
 
@@ -45,6 +46,8 @@ window.onload = () => {
         document.getElementById('console-container') as HTMLDivElement;
     elements.console =
         document.getElementById('console') as HTMLDivElement;
+
+    toggle('start', 'start-toggle', true);
 
     ipc.send('ready');
 };
