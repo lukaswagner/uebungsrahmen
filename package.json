@@ -12,6 +12,7 @@
         "@lukaswagner/web-ui": "^1.8.1",
         "@typescript-eslint/eslint-plugin": "^4.33.0",
         "@typescript-eslint/parser": "^4.33.0",
+        "ansi-to-html": "^0.7.2",
         "css-loader": "^6.3.0",
         "electron": "^15.3.0",
         "eslint": "^7.32.0",
@@ -25,7 +26,6 @@
         "markdown-it-texmath": "^0.9.1",
         "node-polyfill-webpack-plugin": "^1.1.4",
         "pug": "^3.0.2",
-        "pug-cli": "^1.0.0-alpha6",
         "pug-loader": "^2.4.0",
         "readline-sync": "^1.4.10",
         "rxjs": "^7.4.0",
@@ -47,7 +47,7 @@
         "main": "node scripts/main.js",
         "lint": "eslint .",
         "lint-fix": "eslint . --fix",
-        "build-ui": "pug -o ui/build/ ui/pages/index.pug",
+        "preui": "webpack build -c ./ui/webpack.config.js --output-clean",
         "ui": "electron ui/ui.js"
     }
 }

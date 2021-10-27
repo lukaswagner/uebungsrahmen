@@ -2,14 +2,20 @@ html(lang="en")
     head
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        link(rel="stylesheet", href="../style/ui.css")
-        script(src="../code/index.js") 
         title uebungsrahmen
     body
-        div
-            label(for="config") Configuration:
-            select#config
-        hr
-        div
-            button#start Start
-            button#stop Stop
+        #content
+            div
+                label(for="config") Configuration:
+                select#config
+            hr
+            div
+                button#start Start
+                button#stop Stop
+
+            hr
+            #output
+                label(for="command") Currently running:
+                span#command None
+                hr
+                #console

@@ -1,12 +1,7 @@
 {
     "extends": "./tsconfig.json",
     "include": [
-        "source/**/*.ts",
-        "examples/**/*.ts",
-        "scripts/**/*.js",
-        "scripts/**/*.ts",
-        "loaders/**/*.js",
-        "ui/**/*.js",
-        "webpack.config.js",
+        "**/*.ts",
+        "**/*.js"
     ]
 }

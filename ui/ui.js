@@ -7,8 +7,10 @@ const { app, BrowserWindow, ipcMain: ipc, dialog } = require('electron');
 const configurations = require('../scripts/helpers/configurations');
 const kill = require('tree-kill');
 
+/** @type { BrowserWindow } */
+let window;
 function createWindow() {
-    const window = new BrowserWindow({
+    window = new BrowserWindow({
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -16,17 +18,17 @@ function createWindow() {
     });
 
     window.on('close', (event) => {
-        if (fwInstance && fwInstance.exitCode === null) {
+        if (runningProcess && runningProcess.exitCode === null) {
             event.preventDefault();
             const result = dialog.showMessageBoxSync(window, {
-                message: 'Framework process still running:\n' + fwCommand,
+                message: 'Framework process still running:\n' + runningCommand,
                 type: 'warning',
                 buttons: ['Stop process', 'Cancel'],
                 noLink: true
             });
             if (result === 0) {
-                kill(fwInstance.pid, () => window.close());
-                fwInstance = undefined;
+                kill(runningProcess.pid, () => window.close());
+                runningProcess = undefined;
             }
         }
     });
@@ -47,18 +49,38 @@ ipc.on('ready', (event) => {
 
 const command = os.platform() === 'win32' ? '.\\fw.bat' : './fw.sh';
 
-let fwCommand;
-let fwInstance;
+/** @type { string } */
+let runningCommand;
+/** @type { child.ChildProcess } */
+let runningProcess;
 
 function run(cmd, args, options) {
-    if (fwInstance && fwInstance.exitCode === null) {
+    if (runningProcess && runningProcess.exitCode === null) {
         console.log('Already running!');
         return;
     }
     const command = [cmd, ...args].join(' ');
     console.log('Running command:', command);
-    fwCommand = command;
-    fwInstance = child.spawn(cmd, args, options);
+    runningCommand = command;
+    runningProcess = child.spawn(cmd, args, Object.assign({
+        stdio: 'pipe',
+        shell: true,
+        encoding: 'utf8'
+    }, options));
+
+    runningProcess.stdout.on('data', (data) => {
+        window.webContents.send('console', data.toString());
+    });
+
+    runningProcess.stderr.on('data', (data) => {
+        window.webContents.send('console', data.toString());
+    });
+
+    runningProcess.on('exit', () => {
+        window.webContents.send('command', 'None');
+    });
+
+    window.webContents.send('command', runningCommand);
 }
 
 ipc.on('start', (event, args) => {
@@ -67,13 +89,10 @@ ipc.on('start', (event, args) => {
         'start',
         '--c', args,
         '--', '--no-open'
-    ], {
-        stdio: 'pipe',
-        shell: true,
-        encoding: 'utf8'
-    });
+    ]);
 });
 
 ipc.on('stop', () => {
-    kill(fwInstance.pid);
+    kill(runningProcess.pid);
+    window.webContents.send('command', 'None');
 });

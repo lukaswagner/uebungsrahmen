@@ -3,3 +3,19 @@ body {
     background-color: #222;
     color: #eee;
 }
+
+#content {
+    display: flex;
+    flex-direction: column;
+}
+
+#output {
+    margin-top: auto;
+}
+
+#console {
+    font-family: monospace;
+    overflow: auto;
+    width: 100%;
+    max-height: 50vh;
+}
