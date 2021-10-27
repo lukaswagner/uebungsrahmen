@@ -46,13 +46,13 @@ async function importArchive(argv) {
     }
 
     if (argv.mode.toLowerCase() === 'assignment') {
-        archiveInfo.forEach((a) => importAssignment(
+        for (const a of archiveInfo) await importAssignment(
             argv, a.archive, assignments, assignmentsPath, a.index, a.newConfig
-        ));
+        );
     }
     else {
         const a = archiveInfo[0];
-        importSubmission(argv, a.archive, assignments, a.index);
+        await importSubmission(argv, a.archive, assignments, a.index);
     }
 };
 

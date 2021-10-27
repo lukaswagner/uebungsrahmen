@@ -1,13 +1,13 @@
 'use strict';
 
-const exportArchive = require('../handlers/export.js');
+const json = require('../helpers/json');
 
 exports.command = ['resetAssignment', 'reset', 're'];
 exports.description = 'Resets an assignment.';
-exports.handler = require('../handlers/reset');
+exports.handler = (argv) =>
+    require('../handlers/reset')(Object.assign(argv, json.read(argv.config)));
 exports.builder = (yargs) => {
     yargs
         .option('assumeYes', require('../options/assumeYes'))
-        .option('assignment', require('../options/assignment'))
-        .config('config');
+        .option('assignment', require('../options/assignment'));
 };

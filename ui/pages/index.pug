@@ -7,6 +7,9 @@ html(lang="en")
         #content
             #config-container
                 #config.controls
+            #init-container
+                #init-toggle.heading Initialize working directory
+                #init.controls
             #start-container
                 #start-toggle.heading Run server
                 #start.controls
@@ -15,3 +18,7 @@ html(lang="en")
                 #command.controls
             #console-container
                 #console
+            #question-container.d-none
+                #question.controls
+                    button#question-yes Yes
+                    button#question-no No

@@ -11,7 +11,8 @@ const exportSubmission = require('../helpers/exportSubmission');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 
-const exportArchive = (argv) => {
+async function exportArchive(argv) {
+    console.log(argv);
     if (!['assignment', 'submission'].includes(argv.mode.toLowerCase())) {
         log.error(`Invalid export mode: ${argv.mode}. Aborting.`);
         return;
@@ -30,13 +31,13 @@ const exportArchive = (argv) => {
         path.join(defines.exportDir, archiveName(argv, assignment));
 
     if (fs.existsSync(file) &&
-        !askYesNo(argv, `${file} already exists. Overwrite?`, true)
+        !await askYesNo(argv, `${file} already exists. Overwrite?`, true)
     ) return;
 
     if (argv.mode.toLowerCase() === 'assignment')
-        exportAssignment(argv, assignment, file);
+        await exportAssignment(argv, assignment, file);
     else
-        exportSubmission(argv, assignment, file);
+        await exportSubmission(argv, assignment, file);
 
     console.log('Created file:', file);
     log.success('Done!');

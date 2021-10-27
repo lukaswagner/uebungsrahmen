@@ -2,7 +2,6 @@
 
 const tar = require('tar');
 const defines = require('../../defines.json');
-const importAssignment = require('./importAssignment');
 const log = require('./log');
 const resetAssignment = require('./resetAssignment');
 
@@ -13,9 +12,9 @@ const resetAssignment = require('./resetAssignment');
  * @param {import('../types').Assignments} assignments The existing assignments.
  * @param {number} index Index of existing assignment with same id.
  */
-function importSubmission(argv, archive, assignments, index) {
+async function importSubmission(argv, archive, assignments, index) {
     if (argv.resetAssignment && index > -1)
-        resetAssignment(argv, assignments[index]);
+        await resetAssignment(argv, assignments[index]);
 
     console.log(
         `Importing submission for assignment ${assignments[index].name}...`);

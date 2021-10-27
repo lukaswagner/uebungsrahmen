@@ -19,7 +19,7 @@ const removeAssignment = require('./removeAssignment');
  * @param {number} index Index of existing assignment with same id.
  * @param {import('../types').Assignment} assignment The new assignment config.
  */
-function importAssignment(
+async function importAssignment(
     argv, archive, assignments, assignmentsPath, index, assignment
 ) {
     console.log(`Importing assignment ${assignment.name}...`);
@@ -28,7 +28,7 @@ function importAssignment(
     if (index === -1) {
         assignments.push(entry);
     } else {
-        const removed = removeAssignment(
+        const removed = await removeAssignment(
             argv, assignments[index], argv.directory);
         if (!removed) {
             log.error('Aborting.');

@@ -4,7 +4,8 @@ const path = require('path');
 const defines = require('../../defines.json');
 
 function configPath(conf) {
-    return '.' + path.sep + path.join(defines.configDir, conf + '.json');
+    const cleaned = path.basename(conf, '.json');
+    return '.' + path.sep + path.join(defines.configDir, cleaned + '.json');
 }
 
 module.exports = configPath;

@@ -10,13 +10,13 @@ const askYesNo = require('./askYesNo');
  * @param {string} directory Path to directory.
  * @returns {boolean} Whether the dir is empty (or --assumeYes was specified)
  */
-function ensureEmptyDir(argv, directory) {
+async function ensureEmptyDir(argv, directory) {
     const dir = directory ?? argv.directory;
 
     ensureDirExists(dir);
 
     let result = readDirWithoutSystemFiles(dir).length === 0;
-    result = result || askYesNo(argv, dir + ' is not empty! Continue?');
+    result = result || await askYesNo(argv, dir + ' is not empty! Continue?');
 
     return result;
 }

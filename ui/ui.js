@@ -11,6 +11,8 @@ const kill = require('tree-kill');
 let window;
 function createWindow() {
     window = new BrowserWindow({
+        width: 800,
+        height: 1000,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false
@@ -59,12 +61,12 @@ function run(cmd, args, options) {
         console.log('Already running!');
         return;
     }
-    const command = [cmd, ...args].join(' ');
+    const newArgs = ['./scripts/main.js', ...args];
+    const command = ['node', ...newArgs].join(' ');
     console.log('Running command:', command);
     runningCommand = command;
-    runningProcess = child.spawn(cmd, args, Object.assign({
-        stdio: 'pipe',
-        shell: true,
+    runningProcess = child.spawn('node', newArgs, Object.assign({
+        stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
         encoding: 'utf8'
     }, options));
 
@@ -80,18 +82,24 @@ function run(cmd, args, options) {
         window.webContents.send('command', 'None');
     });
 
+    runningProcess.on('message', (question) => {
+        console.log('question', question);
+        runningProcess.send(true);
+        // window.webContents.send('question', question);
+    });
+
     window.webContents.send('command', runningCommand);
 }
 
-ipc.on('start', (event, args) => {
-    run(command, [
-        'start',
-        '--c', args.config,
-        '--', args.open ? '--open' : '--no-open'
-    ]);
+ipc.on('run', (event, data) => {
+    run(command, data.args, data.options);
 });
 
 ipc.on('stop', () => {
     kill(runningProcess.pid);
     window.webContents.send('command', 'None');
+});
+
+ipc.on('consoleInput', (event, data) => {
+    // console.log(runningProcess.stdin.writable);
 });

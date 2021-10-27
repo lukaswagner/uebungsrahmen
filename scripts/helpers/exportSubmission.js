@@ -29,7 +29,7 @@ function collectFiles(argv, assignment, func) {
  * @param {import('../types').ExportOptions} argv Config.
  * @param {import('../types').Assignment} assignment
  */
-function exportSubmission(argv, assignment, file) {
+async function exportSubmission(argv, assignment, file) {
     console.log(`Exporting solution assignment ${assignment.id}...`);
 
     // exclude exercise.json by default (can be manually added)
@@ -48,7 +48,7 @@ function exportSubmission(argv, assignment, file) {
     }
     logList('Exporting:', files);
 
-    if (!askYesNo(argv, 'Continue?')) {
+    if (!await askYesNo(argv, 'Continue?')) {
         log.error('Aborting.');
         return;
     }

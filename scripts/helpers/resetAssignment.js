@@ -5,9 +5,10 @@ const tar = require('tar');
 const defines = require('../../defines.json');
 const removeAssignment = require('../helpers/removeAssignment');
 
-function resetAssignment(argv, assignment) {
+async function resetAssignment(argv, assignment) {
     console.log(`Resetting assignment ${assignment.name}...`);
-    const removed = removeAssignment(argv, assignment, argv.directory, false);
+    const removed =
+        await removeAssignment(argv, assignment, argv.directory, false);
     if (!removed) {
         log.error('Aborting.');
         return false;

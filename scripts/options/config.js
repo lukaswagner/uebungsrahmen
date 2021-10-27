@@ -2,7 +2,6 @@
 
 const configPath = require('../helpers/configPath');
 
-
 module.exports = {
     alias: ['c'],
     desc:
