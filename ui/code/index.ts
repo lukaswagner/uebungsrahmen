@@ -142,9 +142,10 @@ ipc.on('command', (event: IpcRendererEvent, data: string) => {
     if (data !== 'None') elements.console.innerHTML = '';
 });
 
-const convert = new Convert({ newline: true, stream: true });
-ipc.on('console', (event: IpcRendererEvent, data: string) => {
-    elements.console.innerHTML += convert.toHtml(data);
+const convert = new Convert();
+ipc.on('console', (event: IpcRendererEvent, data: string[]) => {
+    data.forEach((l) =>
+        elements.console.innerHTML += convert.toHtml(l) + '<br>');
     elements.consoleContainer.scrollTop =
         elements.consoleContainer.scrollHeight;
 });

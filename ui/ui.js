@@ -70,13 +70,8 @@ function run(cmd, args, options) {
         encoding: 'utf8'
     }, options));
 
-    runningProcess.stdout.on('data', (data) => {
-        window.webContents.send('console', data.toString());
-    });
-
-    runningProcess.stderr.on('data', (data) => {
-        window.webContents.send('console', data.toString());
-    });
+    runningProcess.stdout.on('data', sendConsole);
+    runningProcess.stderr.on('data', sendConsole);
 
     runningProcess.on('exit', () => {
         window.webContents.send('command', 'None');
@@ -87,6 +82,12 @@ function run(cmd, args, options) {
     });
 
     window.webContents.send('command', runningCommand);
+}
+
+function sendConsole(data) {
+    const split = data.toString().split('\n');
+    const lines = split.map((s) => s.trim()).filter((s) => s.length > 0);
+    window.webContents.send('console', lines);
 }
 
 ipc.on('run', (event, data) => {
