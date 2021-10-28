@@ -34,9 +34,14 @@ body {
     padding: var(--small-spacing);
 }
 
+#command label {
+    font-family: monospace;
+}
+
 #console-container {
     overflow-y: scroll;
     flex-grow: 1;
+    padding: var(--small-spacing);
 }
 
 #console {

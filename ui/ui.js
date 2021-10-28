@@ -109,3 +109,14 @@ ipc.on('stop', () => {
 ipc.on('answer', (event, data) => {
     runningProcess.send(data);
 });
+
+ipc.handle('selectDir', () => {
+    return dialog.showOpenDialogSync({
+        defaultPath: process.cwd(),
+        properties: [
+            'openDirectory', 'createDirectory'
+        ]
+    })?.[0];
+});
+
+ipc.on('alert', (event, data) => dialog.showMessageBox(window, data));
