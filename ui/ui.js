@@ -83,9 +83,7 @@ function run(cmd, args, options) {
     });
 
     runningProcess.on('message', (question) => {
-        console.log('question', question);
-        runningProcess.send(true);
-        // window.webContents.send('question', question);
+        window.webContents.send('question', question);
     });
 
     window.webContents.send('command', runningCommand);
@@ -100,6 +98,6 @@ ipc.on('stop', () => {
     window.webContents.send('command', 'None');
 });
 
-ipc.on('consoleInput', (event, data) => {
-    // console.log(runningProcess.stdin.writable);
+ipc.on('answer', (event, data) => {
+    runningProcess.send(data);
 });

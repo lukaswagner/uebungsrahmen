@@ -13,7 +13,8 @@ type Elements = {
     commandStop?: Button,
     consoleContainer?: HTMLDivElement,
     console?: HTMLDivElement,
-    questionContainer?: HTMLDivElement
+    questionContainer?: HTMLDivElement,
+    questionText?: HTMLSpanElement
 }
 const elements: Elements = {};
 
@@ -115,11 +116,13 @@ window.onload = () => {
         document.getElementById('console') as HTMLDivElement;
     elements.questionContainer =
         document.getElementById('question-container') as HTMLDivElement;
+    elements.questionText =
+        document.getElementById('question-text') as HTMLSpanElement;
 
     (document.getElementById('question-yes') as HTMLButtonElement)
-        .onclick = () => answer('y');
+        .onclick = () => answer(true);
     (document.getElementById('question-no') as HTMLButtonElement)
-        .onclick = () => answer('n');
+        .onclick = () => answer(false);
 
     toggle('init', 'init-toggle');
     toggle('start', 'start-toggle', true);
@@ -146,11 +149,12 @@ ipc.on('console', (event: IpcRendererEvent, data: string) => {
         elements.consoleContainer.scrollHeight;
 });
 
-function answer(a: string): void{
-    ipc.send('consoleInput', a);
+function answer(a: boolean): void{
+    ipc.send('answer', a);
     elements.questionContainer.classList.add('d-none');
 }
 
-// ipc.on('question', () => {
-//     elements.questionContainer.classList.remove('d-none');
-// });
+ipc.on('question', (event: IpcRendererEvent, data: string) => {
+    elements.questionText.textContent = data;
+    elements.questionContainer.classList.remove('d-none');
+});
