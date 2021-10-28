@@ -8,4 +8,4 @@ node_modules
 !/config/example.json
 /*/package-lock.json
 /ui/build
-/configurations.json
+/lastConfig.json

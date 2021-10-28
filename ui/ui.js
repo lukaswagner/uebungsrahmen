@@ -42,12 +42,14 @@ app.whenReady().then(() => {
     createWindow();
 });
 
-ipc.on('ready', (event) => {
-    event.sender.send('configurations', {
-        configs: configurations.getAll(),
+function updateConfigs() {
+    window.webContents.send('configurations', {
+        configs: configurations.getConfigurations(),
         config: configurations.getMostRecent()
     });
-});
+}
+
+ipc.on('ready', () => updateConfigs());
 
 const command = os.platform() === 'win32' ? '.\\fw.bat' : './fw.sh';
 
@@ -89,6 +91,11 @@ function sendConsole(data) {
     const lines = split.map((s) => s.trim()).filter((s) => s.length > 0);
     window.webContents.send('console', lines);
 }
+
+ipc.on('config', (event, data) => {
+    configurations.setMostRecent(data);
+    updateConfigs();
+});
 
 ipc.on('run', (event, data) => {
     run(command, data.args, data.options);

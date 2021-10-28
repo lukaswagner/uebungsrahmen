@@ -69,6 +69,7 @@ function init(): void {
             ipc.send('run', {
                 args
             });
+            updateLatestConfig();
         }
     });
 }
@@ -81,14 +82,21 @@ function start(): void {
     });
     ui.input.button({
         text: 'Start',
-        handler: () => ipc.send('run', {
-            args: [
-                'start',
-                '-c', elements.config.value,
-                '--', open.value ? '--open' : '--no-open'
-            ]
-        })
+        handler: () => {
+            ipc.send('run', {
+                args: [
+                    'start',
+                    '-c', elements.config.value,
+                    '--', open.value ? '--open' : '--no-open'
+                ]
+            });
+            updateLatestConfig();
+        }
     });
+}
+
+function updateLatestConfig(): void {
+    ipc.send('config', elements.config.value);
 }
 
 function command(): void {
@@ -124,8 +132,8 @@ window.onload = () => {
     (document.getElementById('question-no') as HTMLButtonElement)
         .onclick = () => answer(false);
 
-    toggle('init', 'init-toggle');
-    toggle('start', 'start-toggle', true);
+    toggle('init-container', 'init-toggle');
+    toggle('start-container', 'start-toggle', true);
 
     ipc.send('ready');
 };
