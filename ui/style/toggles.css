@@ -1,0 +1,19 @@
+#toggle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+}
+
+#toggle-container>div {
+    outline: 1px solid #555;
+    margin: var(--tiny-spacing);
+    border-radius: var(--border-radius);
+    padding: var(--small-spacing);
+}
+
+.triangle-right::before {
+    content: '\2BC8\2002';
+}
+
+.triangle-down::before {
+    content: '\2BC6\2002';
+}

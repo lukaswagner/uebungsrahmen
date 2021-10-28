@@ -1,0 +1,16 @@
+.controls div {
+    display: flex;
+    align-items: center;
+    height: 1.25em;
+    padding: var(--small-spacing);
+    border-bottom: 1px solid #555;
+}
+
+.controls div:last-child {
+    border-bottom: none;
+}
+
+.controls label {
+    padding-right: var(--large-spacing);
+    margin-right: auto;
+}
