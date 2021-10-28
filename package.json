@@ -44,10 +44,10 @@
     "scripts": {
         "build": "webpack build --output-clean",
         "start": "webpack serve --open",
-        "main": "node scripts/main.js",
         "lint": "eslint .",
         "lint-fix": "eslint . --fix",
-        "preui": "webpack build -c ./ui/webpack.config.js --output-clean",
-        "ui": "electron ui/ui.js"
+        "build-ui": "webpack build -c ./ui/webpack.config.js --output-clean",
+        "ui": "electron ui/ui.js",
+        "preui": "npm run build-ui --silent"
     }
 }
