@@ -44,7 +44,7 @@ window.onload = () => {
         .onclick = () => answer(false);
 
     toggle('init-container', 'init-toggle');
-    toggle('start-container', 'start-toggle', true);
+    toggle('start-container', 'start-toggle');
     toggle('import-container', 'import-toggle');
     toggle('export-container', 'export-toggle');
 
@@ -92,38 +92,34 @@ function init(): void {
     ui.input.button({
         text: 'Initialize',
         handler: () => {
-            let args: string[] = [];
-            if (exists.value) {
-                args = [];
-            } else {
-                if (config.value === '') {
-                    warn('Please enter a configuration name!');
-                    return;
-                }
-                if (directory.elements[0].textContent === dirPlaceholder) {
-                    warn('Please select a directory!');
-                    return;
-                }
-                if (lecture.value === '') {
-                    warn('Please enter a lecture name!');
-                    return;
-                }
-                if (author1.value === '' && author2.value === '') {
-                    warn('Please enter at least one author!');
-                    return;
-                }
-                args = [
-                    'init',
-                    '-c', config.value,
-                    '-d', directory.elements[0].textContent,
-                    '-l', lecture.value,
-                    '-t', template.value,
-                    '--theme', theme.value,
-                    '-a', author1.value
-                ];
-                if (author1.value !== '') args.push(author1.value);
-                if (author2.value !== '') args.push(author2.value);
+            if (config.value === '') {
+                warn('Please enter a configuration name!');
+                return;
             }
+            if (directory.elements[0].textContent === dirPlaceholder) {
+                warn('Please select a directory!');
+                return;
+            }
+            if (lecture.value === '') {
+                warn('Please enter a lecture name!');
+                return;
+            }
+            if (author1.value === '' && author2.value === '') {
+                warn('Please enter at least one author!');
+                return;
+            }
+            const args = [
+                'init',
+                '-c', config.value,
+                '-d', directory.elements[0].textContent,
+                '-l', lecture.value,
+                '-t', template.value,
+                '--theme', theme.value,
+                '-a', author1.value
+            ];
+            if (author1.value !== '') args.push(author1.value);
+            if (author2.value !== '') args.push(author2.value);
+            if (exists.value) args.push('-e');
             ipc.send('run', {
                 args
             });

@@ -86,8 +86,10 @@ async function setupTemplate(argv) {
 
 async function init(argv) {
     await createConfig(argv);
-    await ensureEmptyDir(argv);
-    if (!await setupTemplate(argv)) return;
+    if (!argv.existing) {
+        await ensureEmptyDir(argv);
+        if (!await setupTemplate(argv)) return;
+    }
     child.spawnSync(
         'npm', ['install', ...npmInstallParams],
         { shell: true, stdio: 'inherit', cwd: path.normalize(argv.directory) });
