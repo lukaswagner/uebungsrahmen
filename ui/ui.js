@@ -60,7 +60,12 @@ let runningProcess;
 
 function run(cmd, args, options) {
     if (runningProcess && runningProcess.exitCode === null) {
-        console.log('Already running!');
+        dialog.showMessageBox(window, {
+            type: 'warning',
+            title: 'Already running',
+            message:
+                'There is a running process! Wait for it to finish or stop it.'
+        });
         return;
     }
     const newArgs = ['./scripts/main.js', ...args];
