@@ -53,27 +53,48 @@ window.onload = () => {
 //#endregion
 
 //#region UI sections
+function makeSubmit(
+    form: HTMLFormElement, button: Button, func: () => void
+): void {
+    button.container.classList.add('c-span');
+    button.elements[0].type = 'submit';
+    form.onsubmit = () => {
+        func();
+        return false;
+    };
+}
+
+function addHelp(label: HTMLLabelElement, text: string): void {
+    label.classList.add('help');
+    label.title = text;
+}
+
 function init(): void {
-    const ui = new UI(document.getElementById('init'));
+    const form = document.getElementById('init') as HTMLFormElement;
+    const ui = new UI(form);
     const config = ui.input.text({
         label: 'Configuration name'
     });
+    const lecture = ui.input.text({
+        label: 'Lecture title'
+    });
+    let dir: string;
     const dirPlaceholder = 'Choose directory...';
     const directory = ui.input.button({
         label: 'Directory',
         text: dirPlaceholder,
         handler: () => ipc.invoke('selectDir').then((path: string) => {
-            const text = !!path && path !== '' ? path : dirPlaceholder;
-            directory.elements[0].textContent = text;
+            dir = path;
+            const text = !!dir && dir !== '' ? dir : dirPlaceholder;
+            directory.elements[0].innerHTML = `<span>${text}</span>`;
+            directory.elements[0].title = text;
         })
     });
     const exists = ui.input.checkbox({
-        label: 'Directory contains existing setup (e.g. git repository)',
+        label: 'Dir contains existing setup',
         value: false
     });
-    const lecture = ui.input.text({
-        label: 'Lecture'
-    });
+    addHelp(exists.label, 'Check this e.g. when adding a git repo.');
     const author1 = ui.input.text({
         label: 'Author ID 1'
     });
@@ -89,64 +110,72 @@ function init(): void {
         optionValues: ['dark', 'light'],
         value: 'dark'
     });
-    ui.input.button({
-        text: 'Initialize',
-        handler: () => {
-            if (config.value === '') {
-                warn('Please enter a configuration name!');
-                return;
-            }
-            if (directory.elements[0].textContent === dirPlaceholder) {
-                warn('Please select a directory!');
-                return;
-            }
-            if (lecture.value === '') {
-                warn('Please enter a lecture name!');
-                return;
-            }
-            if (author1.value === '' && author2.value === '') {
-                warn('Please enter at least one author!');
-                return;
-            }
-            const args = [
-                'init',
-                '-c', config.value,
-                '-d', directory.elements[0].textContent,
-                '-l', lecture.value,
-                '-t', template.value,
-                '--theme', theme.value,
-                '-a', author1.value
-            ];
-            if (author1.value !== '') args.push(author1.value);
-            if (author2.value !== '') args.push(author2.value);
-            if (exists.value) args.push('-e');
-            ipc.send('run', {
-                args
-            });
-            updateLatestConfig();
+
+    const init = (): void => {
+        if (config.value === '') {
+            warn('Please enter a configuration name!');
+            return;
         }
+        if (dir === dirPlaceholder) {
+            warn('Please select a directory!');
+            return;
+        }
+        if (lecture.value === '') {
+            warn('Please enter a lecture name!');
+            return;
+        }
+        if (author1.value === '' && author2.value === '') {
+            warn('Please enter at least one author!');
+            return;
+        }
+        const args = [
+            'init',
+            '-c', config.value,
+            '-d', dir,
+            '-l', lecture.value,
+            '-t', template.value,
+            '--theme', theme.value,
+            '-a'
+        ];
+        if (author1.value !== '') args.push(author1.value);
+        if (author2.value !== '') args.push(author2.value);
+        if (exists.value) args.push('-e');
+        ipc.send('run', {
+            args
+        });
+        updateLatestConfig();
+    };
+
+    const button = ui.input.button({
+        text: 'Initialize'
     });
+    makeSubmit(form, button, init);
 }
 
 function start(): void {
-    const ui = new UI(document.getElementById('start'));
+    const form = document.getElementById('start') as HTMLFormElement;
+    const ui = new UI(form);
     const open = ui.input.checkbox({
         label: 'Open page in browser',
         value: true
     });
-    ui.input.button({
-        text: 'Start',
-        handler: () => {
-            ipc.send('run', {
-                args: [
-                    'start',
-                    '-c', elements.config.value,
-                    '--', open.value ? '--open' : '--no-open'
-                ]
-            });
-            updateLatestConfig();
-        }
+
+    const run = (): void => {
+        ipc.send('run', {
+            args: [
+                'start',
+                '-c', elements.config.value,
+                '--', open.value ? '--open' : '--no-open'
+            ]
+        });
+        updateLatestConfig();
+    };
+
+    form.appendChild(document.createElement('div'));
+    const button = ui.input.button({
+        text: 'Start'
     });
+    makeSubmit(form, button, run);
 }
 
 function command(): void {

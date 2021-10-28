@@ -1,9 +1,17 @@
+.c-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+}
+
+.c-span {
+    grid-column: 1 / span 2;
+}
+
 .controls div {
     display: flex;
     align-items: center;
     height: 1.25em;
     padding: var(--small-spacing);
-    border-bottom: 1px solid #555;
 }
 
 .controls div:last-child {
@@ -13,4 +21,20 @@
 .controls label {
     padding-right: var(--large-spacing);
     margin-right: auto;
+}
+
+.controls input:not([type="checkbox"]), .controls button, .controls progress, .controls select {
+    box-sizing: border-box;
+    margin-left: var(--small-spacing);
+    width: 20ch;
+}
+
+.controls button span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: block;
+}
+
+.help::after {
+    content: '\2002\2754';
 }
