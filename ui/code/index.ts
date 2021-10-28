@@ -25,9 +25,10 @@ window.onload = () => {
         label: 'Configuration'
     });
 
-    init();
-    start();
-    command();
+    initUI();
+    startUI();
+    importUI();
+    commandUI();
 
     elements.consoleContainer =
         document.getElementById('console-container') as HTMLDivElement;
@@ -69,42 +70,55 @@ function addHelp(label: HTMLLabelElement, text: string): void {
     label.title = text;
 }
 
-function init(): void {
+function selectFs(
+    button: Button, placeholder: string,
+    type: 'f' | 'd', handler: (v: string) => void,
+    defaultLoc?: string
+): void {
+    const update = (path: string): void => {
+        let text: string;
+        let result: string;
+        if (!!path && path !== '') {
+            text = path;
+            result = path;
+        } else {
+            text = placeholder;
+            result = undefined;
+        }
+        button.elements[0].innerHTML = `<span>${text}</span>`;
+        button.elements[0].title = text;
+        handler(result);
+    };
+
+    button.elements[0].innerHTML = `<span>${placeholder}</span>`;
+    button.handler = () => ipc.invoke('select', type).then(update);
+    if (defaultLoc) ipc.invoke('resolve', defaultLoc).then(update);
+}
+
+function initUI(): void {
     const form = document.getElementById('init') as HTMLFormElement;
     const ui = new UI(form);
-    const config = ui.input.text({
-        label: 'Configuration name'
-    });
-    const lecture = ui.input.text({
-        label: 'Lecture title'
-    });
+
+    const config = ui.input.text({ label: 'Configuration name' });
+
+    const lecture = ui.input.text({ label: 'Lecture title' });
+
     let dir: string;
-    const dirPlaceholder = 'Choose directory...';
-    const directory = ui.input.button({
-        label: 'Directory',
-        text: dirPlaceholder,
-        handler: () => ipc.invoke('selectDir').then((path: string) => {
-            dir = path;
-            const text = !!dir && dir !== '' ? dir : dirPlaceholder;
-            directory.elements[0].innerHTML = `<span>${text}</span>`;
-            directory.elements[0].title = text;
-        })
-    });
-    const exists = ui.input.checkbox({
-        label: 'Dir contains existing setup',
-        value: false
-    });
+    const directory = ui.input.button({ label: 'Directory' });
+    selectFs(directory, 'Choose directory...', 'd', (d) => dir = d);
+
+    const exists = ui.input.checkbox({ label: 'Dir contains existing setup' });
     addHelp(exists.label, 'Check this e.g. when adding a git repo.');
-    const author1 = ui.input.text({
-        label: 'Author ID 1'
-    });
-    const author2 = ui.input.text({
-        label: 'Author ID 2'
-    });
+
+    const author1 = ui.input.text({ label: 'Author ID 1' });
+
+    const author2 = ui.input.text({ label: 'Author ID 2' });
+
     const template = ui.input.text({
         label: 'Template',
         value: './template'
     });
+
     const theme = ui.input.select({
         label: 'Theme',
         optionValues: ['dark', 'light'],
@@ -116,12 +130,12 @@ function init(): void {
             warn('Please enter a configuration name!');
             return;
         }
-        if (dir === dirPlaceholder) {
-            warn('Please select a directory!');
-            return;
-        }
         if (lecture.value === '') {
             warn('Please enter a lecture name!');
+            return;
+        }
+        if (!dir) {
+            warn('Please select a directory!');
             return;
         }
         if (author1.value === '' && author2.value === '') {
@@ -152,7 +166,7 @@ function init(): void {
     makeSubmit(form, button, init);
 }
 
-function start(): void {
+function startUI(): void {
     const form = document.getElementById('start') as HTMLFormElement;
     const ui = new UI(form);
     const open = ui.input.checkbox({
@@ -178,7 +192,51 @@ function start(): void {
     makeSubmit(form, button, run);
 }
 
-function command(): void {
+function importUI(): void {
+    const form = document.getElementById('import') as HTMLFormElement;
+    const ui = new UI(form);
+
+    const mode = ui.input.select({
+        label: 'Import mode',
+        optionValues: ['assignment', 'submission'],
+        value: 'assignment'
+    });
+
+    const reset = ui.input.checkbox({
+        label: 'If submission: reset assignment'
+    });
+    addHelp(reset.label,
+        'Only for importing submissions. ' +
+        'Resets the assignment to a clean state first.');
+
+    let file: string;
+    const directory = ui.input.button({ label: 'Input file or directory' });
+    selectFs(directory, 'Choose input...', 'f', (f) => file = f, './import');
+
+    const run = (): void => {
+        if (!file) {
+            warn('Please select a file!');
+            return;
+        }
+        const args = [
+            'import',
+            '-c', elements.config.value,
+            '-m', mode.value,
+            '-i', file,
+        ];
+        if (reset.value) args.push('-r');
+        ipc.send('run', { args });
+        updateLatestConfig();
+    };
+
+    form.appendChild(document.createElement('div'));
+    const button = ui.input.button({
+        text: 'Start'
+    });
+    makeSubmit(form, button, run);
+}
+
+function commandUI(): void {
     const ui = new UI(document.getElementById('command'));
     elements.commandStop = ui.input.button({
         label: 'None',

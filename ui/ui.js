@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const child = require('child_process');
 const os = require('os');
 const { app, BrowserWindow, ipcMain: ipc, dialog } = require('electron');
@@ -115,13 +116,19 @@ ipc.on('answer', (event, data) => {
     runningProcess.send(data);
 });
 
-ipc.handle('selectDir', () => {
+ipc.handle('select', (event, data) => {
+    const properties = [];
+    if (data.includes('d')) properties.push('openDirectory', 'createDirectory');
+    if (data.includes('f')) properties.push('openFile');
+    console.log(properties);
     return dialog.showOpenDialogSync({
         defaultPath: process.cwd(),
-        properties: [
-            'openDirectory', 'createDirectory'
-        ]
+        properties
     })?.[0];
+});
+
+ipc.handle('resolve', (event, data) => {
+    return path.join(process.cwd(), data);
 });
 
 ipc.on('alert', (event, data) => dialog.showMessageBox(window, data));
