@@ -12,7 +12,6 @@ const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 
 async function exportArchive(argv) {
-    console.log(argv);
     if (!['assignment', 'submission'].includes(argv.mode.toLowerCase())) {
         log.error(`Invalid export mode: ${argv.mode}. Aborting.`);
         return;

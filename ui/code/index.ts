@@ -259,7 +259,7 @@ function exportUI(): void {
             return;
         }
         const args = [
-            'import',
+            'export',
             '-c', elements.config.value,
             '-m', mode.value,
             '-o', file,

@@ -7,6 +7,7 @@ const { app, BrowserWindow, ipcMain: ipc, dialog } = require('electron');
 
 const configurations = require('../scripts/helpers/configurations');
 const kill = require('tree-kill');
+const absolutePath = require('../scripts/helpers/absolutePath');
 
 /** @type { BrowserWindow } */
 let window;
@@ -120,7 +121,6 @@ ipc.handle('select', (event, data) => {
     const properties = [];
     if (data.includes('d')) properties.push('openDirectory', 'createDirectory');
     if (data.includes('f')) properties.push('openFile');
-    console.log(properties);
     return dialog.showOpenDialogSync({
         defaultPath: process.cwd(),
         properties
@@ -128,7 +128,7 @@ ipc.handle('select', (event, data) => {
 });
 
 ipc.handle('resolve', (event, data) => {
-    return path.join(process.cwd(), data);
+    return absolutePath(data);
 });
 
 ipc.on('alert', (event, data) => dialog.showMessageBox(window, data));
