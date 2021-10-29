@@ -6,6 +6,18 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 See [here](docs/dependencies.md) (summary: you'll need Node.js version 14 or 16 and git).
 
+## graphical user interface
+
+For the most common tasks, you can use the GUI:
+
+```sh
+# (once) install dependencies - for Node.js 16: add --legacy-peer-deps
+npm install
+
+# open ui
+npm run ui
+```
+
 ## quick start (for students)
 
 Note: `./fw.sh` and `.\fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
