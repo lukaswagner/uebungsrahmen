@@ -13,7 +13,8 @@ const log = require('./log');
  */
 async function ensureNonExistent(argv, file) {
     let result = !fs.existsSync(file);
-    result |= await askYesNo(argv, `${file} already exists! Overwrite?`, true);
+    if (!result) result =
+        await askYesNo(argv, `${file} already exists! Overwrite?`, true);
     return result;
 }
 
