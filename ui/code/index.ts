@@ -28,6 +28,7 @@ window.onload = () => {
     initUI();
     startUI();
     importUI();
+    exportUI();
     commandUI();
 
     elements.consoleContainer =
@@ -185,7 +186,6 @@ function startUI(): void {
         updateLatestConfig();
     };
 
-    form.appendChild(document.createElement('div'));
     const button = ui.input.button({
         text: 'Start'
     });
@@ -210,8 +210,8 @@ function importUI(): void {
         'Resets the assignment to a clean state first.');
 
     let file: string;
-    const directory = ui.input.button({ label: 'Input file or directory' });
-    selectFs(directory, 'Choose input...', 'f', (f) => file = f, './import');
+    const input = ui.input.button({ label: 'Input file or directory' });
+    selectFs(input, 'Choose input...', 'f', (f) => file = f, './import');
 
     const run = (): void => {
         if (!file) {
@@ -229,9 +229,48 @@ function importUI(): void {
         updateLatestConfig();
     };
 
-    form.appendChild(document.createElement('div'));
     const button = ui.input.button({
-        text: 'Start'
+        text: 'Import'
+    });
+    makeSubmit(form, button, run);
+}
+
+function exportUI(): void {
+    const form = document.getElementById('export') as HTMLFormElement;
+    const ui = new UI(form);
+
+    const mode = ui.input.select({
+        label: 'Export mode',
+        optionValues: ['assignment', 'submission'],
+        value: 'submission'
+    });
+
+    const assignment = ui.input.text({ label: 'Assignment ID to export' });
+    addHelp(assignment.label, 'Leave empty to choose automatically');
+
+    let file: string;
+    const output = ui.input.button({ label: 'Output file or directory' });
+    selectFs(output, 'Choose output...', 'f', (f) => file = f, './export');
+
+
+    const run = (): void => {
+        if (!file) {
+            warn('Please select a file!');
+            return;
+        }
+        const args = [
+            'import',
+            '-c', elements.config.value,
+            '-m', mode.value,
+            '-o', file,
+        ];
+        if (assignment.value) args.push('-a', assignment.value);
+        ipc.send('run', { args });
+        updateLatestConfig();
+    };
+
+    const button = ui.input.button({
+        text: 'Export'
     });
     makeSubmit(form, button, run);
 }
