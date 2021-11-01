@@ -20,7 +20,7 @@ npm run ui
 
 ## quick start (for students)
 
-Note: `./fw.sh` and `.\fw.bat` (abbreviated to `fw` below) are wrappers for `npm run --silent main --`, making commands shorter and avoiding errors ([forgetting the `--`](https://docs.npmjs.com/cli/v7/commands/npm-run-script)).
+Note: `./uebung.bat` is just a wrapper for `node ./scripts/main.js`. It should be able to run on both Windows and Unix. If it does not work on your system, just use the node command instead.
 
 ```sh
 # install dependencies - for Node.js 16: add --legacy-peer-deps
@@ -29,38 +29,38 @@ npm install
 npm i
 
 # initialize working dir
-fw init --lecture "My Lecture" --directory "../exercises" --authors "authorId1" "authorId2"
+./uebung.bat init --lecture "My Lecture" --directory "../exercises" --authors "authorId1" "authorId2"
 # short version
-fw i -l "My Lecture" -d "../exercises" -a "authorId1" 
+./uebung.bat i -l "My Lecture" -d "../exercises" -a "authorId1" 
 
 # import assignment
-fw import -i "./import/assignment01.tgz"
+./uebung.bat import -i "./import/assignment01.tgz"
 # short version (will select most recent archive inside ./import)
-fw im
+./uebung.bat im
 
 # work on assignment
-fw start
+./uebung.bat start
 # short version
-fw s
+./uebung.bat s
 
 # export solution - see full command doc for note about included files
-fw export --assignment "id"
+./uebung.bat export --assignment "id"
 # short version (will select most recently imported assignment)
-fw ex
+./uebung.bat ex
 ```
 
 ## quick start (for creating exercises)
 
 ```sh
 # install dependencies
-npm install
+./uebung.bat install
 # short version
-npm i
+./uebung.bat i
 
 # initialize working dir
-fw init --lecture "My Lecture" --directory "../exercises"
+./uebung.bat init --lecture "My Lecture" --directory "../exercises"
 # short version
-fw i -l "My Lecture" -d "../exercises"
+./uebung.bat i -l "My Lecture" -d "../exercises"
 
 # you can use one of the examples to initialize an exercise
 cp -R "./examples/webglOperateExample" "../exercises/myAssignment"
@@ -70,14 +70,14 @@ cp -R "./examples/webglOperateExample" "../exercises/myAssignment"
 cp "./examples/assignments.json" "../exercises/assignments.json"
 
 # work on assignment
-fw start
+./uebung.bat start
 # short version
-fw s
+./uebung.bat s
 
 # export assignment
-fw exportAssignment --assignment "id"
+./uebung.bat exportAssignment --assignment "id"
 # short version (will select most recently imported assignment)
-fw ex
+./uebung.bat ex
 ```
 
 ## grading
@@ -86,9 +86,9 @@ fw ex
 # import a submission, resetting the assignment before import
 # note: only works if the assignment was imported,
 # so probably not in your main code base.
-fw importSolution --input "./import/submission.tgz" --reset
+./uebung.bat importSolution --input "./import/submission.tgz" --reset
 # short version (will select most recent archive inside ./import)
-fw is -r
+./uebung.bat is -r
 ```
 
 ## full command documentation

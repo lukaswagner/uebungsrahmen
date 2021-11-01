@@ -14,7 +14,7 @@ if (!checkVersions()) {
         .option('config', require('./options/config'))
         .commandDir('./commands')
         .demandCommand(1, 'You need specify a command.')
-        .scriptName('fw')
+        .scriptName('./uebung.bat')
         .locale('en')
         .help()
         .alias('help', ['h', 'info'])
