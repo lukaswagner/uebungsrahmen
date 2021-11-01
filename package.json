@@ -47,7 +47,8 @@
         "lint": "eslint .",
         "lint-fix": "eslint . --fix",
         "build-ui": "webpack build -c ./ui/webpack.config.js --output-clean",
-        "postinstall": "npm run build-ui --silent",
-        "ui": "electron ui/ui.js"
+        "ui": "electron ui/ui.js",
+        "setup-examples": "cd examples && npm i --silent",
+        "postinstall": "npm run build-ui --silent && npm run setup-examples --silent"
     }
 }

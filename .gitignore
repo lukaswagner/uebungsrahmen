@@ -6,6 +6,5 @@ node_modules
 /temp.json
 /config/*
 !/config/example.json
-/*/package-lock.json
 /ui/build
 /lastConfig.json
