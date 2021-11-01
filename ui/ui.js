@@ -1,12 +1,12 @@
 'use strict';
 
-const path = require('path');
 const child = require('child_process');
 const os = require('os');
 const { app, BrowserWindow, ipcMain: ipc, dialog } = require('electron');
 
 const configurations = require('../scripts/helpers/configurations');
 const kill = require('tree-kill');
+const absolutePath = require('../scripts/helpers/absolutePath');
 
 /** @type { BrowserWindow } */
 let window;
@@ -59,7 +59,7 @@ let runningCommand;
 /** @type { child.ChildProcess } */
 let runningProcess;
 
-function run(cmd, args, options) {
+function run(cmd, { args, options, config }) {
     if (runningProcess && runningProcess.exitCode === null) {
         dialog.showMessageBox(window, {
             type: 'warning',
@@ -69,6 +69,7 @@ function run(cmd, args, options) {
         });
         return;
     }
+
     const newArgs = ['./scripts/main.js', ...args];
     const command = ['node', ...newArgs].join(' ');
     console.log('Running command:', command);
@@ -83,6 +84,10 @@ function run(cmd, args, options) {
 
     runningProcess.on('exit', () => {
         window.webContents.send('command', 'None');
+        if (config) {
+            configurations.setMostRecent(config);
+            updateConfigs();
+        }
     });
 
     runningProcess.on('message', (question) => {
@@ -104,12 +109,18 @@ ipc.on('config', (event, data) => {
 });
 
 ipc.on('run', (event, data) => {
-    run(command, data.args, data.options);
+    run(command, data);
 });
 
 ipc.on('stop', () => {
-    kill(runningProcess.pid);
-    window.webContents.send('command', 'None');
+    kill(runningProcess.pid, (error) => {
+        if (error) {
+            console.log('Error', error);
+            return;
+        }
+        runningProcess = undefined;
+        window.webContents.send('command', 'None');
+    });
 });
 
 ipc.on('answer', (event, data) => {
@@ -120,7 +131,6 @@ ipc.handle('select', (event, data) => {
     const properties = [];
     if (data.includes('d')) properties.push('openDirectory', 'createDirectory');
     if (data.includes('f')) properties.push('openFile');
-    console.log(properties);
     return dialog.showOpenDialogSync({
         defaultPath: process.cwd(),
         properties
@@ -128,7 +138,7 @@ ipc.handle('select', (event, data) => {
 });
 
 ipc.handle('resolve', (event, data) => {
-    return path.join(process.cwd(), data);
+    return absolutePath(data);
 });
 
 ipc.on('alert', (event, data) => dialog.showMessageBox(window, data));

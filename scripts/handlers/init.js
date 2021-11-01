@@ -87,7 +87,7 @@ async function setupTemplate(argv) {
 async function init(argv) {
     await createConfig(argv);
     if (!argv.existing) {
-        await ensureEmptyDir(argv);
+        if (!await ensureEmptyDir(argv)) return;
         if (!await setupTemplate(argv)) return;
     }
     child.spawnSync(

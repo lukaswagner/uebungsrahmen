@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const absolutePath = require('../helpers/absolutePath');
 const json = require('../helpers/json');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
@@ -39,7 +40,7 @@ function rmAll(argv) {
     }
 
     console.log('Removing everything...');
-    const dir = path.join(process.cwd(), argv.directory);
+    const dir = absolutePath(argv.directory);
     console.log(`Removing ${dir}`);
     fs.rmSync(dir, { recursive: true, force: true });
     console.log(`Removing ${argv.config}`);

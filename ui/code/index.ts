@@ -126,7 +126,7 @@ function initUI(): void {
         value: 'dark'
     });
 
-    const init = (): void => {
+    const run = (): void => {
         if (config.value === '') {
             warn('Please enter a configuration name!');
             return;
@@ -155,16 +155,14 @@ function initUI(): void {
         if (author1.value !== '') args.push(author1.value);
         if (author2.value !== '') args.push(author2.value);
         if (exists.value) args.push('-e');
-        ipc.send('run', {
-            args
-        });
+        ipc.send('run', { args, config: config.value });
         updateLatestConfig();
     };
 
     const button = ui.input.button({
         text: 'Initialize'
     });
-    makeSubmit(form, button, init);
+    makeSubmit(form, button, run);
 }
 
 function startUI(): void {
@@ -181,7 +179,8 @@ function startUI(): void {
                 'start',
                 '-c', elements.config.value,
                 '--', open.value ? '--open' : '--no-open'
-            ]
+            ],
+            config: elements.config.value
         });
         updateLatestConfig();
     };
@@ -225,7 +224,7 @@ function importUI(): void {
             '-i', file,
         ];
         if (reset.value) args.push('-r');
-        ipc.send('run', { args });
+        ipc.send('run', { args, config: elements.config.value });
         updateLatestConfig();
     };
 
@@ -259,13 +258,13 @@ function exportUI(): void {
             return;
         }
         const args = [
-            'import',
+            'export',
             '-c', elements.config.value,
             '-m', mode.value,
             '-o', file,
         ];
         if (assignment.value) args.push('-a', assignment.value);
-        ipc.send('run', { args });
+        ipc.send('run', { args, config: elements.config.value });
         updateLatestConfig();
     };
 

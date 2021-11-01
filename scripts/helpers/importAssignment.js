@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const tar = require('tar');
 const defines = require('../../defines.json');
+const absolutePath = require('./absolutePath');
 const createAssignmentEntry = require('./createAssignmentEntry');
 const ensureDirExists = require('./ensureDirExists');
 const json = require('./json');
@@ -38,7 +39,7 @@ async function importAssignment(
     }
 
     const archiveStoreDir =
-        path.join(process.cwd(), argv.directory, defines.archiveStoreDir);
+        absolutePath(path.join(argv.directory, defines.archiveStoreDir));
     ensureDirExists(archiveStoreDir);
 
     fs.copyFileSync(archive, path.join(archiveStoreDir, entry.archive));

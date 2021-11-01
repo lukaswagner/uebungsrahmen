@@ -6,9 +6,8 @@ exports.command = ['remove', 'rm'];
 exports.description =
     'Removes an assignment.' +
     'If no assignment is specified, the whole assignment setup is removed.';
-exports.handler = (argv) =>
-    require('../handlers/remove.js')(
-        Object.assign(argv, json.read(argv.config)));
+exports.handler = (argv) => require('../handlers/remove.js')(
+    Object.assign(argv, json.read(argv.config)));
 exports.builder = (yargs) => {
     yargs
         .option('assumeYes', require('../options/assumeYes'))

@@ -6,6 +6,18 @@ Framework for web-based exercise, designed to be reusable between lectures. Set 
 
 See [here](docs/dependencies.md) (summary: you'll need Node.js version 14 or 16 and git).
 
+## graphical user interface
+
+For the most common tasks, you can use the GUI:
+
+```sh
+# (once) install dependencies - for Node.js 16: add --legacy-peer-deps
+npm install
+
+# open ui
+npm run ui
+```
+
 ## quick start (for students)
 
 Note: `./uebung.bat` is just a wrapper for `node ./scripts/main.js`. It should be able to run on both Windows and Unix. If it does not work on your system, just use the node command instead.

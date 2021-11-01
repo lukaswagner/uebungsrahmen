@@ -10,10 +10,21 @@
     padding: var(--small-spacing);
 }
 
+.triangle-right::before, .triangle-down::before {
+    --size: 0.8em;
+    display: inline-block;
+    content: ' ';
+    width: var(--size);
+    height: var(--size);
+    background-size: var(--size) var(--size);
+    margin-right: var(--small-spacing);
+}
+
 .triangle-right::before {
-    content: '\2BC8\2002';
+    background-image: url(../img/triangle.svg);
 }
 
 .triangle-down::before {
-    content: '\2BC6\2002';
+    background-image: url(../img/triangle.svg);
+    transform: rotate(90deg);
 }
