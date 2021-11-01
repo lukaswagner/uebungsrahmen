@@ -59,7 +59,7 @@ let runningCommand;
 /** @type { child.ChildProcess } */
 let runningProcess;
 
-function run(cmd, args, options) {
+function run(cmd, { args, options, config }) {
     if (runningProcess && runningProcess.exitCode === null) {
         dialog.showMessageBox(window, {
             type: 'warning',
@@ -69,6 +69,7 @@ function run(cmd, args, options) {
         });
         return;
     }
+
     const newArgs = ['./scripts/main.js', ...args];
     const command = ['node', ...newArgs].join(' ');
     console.log('Running command:', command);
@@ -83,6 +84,10 @@ function run(cmd, args, options) {
 
     runningProcess.on('exit', () => {
         window.webContents.send('command', 'None');
+        if (config) {
+            configurations.setMostRecent(config);
+            updateConfigs();
+        }
     });
 
     runningProcess.on('message', (question) => {
@@ -104,7 +109,7 @@ ipc.on('config', (event, data) => {
 });
 
 ipc.on('run', (event, data) => {
-    run(command, data.args, data.options);
+    run(command, data);
 });
 
 ipc.on('stop', () => {
