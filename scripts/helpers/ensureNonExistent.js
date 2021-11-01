@@ -12,10 +12,9 @@ const log = require('./log');
  * (or --force was specified).
  */
 async function ensureNonExistent(argv, file) {
-    let result = !fs.existsSync(file);
-    if (!result) result =
-        await askYesNo(argv, `${file} already exists! Overwrite?`, true);
-    return result;
+    const existing = fs.existsSync(file);
+    if (!existing) return true;
+    return await askYesNo(argv, `${file} already exists! Overwrite?`, true);
 }
 
 module.exports = ensureNonExistent;
