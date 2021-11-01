@@ -1,0 +1,14 @@
+#question {
+    display: flex;
+    align-items: center;
+    height: 1.25em;
+    padding: var(--small-spacing);
+}
+
+#question button {
+    margin-left: var(--small-spacing);
+}
+
+#question :first-child{
+    margin-left: auto;
+}

@@ -6,15 +6,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const mdTex = require('markdown-it-texmath');
 const hljs = require('highlight.js');
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
+const configurations = require('./scripts/helpers/configurations');
+const absolutePath = require('./scripts/helpers/absolutePath');
 
 let configFile = process.env.fw_config;
-if (!fs.existsSync(configFile)) configFile = './example.json';
-console.log('Using config file:', configFile);
+if (!fs.existsSync(configFile)) configFile = './config/example.json';
+console.log('Using config:', configFile);
+configurations.setMostRecent(configFile);
 const config = require(configFile);
 
 // collect assignments, resolve exercise dirs to exercise configs
 const assignmentPath =
-    path.join(__dirname, config.directory, 'assignments.json');
+    absolutePath(path.join(config.directory, 'assignments.json'));
 const assignments = require(assignmentPath)
     .map((assignment) => {
         const clone = Object.assign({}, assignment);

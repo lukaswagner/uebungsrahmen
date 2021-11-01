@@ -1,0 +1,10 @@
+#console-container {
+    overflow-y: scroll;
+    flex-grow: 1;
+    padding: var(--small-spacing);
+}
+
+#console {
+    height: 100%;
+    font-family: monospace;
+}

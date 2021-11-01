@@ -1,0 +1,30 @@
+#toggle-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+}
+
+#toggle-container>div {
+    outline: 1px solid #555;
+    margin: var(--tiny-spacing);
+    border-radius: var(--border-radius);
+    padding: var(--small-spacing);
+}
+
+.triangle-right::before, .triangle-down::before {
+    --size: 0.8em;
+    display: inline-block;
+    content: ' ';
+    width: var(--size);
+    height: var(--size);
+    background-size: var(--size) var(--size);
+    margin-right: var(--small-spacing);
+}
+
+.triangle-right::before {
+    background-image: url(../img/triangle.svg);
+}
+
+.triangle-down::before {
+    background-image: url(../img/triangle.svg);
+    transform: rotate(90deg);
+}

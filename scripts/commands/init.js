@@ -11,5 +11,6 @@ exports.builder = (yargs) => {
         .option('directory', require('../options/directory'))
         .option('theme', require('../options/theme'))
         .option('template', require('../options/template'))
-        .option('authors', require('../options/authors'));
+        .option('authors', require('../options/authors'))
+        .option('existing', require('../options/existing'));
 };

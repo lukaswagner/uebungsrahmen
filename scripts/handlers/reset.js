@@ -4,7 +4,7 @@ const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 const resetAssignment = require('../helpers/resetAssignment');
 
-function reset(argv) {
+async function reset(argv) {
     const { assignments, assignmentsPath } =
         loadAssignments(argv.directory);
     const index = assignments.findIndex((a) => a.id === argv.assignment);
@@ -14,7 +14,7 @@ function reset(argv) {
     }
     const assignment = assignments[index];
 
-    if (!resetAssignment(argv, assignment)) return;
+    if (!await resetAssignment(argv, assignment)) return;
 
     log.success('Done!');
 }

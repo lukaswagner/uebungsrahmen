@@ -1,0 +1,20 @@
+@import '../../source/style/sizes.css';
+@import './command.css';
+@import './console.css';
+@import './content.css';
+@import './controls.css';
+@import './question.css';
+@import './toggles.css';
+
+body {
+    font-family: sans-serif;
+    background: #222;
+    color: #ccc;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.d-none {
+    display: none;
+}

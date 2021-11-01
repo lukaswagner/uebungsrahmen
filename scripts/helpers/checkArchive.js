@@ -31,7 +31,7 @@ async function checkArchive(argv, archive, assignments) {
         assignments.findIndex((a) => a.id === newConfig.id);
 
     const shouldImport = argv.mode.toLowerCase() === 'assignment' ?
-        index === -1 || askYesNo(
+        index === -1 || await askYesNo(
             argv, 'Assignment with this ID already exists! Overwrite?', true) :
         index > -1;
 

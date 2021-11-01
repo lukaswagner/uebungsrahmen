@@ -4,5 +4,8 @@ node_modules
 /export
 /temp
 /temp.json
-/config.json
+/config/*
+!/config/example.json
 /*/package-lock.json
+/ui/build
+/lastConfig.json

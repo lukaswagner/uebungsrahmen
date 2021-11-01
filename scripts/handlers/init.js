@@ -16,14 +16,14 @@ const log = require('../helpers/log');
 const child = require('child_process');
 const { npmInstallParams } = require('../helpers/version');
 
-function createConfig(argv) {
+async function createConfig(argv) {
     const config = {
         lecture: argv.lecture,
         directory: argv.directory,
         theme: argv.theme,
         authors: argv.authors
     };
-    if (!ensureNonExistent(argv, argv.config)) process.exit(1);
+    if (!await ensureNonExistent(argv, argv.config)) process.exit(1);
     json.write(argv.config, config);
 }
 
@@ -85,9 +85,11 @@ async function setupTemplate(argv) {
 }
 
 async function init(argv) {
-    createConfig(argv);
-    ensureEmptyDir(argv);
-    if (!await setupTemplate(argv)) return;
+    await createConfig(argv);
+    if (!argv.existing) {
+        if (!await ensureEmptyDir(argv)) return;
+        if (!await setupTemplate(argv)) return;
+    }
     child.spawnSync(
         'npm', ['install', ...npmInstallParams],
         { shell: true, stdio: 'inherit', cwd: path.normalize(argv.directory) });

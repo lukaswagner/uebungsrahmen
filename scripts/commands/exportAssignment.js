@@ -1,15 +1,14 @@
 'use strict';
 
-const exportArchive = require('../handlers/export.js');
+const json = require('../helpers/json.js');
 
 exports.command = ['exportAssignment', 'ea'];
 exports.description = 'Alias for "export --mode assignment"';
-exports.handler = (argv) =>
-    exportArchive(Object.assign({ mode: 'assignment' }, argv));
+exports.handler = (argv) => require('../handlers/export.js')(
+    Object.assign({ mode: 'assignment' }, argv, json.read(argv.config)));
 exports.builder = (yargs) => {
     yargs
         .option('assumeYes', require('../options/assumeYes'))
         .option('output', require('../options/output'))
-        .option('assignment', require('../options/assignment'))
-        .config('config');
+        .option('assignment', require('../options/assignment'));
 };

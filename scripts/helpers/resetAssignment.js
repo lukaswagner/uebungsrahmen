@@ -4,19 +4,20 @@ const path = require('path');
 const tar = require('tar');
 const defines = require('../../defines.json');
 const removeAssignment = require('../helpers/removeAssignment');
+const absolutePath = require('./absolutePath');
 
-function resetAssignment(argv, assignment) {
+async function resetAssignment(argv, assignment) {
     console.log(`Resetting assignment ${assignment.name}...`);
-    const removed = removeAssignment(argv, assignment, argv.directory, false);
+    const removed =
+        await removeAssignment(argv, assignment, argv.directory, false);
     if (!removed) {
         log.error('Aborting.');
         return false;
     }
 
     tar.extract({
-        file: path.join(
-            process.cwd(), argv.directory,
-            defines.archiveStoreDir, assignment.archive),
+        file: absolutePath(path.join(
+            argv.directory, defines.archiveStoreDir, assignment.archive)),
         cwd: argv.directory,
         filter: (path) => path !== defines.assignmentConfig,
         sync: true

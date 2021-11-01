@@ -37,9 +37,9 @@ You can use `fw help` to get help. If you need help for a specific command, use 
 
 ### config / c
 
-All commands accept (and require) a configuration file. This will default to `./config.json`. If you only need one work setup, you'll never need to touch this.
+All commands accept (and require) a configuration file. The configurations are stored in `./config`. This will default to `config`. If you only need one work setup, you'll never need to touch this.
 
-If you want to use the framework for multiple lectures (or need a test environment), you can use a different setup by specifying `--config path/to/file.json`. For creating a different setup (and `.json`), just pass the argument to `initialize`.
+If you want to use the framework for multiple lectures (or need a test environment), you can use a different setup by specifying `--config otherConfName`. For creating a different setup, just pass the argument to `initialize`.
 
 ### assumeYes / yes / y
 

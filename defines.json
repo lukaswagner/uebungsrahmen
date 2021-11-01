@@ -3,10 +3,12 @@
     "assignmentConfig": "assignment.json",
     "submissionConfig": "submission.json",
     "exerciseConfig": "exercise.json",
+    "configDir": "./config",
     "importDir": "./import",
     "exportDir": "./export",
     "archiveStoreDir": "./.archives",
     "filenameSeparator": "_",
     "assignmentFile": "assignment{sep}{id}.tgz",
-    "submissionFile": "submission{sep}{id}{sep}{authors}.tgz"
+    "submissionFile": "submission{sep}{id}{sep}{authors}.tgz",
+    "lastConfigStore": "./lastConfig.json"
 }

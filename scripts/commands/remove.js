@@ -1,12 +1,13 @@
 'use strict';
 
-const exportArchive = require('../handlers/export.js');
+const json = require('../helpers/json');
 
 exports.command = ['remove', 'rm'];
 exports.description =
     'Removes an assignment.' +
     'If no assignment is specified, the whole assignment setup is removed.';
-exports.handler = require('../handlers/remove.js');
+exports.handler = (argv) => require('../handlers/remove.js')(
+    Object.assign(argv, json.read(argv.config)));
 exports.builder = (yargs) => {
     yargs
         .option('assumeYes', require('../options/assumeYes'))
@@ -17,6 +18,5 @@ exports.builder = (yargs) => {
                 'exercise directory as well as the config file. ' +
                 'Use with caution, as this will delete all exercises.',
             type: 'boolean'
-        })
-        .config('config');
+        });
 };

@@ -2,6 +2,7 @@
 a - authors (during init)
 a - assignment (everywhere else)
 c - config
+e - existing
 d - directory
 f - force
 h - help

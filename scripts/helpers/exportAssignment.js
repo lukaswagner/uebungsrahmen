@@ -19,7 +19,7 @@ const json = require('./json');
  * @param {import('../types').ArgY} argv Config.
  * @param {import('../types').Assignment} assignment
  */
-function exportAssignment(argv, assignment, file) {
+async function exportAssignment(argv, assignment, file) {
     console.log(`Exporting assignment ${assignment.id}...`);
     const patterns = cleanupPatterns();
 
@@ -42,7 +42,7 @@ function exportAssignment(argv, assignment, file) {
         console.log(`[${count}]`, f.file);
     });
 
-    if (!askYesNo(argv, 'Continue?')) {
+    if (!await askYesNo(argv, 'Continue?')) {
         log.error('Aborting.');
         return;
     }

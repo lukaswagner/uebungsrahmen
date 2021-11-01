@@ -1,6 +1,7 @@
 'use strict';
 
 const fs = require('fs');
+const askYesNo = require('./askYesNo');
 const log = require('./log');
 
 /**
@@ -10,11 +11,10 @@ const log = require('./log');
  * @returns {boolean} True if the target does not exist
  * (or --force was specified).
  */
-function ensureNonExistent(argv, file) {
-    let result = !fs.existsSync(file);
-    result |= argv.force;
-    if (!result) log.error(file, 'already exists!');
-    return result;
+async function ensureNonExistent(argv, file) {
+    const existing = fs.existsSync(file);
+    if (!existing) return true;
+    return await askYesNo(argv, `${file} already exists! Overwrite?`, true);
 }
 
 module.exports = ensureNonExistent;

@@ -7,6 +7,7 @@ const child = require('child_process');
 const tar = require('tar');
 const defines = require('../../defines.json');
 const checkForGit = require('./checkForGit');
+const absolutePath = require('./absolutePath');
 
 function checkChangedFiles(argv, assignment) {
     if (!checkForGit()) return;
@@ -33,7 +34,7 @@ function checkChangedFiles(argv, assignment) {
                 '--name-only',
                 '--diff-filter=d',
                 path.join(temp, e),
-                path.join(process.cwd(), argv.directory, e),
+                absolutePath(path.join(argv.directory, e)),
             ]).stdout.toString();
         return output
             .split('\n')

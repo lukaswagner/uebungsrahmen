@@ -14,7 +14,7 @@ function copyRecursive(src, dst) {
         case 'darwin':
             child.spawnSync(
                 'cp',
-                [src + '/*', dst, '-r'],
+                ['-R', src + '/*', dst],
                 { shell: true, stdio: 'inherit' });
             break;
         default:

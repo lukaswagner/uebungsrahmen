@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const defines = require('../../defines.json');
+const absolutePath = require('./absolutePath');
 const json = require('./json');
 
 /**
@@ -12,8 +13,8 @@ const json = require('./json');
  * path to respective json file.
  */
 function loadAssignments(targetDir) {
-    const assignmentsPath = path.join(
-        process.cwd(), targetDir, defines.assignmentsConfig);
+    const assignmentsPath = absolutePath(path.join(
+        targetDir, defines.assignmentsConfig));
     return {
         assignmentsPath: assignmentsPath,
         assignments:

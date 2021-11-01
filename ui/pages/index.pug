@@ -1,0 +1,36 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title uebungsrahmen
+    body
+        #content
+            #config-container
+                #config.controls
+            #toggle-container
+                #init-toggle Initialize
+                #start-toggle Run server
+                #import-toggle Import
+                #export-toggle Export
+            #init-container
+                .heading Initialize working directory
+                form#init.controls.c-grid
+            #start-container
+                .heading Run server
+                form#start.controls.c-grid
+            #import-container
+                .heading Import assignment or submission
+                form#import.controls.c-grid
+            #export-container
+                .heading Export assignment or submission
+                form#export.controls.c-grid
+            #command-container
+                .heading Currently running
+                #command.controls
+            #console-container
+                #console
+            #question-container.d-none
+                #question.controls
+                    span#question-text
+                    button#question-yes Yes
+                    button#question-no No

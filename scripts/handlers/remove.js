@@ -2,12 +2,13 @@
 
 const fs = require('fs');
 const path = require('path');
+const absolutePath = require('../helpers/absolutePath');
 const json = require('../helpers/json');
 const loadAssignments = require('../helpers/loadAssignments');
 const log = require('../helpers/log');
 const removeAssignment = require('../helpers/removeAssignment');
 
-function rmAssignment(argv) {
+async function rmAssignment(argv) {
     const { assignments, assignmentsPath } =
         loadAssignments(argv.directory);
     const index = assignments.findIndex((a) => a.id === argv.assignment);
@@ -17,7 +18,8 @@ function rmAssignment(argv) {
     }
 
     console.log(`Removing assignment ${assignments[index].name}...`);
-    const removed = removeAssignment(argv, assignments[index], argv.directory);
+    const removed =
+        await removeAssignment(argv, assignments[index], argv.directory);
     if (!removed) {
         log.error('Aborting.');
         return;
@@ -38,17 +40,16 @@ function rmAll(argv) {
     }
 
     console.log('Removing everything...');
-    const dir = path.join(process.cwd(), argv.directory);
+    const dir = absolutePath(argv.directory);
     console.log(`Removing ${dir}`);
     fs.rmSync(dir, { recursive: true, force: true });
-    const file = path.join(process.cwd(), argv.config);
-    console.log(`Removing ${file}`);
-    fs.rmSync(file, { force: true });
+    console.log(`Removing ${argv.config}`);
+    fs.rmSync(argv.config, { force: true });
     log.success('Done!');
 }
 
-function remove(argv) {
-    if (argv.assignment) rmAssignment(argv);
+async function remove(argv) {
+    if (argv.assignment) await rmAssignment(argv);
     else rmAll(argv);
 }
 

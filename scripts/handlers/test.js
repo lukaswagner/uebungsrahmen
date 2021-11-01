@@ -7,6 +7,7 @@ const child = require('child_process');
 const stream = require('stream');
 const kill = require('tree-kill');
 const defines = require('../../defines.json');
+const configPath = require('../helpers/configPath');
 const log = require('../helpers/log');
 const json = require('../helpers/json');
 const { stdout } = require('process');
@@ -54,7 +55,7 @@ function editFile(file, func, parseJson = false) {
 
 async function test(argv) {
     const dir = './temp';
-    const config = './temp.json';
+    const config = 'temp';
     const configArgs = ['--config', config];
     const yesArg = '--assumeYes';
     const forceArg = '--force';
@@ -62,7 +63,7 @@ async function test(argv) {
     const options = { stdio: 'inherit', shell: true, encoding: 'utf8' };
 
     // check temp files
-    const tempFound = fs.existsSync(dir) || fs.existsSync(config);
+    const tempFound = fs.existsSync(dir) || fs.existsSync(configPath(config));
     if (tempFound && !argv.force) {
         log.error(
             `${dir} or ${config} already exists!`,
@@ -72,7 +73,7 @@ async function test(argv) {
         return;
     }
     fs.rmSync(dir, { recursive: true, force: true });
-    fs.rmSync(config, { force: true });
+    fs.rmSync(configPath(config), { force: true });
 
     // setup temp config and dir
     heading('Creating temporary assignment setup');
@@ -85,7 +86,7 @@ async function test(argv) {
     ], options);
 
     console.log(log.blue('Created config:'));
-    console.log(json.read(config));
+    console.log(json.read(configPath(config)));
 
     // export assignment - manipulate first to check REMOVE detection
     heading('Export assignment from ./examples');
