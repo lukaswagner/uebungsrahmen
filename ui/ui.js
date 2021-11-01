@@ -52,14 +52,12 @@ function updateConfigs() {
 
 ipc.on('ready', () => updateConfigs());
 
-const command = os.platform() === 'win32' ? '.\\fw.bat' : './fw.sh';
-
 /** @type { string } */
 let runningCommand;
 /** @type { child.ChildProcess } */
 let runningProcess;
 
-function run(cmd, { args, options, config }) {
+function run({ args, options, config }) {
     if (runningProcess && runningProcess.exitCode === null) {
         dialog.showMessageBox(window, {
             type: 'warning',
@@ -109,7 +107,7 @@ ipc.on('config', (event, data) => {
 });
 
 ipc.on('run', (event, data) => {
-    run(command, data);
+    run(data);
 });
 
 ipc.on('stop', () => {
