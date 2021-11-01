@@ -1,4 +1,6 @@
 node_modules
+.DS_STORE
+[Dd]esktop.ini
 /build
 /import
 /export
