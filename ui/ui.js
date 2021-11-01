@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const child = require('child_process');
 const os = require('os');
 const { app, BrowserWindow, ipcMain: ipc, dialog } = require('electron');
@@ -109,8 +108,14 @@ ipc.on('run', (event, data) => {
 });
 
 ipc.on('stop', () => {
-    kill(runningProcess.pid);
-    window.webContents.send('command', 'None');
+    kill(runningProcess.pid, (error) => {
+        if (error) {
+            console.log('Error', error);
+            return;
+        }
+        runningProcess = undefined;
+        window.webContents.send('command', 'None');
+    });
 });
 
 ipc.on('answer', (event, data) => {
