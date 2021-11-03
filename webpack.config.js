@@ -50,7 +50,9 @@ const pages = exercises
     .map((exercise) => {
         return new HtmlWebpackPlugin({
             filename: exercise.id + '.html',
-            template: path.join(exercise.path, exercise.page),
+            template: path.isAbsolute(exercise.page) ?
+                path.join('./source/pages', exercise.page) :
+                path.join(exercise.path, exercise.page),
             templateParameters: { config, exercise, assignments },
             chunks: [exercise.id, 'tools']
         });
