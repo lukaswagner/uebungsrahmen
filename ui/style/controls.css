@@ -27,12 +27,14 @@
     box-sizing: border-box;
     margin-left: var(--small-spacing);
     width: 20ch;
+    height: 1.75em;
 }
 
 .controls button span {
     text-overflow: ellipsis;
     overflow: hidden;
     display: block;
+    height: 100%;
 }
 
 .help::after {
