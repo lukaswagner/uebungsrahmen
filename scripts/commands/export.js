@@ -12,5 +12,6 @@ exports.builder = (yargs) => {
         .option('assignment', require('../options/assignment'))
         .option('mode', require('../options/exportMode'))
         .option('assumeYes', require('../options/assumeYes'))
-        .option('force', require('../options/force'));
+        .option('force', require('../options/force'))
+        .option('remove', require('../options/remove'));
 };

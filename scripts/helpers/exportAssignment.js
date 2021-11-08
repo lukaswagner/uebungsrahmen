@@ -27,10 +27,12 @@ async function exportAssignment(argv, assignment, file) {
         readDirRecursive(path.join(argv.directory, e)))
         .flat();
 
+    console.log('Solution cleanup is', argv.remove ? 'enabled.' : 'disabled.');
+
     let prog = new Progress('Parsing files', files.length);
     const cleaned = files.map((f) => {
         prog.increase();
-        return cleanupFile(f, patterns);
+        return cleanupFile(argv, f, patterns);
     });
     prog.done();
 
@@ -79,6 +81,9 @@ async function exportAssignment(argv, assignment, file) {
     );
 
     fs.rmSync(temp, { recursive: true, force: true });
+
+    console.log('Created file:', file);
+    log.success('Done!');
 }
 
 module.exports = exportAssignment;

@@ -37,9 +37,6 @@ async function exportArchive(argv) {
         await exportAssignment(argv, assignment, file);
     else
         await exportSubmission(argv, assignment, file);
-
-    console.log('Created file:', file);
-    log.success('Done!');
 };
 
 module.exports = exportArchive;

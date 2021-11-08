@@ -82,6 +82,9 @@ async function exportSubmission(argv, assignment, file) {
     );
 
     fs.rmSync(temp, { recursive: true, force: true });
+
+    console.log('Created file:', file);
+    log.success('Done!');
 }
 
 module.exports = exportSubmission;

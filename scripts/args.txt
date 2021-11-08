@@ -10,7 +10,8 @@ i - input
 l - lecture
 m - mode
 o - output
-r - reset
+r - reset (during import)
+r - remove (during export)
 t - template
 v - version
 y - assumeYes
