@@ -6,9 +6,11 @@ const defines = require('../../defines.json');
 const findNewestFile = require('./findNewestFile');
 const log = require('./log');
 
-function isTgz(file) {
+function isArchive(file) {
     const lower = file.toLowerCase();
-    return lower.endsWith('.tgz') || lower.endsWith('.tar.gz');
+    return lower.endsWith('.tgz') ||
+        lower.endsWith('.tar.gz') ||
+        lower.endsWith('.tar');
 }
 
 function isAssignementJson(file) {
@@ -35,7 +37,7 @@ function chooseArchive(target) {
 
     const stat = fs.statSync(target);
     if (stat.isFile()) {
-        if (isTgz(target)) return target;
+        if (isArchive(target)) return target;
         if (isAssignementJson(target)) log.warn(
             `${target} is an unpacked ${defines.assignmentConfig}! ` +
             'Please do not unpack the archive manually.');
@@ -46,7 +48,7 @@ function chooseArchive(target) {
         if (containsAssignementJson(target)) log.warn(
             `${target} contains an unpacked ${defines.assignmentConfig}! ` +
             'Please do not unpack the archive manually.');
-        return findNewestFile(target, (e) => isTgz(e.name));
+        return findNewestFile(target, (e) => isArchive(e.name));
     }
 
     return undefined;
