@@ -125,14 +125,16 @@ ipc.on('answer', (event, data) => {
     runningProcess.send(data);
 });
 
-ipc.handle('select', (event, data) => {
+ipc.handle('select', async (event, data) => {
     const properties = [];
     if (data.includes('d')) properties.push('openDirectory', 'createDirectory');
     if (data.includes('f')) properties.push('openFile');
-    return dialog.showOpenDialogSync({
+    const result = await dialog.showOpenDialog({
         defaultPath: process.cwd(),
         properties
-    })?.[0];
+    });
+    if (result?.canceled) return undefined;
+    return result?.filePaths[0];
 });
 
 ipc.handle('resolve', (event, data) => {
