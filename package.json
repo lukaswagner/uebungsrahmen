@@ -1,6 +1,6 @@
 {
     "name": "uebungsrahmen",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "Exercise framework. Originally build for CG lectures at HPI. Now rebuilt to be more versatile and just better.",
     "repository": {
         "type": "git",
