@@ -59,7 +59,7 @@ async function test(argv) {
     const configArgs = ['--config', config];
     const yesArg = '--assumeYes';
     const forceArg = '--force';
-    const command = os.platform() === 'win32' ? '.\\fw.bat' : './fw.sh';
+    const command = `.${path.sep}uebung.bat`;
     const options = { stdio: 'inherit', shell: true, encoding: 'utf8' };
 
     // check temp files
