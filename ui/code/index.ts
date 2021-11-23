@@ -247,21 +247,22 @@ function exportUI(): void {
     const assignment = ui.input.text({ label: 'Assignment ID to export' });
     addHelp(assignment.label, 'Leave empty to choose automatically');
 
-    let file: string;
-    const output = ui.input.button({ label: 'Output file or directory' });
-    selectFs(output, 'Choose output...', 'f', (f) => file = f, './export');
+    let dir: string;
+    const output = ui.input.button({ label: 'Output directory' });
+    selectFs(output, 'Choose output...', 'd',
+        (d) => dir = d, './export');
 
 
     const run = (): void => {
-        if (!file) {
-            warn('Please select a file!');
+        if (!dir) {
+            warn('Please select a directory!');
             return;
         }
         const args = [
             'export',
             '-c', elements.config.value,
             '-m', mode.value,
-            '-o', file,
+            '-o', dir,
         ];
         if (assignment.value) args.push('-a', assignment.value);
         ipc.send('run', { args, config: elements.config.value });
