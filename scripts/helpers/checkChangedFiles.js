@@ -33,11 +33,12 @@ function checkChangedFiles(argv, assignment) {
                 '--no-index',
                 '--name-only',
                 '--diff-filter=d',
+                '-z',
                 path.join(temp, e),
                 absolutePath(path.join(argv.directory, e)),
             ]).stdout.toString();
         return output
-            .split('\n')
+            .split(/[\n\x00]/g)
             .filter((f) => !!f)
             .map((f) => path.normalize(f))
             .map((f) => f.replace(/"/g, ''))
