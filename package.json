@@ -27,7 +27,6 @@
         "node-polyfill-webpack-plugin": "^1.1.4",
         "pug": "^3.0.2",
         "pug-loader": "^2.4.0",
-        "readline-sync": "^1.4.10",
         "rxjs": "^7.5.5",
         "style-loader": "^3.3.1",
         "tar": "^6.1.11",

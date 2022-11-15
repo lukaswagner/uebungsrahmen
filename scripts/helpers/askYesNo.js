@@ -1,6 +1,6 @@
 'use strict';
 
-const readlineSync = require('readline-sync');
+const readline = require('readline');
 const checkYesNo = require('./checkYesNo');
 
 async function askIpc(question) {
@@ -13,7 +13,17 @@ async function askIpc(question) {
 }
 
 async function askTerm(question) {
-    return checkYesNo(readlineSync.question(question + ' (y/n) '));
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    return new Promise((resolve) => {
+        rl.question(question + ' (y/n) ', (answer) => {
+            rl.close();
+            const result = checkYesNo(answer);
+            resolve(result);
+        });
+    });
 }
 
 /**
@@ -22,7 +32,7 @@ async function askTerm(question) {
  * @param {import('../types').ArgFY} argv Config.
  * @param {string} question The question to ask.
  * @param {boolean} requiresForce Whether force is required for auto-yes.
- * @returns {boolean} The user's answer.
+ * @returns {Promise<boolean>} The user's answer.
  */
 async function askYesNo(argv, question, requiresForce = false) {
     const defaultAnswer = requiresForce ?
