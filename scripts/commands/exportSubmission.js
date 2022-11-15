@@ -9,5 +9,7 @@ exports.handler = (argv) => require('../handlers/export.js')(
 exports.builder = (yargs) => {
     yargs
         .option('output', require('../options/output'))
-        .option('assignment', require('../options/assignment'));
+        .option('assignment', require('../options/assignment'))
+        .option('assumeYes', require('../options/assumeYes'))
+        .option('force', require('../options/force'));
 };

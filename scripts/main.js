@@ -20,5 +20,6 @@ if (!checkVersions()) {
         .alias('help', ['h', 'info'])
         .alias('version', 'v')
         .wrap(null)
+        .strict()
         .argv;
 })();
